@@ -1,0 +1,19 @@
+<svg width="240" height="40" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#0f172a" stroke-width="1.2" stroke-linecap="square">
+    <!-- grid baseline -->
+    <line x1="0" y1="30" x2="240" y2="30" stroke="#CBD5E1"></line>
+    
+    <!-- structural guides -->
+    <line x1="10" y1="5" x2="10" y2="35" stroke="#E2E8F0"></line>
+    <line x1="120" y1="5" x2="120" y2="35" stroke="#E2E8F0"></line>
+    <line x1="230" y1="5" x2="230" y2="35" stroke="#E2E8F0"></line>
+  </g>
+
+  <text x="12" y="26" font-family="Inter, system-ui, sans-serif" font-size="20" letter-spacing="-0.02em" fill="#0f172a">
+    pilotmieux
+  </text>
+
+  <!-- 分解ニュアンス用のカットライン -->
+  <line x1="74" y1="10" x2="74" y2="34" stroke="#6366F1" stroke-width="1"></line>
+  <line x1="156" y1="10" x2="156" y2="34" stroke="#22C55E" stroke-width="1"></line>
+</svg>
