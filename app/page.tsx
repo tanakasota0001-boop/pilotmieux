@@ -22,6 +22,25 @@ export default function Home() {
   const logoOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.6])
   const logoY = useTransform(scrollYProgress, [0, 1], [0, -6])
 
+const services = [
+  {
+    title: '構造化',
+    lead: '丁寧なヒアリングと整理・可視化を通じて、課題の本質を明らかにします。',
+    body: '経営や現場業務の本質的な課題を明らかにします。同時に潜在的な成長機会や新たな価値の種も見える化します。',
+  },
+  {
+    title: '設計',
+    lead: '改善策にとどまらず、高収益モデルにつながる打ち手を設計します。',
+    body: '現場で実行できる形に落とし込み、成果につながる具体的な打ち手を描きます。新規サービス立ち上げ、業務改革、ブランド再構築など、企業の次の収益の柱を共に形にします。',
+  },
+  {
+    title: '伴走',
+    lead: '成果が生まれ、定着するまで継続的に支援します。',
+    body: '単発の支援や顧問契約など形を問わず、成果が生まれるまで、そして成果が生み続けられる仕組みが定着するまで共に歩みます。成果創出後も分析を行い、次の成長に向けた打ち手を提案し続けます。',
+  },
+]
+
+
   return (
     <main className="text-slate-900 overflow-hidden">
 
@@ -68,9 +87,12 @@ export default function Home() {
               transition={{ duration: 0.9 }}
               className="text-5xl md:text-7xl font-semibold leading-tight tracking-tight"
             >
-              課題を構造化し、
+              課題を可視化し、
               <br />
-              実行まで伴走する
+              成果と成長を共に創り続ける
+              <br />
+              伴走パートナー
+
             </motion.h1>
 
             <motion.p
@@ -80,9 +102,12 @@ export default function Home() {
               transition={{ delay: 0.2, duration: 0.9 }}
               className="mt-10 max-w-xl text-lg text-slate-600 leading-relaxed"
             >
-              pilotmieuxは、中小企業を中心に、
-              複雑化した課題を整理し、
-              解決策の設計から実行・定着までを一貫して支援します。
+            pilotmieuxは、中小企業の複雑な課題を可視化し、
+            解決策の設計・実行・定着までを共に行います。
+            さらに、新たな事業やサービス、ブランドの創出まで伴走し、
+            利益が生まれるところまで共に取り組みます。
+
+
             </motion.p>
           </motion.div>
         </div>
@@ -99,61 +124,43 @@ export default function Home() {
             transition={{ duration: 0.7 }}
             className="text-3xl md:text-4xl font-semibold tracking-tight"
           >
-            pilotmieuxとは
+            pilotmieuxの支援は、次の3つの柱で成り立っています。
           </motion.h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="mt-8 max-w-2xl text-slate-600 leading-relaxed"
-          >
-            経営、業務、IT、データ。
-            それぞれが部分最適化され、全体像が見えなくなった状態を、
-            「構造」として捉え直すことから始めます。
-          </motion.p>
         </div>
       </section>
 
+      
       {/* SERVICES */}
       <section className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 py-40">
         <div className="noise" />
+<div className="relative z-10 max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+  {services.map((item, i) => (
+    <motion.div
+      key={i}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      transition={{ delay: i * 0.15, duration: 0.7 }}
+      className="rounded-2xl bg-white/80 backdrop-blur p-10 shadow-sm"
+    >
+      <h3 className="text-xl font-semibold tracking-tight">
+        {item.title}
+      </h3>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-          {[
-            {
-              title: '構造化',
-              text: 'ヒアリング・整理・可視化を通じて、課題の本質を明確にします。',
-            },
-            {
-              title: '設計',
-              text: '実行可能な解決策を、業務・IT・データの観点から設計します。',
-            },
-            {
-              title: '伴走',
-              text: '成果が出るところまで、責任を持って支援します。',
-            },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              transition={{ delay: i * 0.15, duration: 0.7 }}
-              className="rounded-2xl bg-white/80 backdrop-blur p-10 shadow-sm"
-            >
-              <h3 className="text-xl font-semibold tracking-tight">
-                {item.title}
-              </h3>
-              <p className="mt-5 text-slate-600 leading-relaxed">
-                {item.text}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+      <p className="mt-4 text-slate-800 leading-relaxed font-medium">
+        {item.lead}
+      </p>
+
+      {item.body && (
+        <p className="mt-4 text-sm text-slate-600 leading-relaxed">
+          {item.body}
+        </p>
+      )}
+    </motion.div>
+  ))}
+</div>
       </section>
 
       {/* PHILOSOPHY */}
@@ -178,9 +185,17 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.7 }}
             className="mt-8 max-w-2xl text-slate-600 leading-relaxed"
           >
-            机上の空論ではなく、現場で使われる形に。
-            理論ではなく、成果に責任を持つ。
-            私たちは「考える」と「動かす」を切り離しません。
+          私たちは「きれいな資料を作って終わり」ではありません。
+          ツールを導入して終えるような支援でもありません。
+
+          企業の利益が生まれるまで、そして生み続けられるように、
+          共に悩み、考え、歩む伴走型のパートナーです。
+
+          机上の空論ではなく、現場で確実に機能する形に落とし込み、
+          理論を実行と成果へ結びつけます。
+
+          「考える」から「動かす」までを切り離さず、
+          企業の成長と利益創出を一貫して支援し続けます。
           </motion.p>
         </div>
       </section>
@@ -209,7 +224,7 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.7 }}
             className="mt-8 text-slate-300"
           >
-            ご相談・お問い合わせはこちら
+            まずは課題整理から、新たな事業づくりや改善の打ち手までご相談ください。
           </motion.p>
 
           <motion.div
@@ -221,12 +236,21 @@ export default function Home() {
             className="mt-12"
           >
             <a
-              href="mailto:contact@pilotmieux.com"
+              href="mailto:tsubaki.kenichi@pilotmieux.com"
               className="inline-block rounded-full bg-indigo-500 px-10 py-4 text-white font-medium hover:bg-indigo-400 transition"
             >
-              contact@pilotmieux.com
+              tsubaki.kenichi@pilotmieux.com
             </a>
+
+  <div className="border-t border-slate-700 pt-6 max-w-sm">
+    <p className="tracking-wide">pilotmieux</p>
+    <p className="mt-1">代表　椿 謙一</p>
+  </div>
+  
           </motion.div>
+
+
+
         </div>
       </section>
 
