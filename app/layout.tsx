@@ -10,7 +10,7 @@ export const metadata = {
   openGraph: {
     title: 'pilotmieux',
     description: '課題を構造化し、実行まで伴走する',
-    images: ['/og.png'],
+    images: ['/og.jpg'],
   },
   icons: {
     icon: '/favicon.svg',
