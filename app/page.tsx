@@ -44,30 +44,23 @@ const services = [
   return (
     <main className="text-slate-900 overflow-hidden">
 
-    {/* 固定ロゴ（スクロール連動） */}
-    <motion.div
-      style={{
-        scale: logoScale,
-        opacity: logoOpacity,
-        y: logoY,
-      }}
-      className="fixed top-4 left-4 md:top-8 md:left-8 z-50"
-    >
-      <Image
-        src="/og.jpg"
-        alt="pilotmieux logo"
-        width={120}
-        height={32}
-        className="object-contain opacity-90"
-        priority
-      />
-    </motion.div>
-
       {/* HERO */}
       <section
         ref={heroRef}
         className="relative bg-white"
       >
+
+  <div className="absolute top-4 left-4 md:top-8 md:left-8">
+    <Image
+      src="/og.jpg"
+      alt="pilotmieux logo"
+      width={120}
+      height={32}
+      className="object-contain opacity-90"
+      priority
+    />
+  </div>
+
         <div className="noise" />
 
         {/* 抽象SVG */}
