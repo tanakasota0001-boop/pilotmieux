@@ -9,7 +9,7 @@ export const metadata = {
     'pilotmieuxは、中小企業の課題を構造化し、実行・改善・定着までを一貫して支援します。',
   applicationName: "pilotmieux",
   manifest: "/manifest.json",
-  metadataBase: new URL("https://www.pilotmieux.com"),
+  metadataBase: new URL("https://www.pilotmieux.com/"),
   alternates: {
     canonical: "/",
   },
@@ -18,7 +18,7 @@ export const metadata = {
       title: 'pilotmieux',
       description: '課題を構造化し、実行まで伴走する',
       images: ['/og.jpg'],
-      url: "https://www.pilotmieux.com",
+      url: "https://www.pilotmieux.com/",
   },
   icons: {
     icon: '/favicon.svg',
