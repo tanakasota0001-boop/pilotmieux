@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://pilotmieux.com/sitemap.xml',
+    sitemap: 'https://www.pilotmieux.com/sitemap.xml',
   }
 }
