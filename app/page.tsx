@@ -244,7 +244,7 @@ const services = [
 
   <div className="border-t border-slate-700 pt-6 max-w-sm">
     <p className="tracking-wide">pilotmieux</p>
-    <p className="mt-1">代表　椿 謙一</p>
+    <p className="mt-1">代表取締役社長 CEO　椿 謙一</p>
   </div>
   
           </motion.div>
