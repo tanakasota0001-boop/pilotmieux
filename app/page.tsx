@@ -51,14 +51,14 @@ const services = [
     opacity: logoOpacity,
     y: logoY,
   }}
-  className="fixed top-8 left-8 z-50"
+  className="fixed top-4 left-4 md:top-8 md:left-8 z-50"
 >
   <Image
     src="/og.jpg"
     alt="pilotmieux logo"
-    width={180}
-    height={50}
-    className="object-contain"
+    width={120}
+    height={32}
+    className="object-contain opacity-90"
     priority
   />
 </motion.div>
