@@ -1,5 +1,5 @@
 'use client'
-
+import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 
@@ -45,26 +45,28 @@ const services = [
     <main className="text-slate-900 overflow-hidden">
 
     {/* 固定ロゴ（スクロール連動） */}
-    <motion.div
-      style={{
-        scale: logoScale,
-        opacity: logoOpacity,
-        y: logoY,
-      }}
-      className="fixed top-6 left-6 z-50 origin-top-left"
-    >
-    <div className="flex items-center gap-3">
-      <div className="h-6 w-px bg-slate-300" />
-      <span className="text-xs tracking-widest text-slate-800">
-        pilotmieux
-      </span>
-    </div>
-    </motion.div>
+<motion.div
+  style={{
+    scale: logoScale,
+    opacity: logoOpacity,
+    y: logoY,
+  }}
+  className="fixed top-8 left-8 z-50"
+>
+  <Image
+    src="/og.jpg"
+    alt="pilotmieux logo"
+    width={180}
+    height={50}
+    className="object-contain"
+    priority
+  />
+</motion.div>
 
       {/* HERO */}
       <section
         ref={heroRef}
-        className="relative bg-gradient-to-br from-indigo-50 via-white to-emerald-50"
+        className="relative bg-white"
       >
         <div className="noise" />
 
@@ -114,7 +116,7 @@ const services = [
       </section>
 
       {/* WHAT */}
-      <section className="bg-white py-36">
+      <section className="bg-white py-36 border-t border-slate-100">
         <div className="max-w-5xl mx-auto px-6">
           <motion.h2
             initial="hidden"
@@ -126,45 +128,43 @@ const services = [
           >
             pilotmieuxの支援は、次の3つの柱で成り立っています。
           </motion.h2>
-
         </div>
       </section>
 
       
       {/* SERVICES */}
-      <section className="relative bg-gradient-to-br from-slate-50 via-white to-slate-100 py-40">
-        <div className="noise" />
-<div className="relative z-10 max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
-  {services.map((item, i) => (
-    <motion.div
-      key={i}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={fadeUp}
-      transition={{ delay: i * 0.15, duration: 0.7 }}
-      className="rounded-2xl bg-white/80 backdrop-blur p-10 shadow-sm"
-    >
-      <h3 className="text-xl font-semibold tracking-tight">
-        {item.title}
-      </h3>
+      <section className="bg-white py-40 border-t border-slate-100">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+          {services.map((item, i) => (
+            <motion.div
+              key={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              transition={{ delay: i * 0.15, duration: 0.7 }}
+              className="rounded-2xl bg-white p-10 border border-slate-100"
+            >
+              <h3 className="text-xl font-semibold tracking-tight">
+                {item.title}
+              </h3>
 
-      <p className="mt-4 text-slate-800 leading-relaxed font-medium">
-        {item.lead}
-      </p>
+              <p className="mt-4 text-slate-800 leading-relaxed font-medium">
+                {item.lead}
+              </p>
 
-      {item.body && (
-        <p className="mt-4 text-sm text-slate-600 leading-relaxed">
-          {item.body}
-        </p>
-      )}
-    </motion.div>
-  ))}
-</div>
+              {item.body && (
+                <p className="mt-4 text-sm text-slate-600 leading-relaxed">
+                  {item.body}
+                </p>
+              )}
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* PHILOSOPHY */}
-      <section className="bg-white py-36">
+      <section className="bg-white py-36 border-t border-slate-100">
         <div className="max-w-5xl mx-auto px-6">
           <motion.h2
             initial="hidden"
@@ -183,19 +183,19 @@ const services = [
             viewport={{ once: true }}
             variants={fadeUp}
             transition={{ delay: 0.2, duration: 0.7 }}
-            className="mt-8 max-w-2xl text-slate-600 leading-relaxed"
+            className="mt-10 max-w-2xl text-slate-600 leading-relaxed text-lg"
           >
-          私たちは「きれいな資料を作って終わり」ではありません。
-          ツールを導入して終えるような支援でもありません。
+            私たちは「きれいな資料を作って終わり」ではありません。
+            ツールを導入して終えるような支援でもありません。
 
-          企業の利益が生まれるまで、そして生み続けられるように、
-          共に悩み、考え、歩む伴走型のパートナーです。
+            企業の利益が生まれるまで、そして生み続けられるように、
+            共に悩み、考え、歩む伴走型のパートナーです。
 
-          机上の空論ではなく、現場で確実に機能する形に落とし込み、
-          理論を実行と成果へ結びつけます。
+            机上の空論ではなく、現場で確実に機能する形に落とし込み、
+            理論を実行と成果へ結びつけます。
 
-          「考える」から「動かす」までを切り離さず、
-          企業の成長と利益創出を一貫して支援し続けます。
+            「考える」から「動かす」までを切り離さず、
+            企業の成長と利益創出を一貫して支援し続けます。
           </motion.p>
         </div>
       </section>
