@@ -45,23 +45,23 @@ const services = [
     <main className="text-slate-900 overflow-hidden">
 
     {/* 固定ロゴ（スクロール連動） */}
-<motion.div
-  style={{
-    scale: logoScale,
-    opacity: logoOpacity,
-    y: logoY,
-  }}
-  className="fixed top-4 left-4 md:top-8 md:left-8 z-50"
->
-  <Image
-    src="/og.jpg"
-    alt="pilotmieux logo"
-    width={120}
-    height={32}
-    className="object-contain opacity-90"
-    priority
-  />
-</motion.div>
+    <motion.div
+      style={{
+        scale: logoScale,
+        opacity: logoOpacity,
+        y: logoY,
+      }}
+      className="fixed top-4 left-4 md:top-8 md:left-8 z-50"
+    >
+      <Image
+        src="/og.jpg"
+        alt="pilotmieux logo"
+        width={120}
+        height={32}
+        className="object-contain opacity-90"
+        priority
+      />
+    </motion.div>
 
       {/* HERO */}
       <section
@@ -71,14 +71,13 @@ const services = [
         <div className="noise" />
 
         {/* 抽象SVG */}
-        <svg
-          className="absolute top-0 right-0 w-[600px] opacity-30"
+        {/* <svg
+          className="absolute top-0 right-0 w-[600px] opacity-10 pointer-events-none"
           viewBox="0 0 600 600"
           fill="none"
         >
-          <circle cx="300" cy="300" r="280" stroke="#6366F1" strokeWidth="1" />
-          <circle cx="300" cy="300" r="200" stroke="#22C55E" strokeWidth="1" />
-        </svg>
+          <circle cx="300" cy="300" r="260" stroke="#000000" strokeWidth="1" />
+        </svg> */}
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-40">
           <motion.div style={{ y }}>
