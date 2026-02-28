@@ -9,13 +9,13 @@ export const metadata = {
     'pilotmieuxは、中小企業の課題を構造化し、実行・改善・定着までを一貫して支援します。',
   applicationName: "pilotmieux",
   manifest: "/manifest.json",
-  metadataBase: new URL("https://pilotmieux.vercel.app"),
+  metadataBase: new URL("https://pilotmieux.com"),
     openGraph: {
       siteName: "pilotmieux",
       title: 'pilotmieux',
       description: '課題を構造化し、実行まで伴走する',
       images: ['/og.jpg'],
-      url: "https://pilotmieux.vercel.app",
+      url: "https://pilotmieux.com",
   },
   icons: {
     icon: '/favicon.svg',
