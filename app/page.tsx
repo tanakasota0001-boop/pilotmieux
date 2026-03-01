@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import Link from 'next/link'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -49,18 +50,6 @@ const services = [
         ref={heroRef}
         className="relative bg-white"
       >
-
-  <div className="absolute top-4 left-4 md:top-8 md:left-8">
-    <Image
-      src="/og.jpg"
-      alt="pilotmieux logo"
-      width={120}
-      height={32}
-      className="object-contain opacity-90"
-      priority
-    />
-  </div>
-
         <div className="noise" />
 
         {/* 抽象SVG */}
@@ -192,63 +181,71 @@ const services = [
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white py-40">
-        <div className="noise" />
+{/* CONTACT */}
+// CONTACT セクション全体を置き換え
+<section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white py-40">
+  <div className="noise pointer-events-none" aria-hidden="true" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6">
-          <motion.h2
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            transition={{ duration: 0.7 }}
-            className="text-3xl md:text-4xl font-semibold tracking-tight"
-          >
-            Contact
-          </motion.h2>
+  <div className="relative z-10 max-w-5xl mx-auto px-6">
+    <motion.h2
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      transition={{ duration: 0.7 }}
+      className="text-3xl md:text-4xl font-semibold tracking-tight"
+    >
+      Contact
+    </motion.h2>
 
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="mt-8 text-slate-300"
-          >
-            まずは課題整理から、新たな事業づくりや改善の打ち手までご相談ください。
-          </motion.p>
+    <motion.p
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      transition={{ delay: 0.2, duration: 0.7 }}
+      className="mt-8 text-slate-200"
+    >
+      まずは課題整理から、新たな事業づくりや改善の打ち手までご相談ください。
+    </motion.p>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            transition={{ delay: 0.4, duration: 0.7 }}
-            className="mt-12"
-          >
-            <a
-              href="mailto:tsubaki.kenichi@pilotmieux.com"
-              className="inline-block rounded-full bg-indigo-500 px-10 py-4 text-white font-medium hover:bg-indigo-400 transition"
-            >
-              tsubaki.kenichi@pilotmieux.com
-            </a>
+    {/* ミニ・案内（「何を書けばいい？」の不安を解消） */}
+    <motion.ul
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      transition={{ delay: 0.3, duration: 0.7 }}
+      className="mt-6 text-sm text-slate-300 space-y-1 list-disc list-inside"
+    >
+      <li>現状の課題（分かる範囲でOK）</li>
+      <li>相談したいテーマ</li>
+      など
+    </motion.ul>
 
-  <div className="border-t border-slate-700 pt-6 max-w-sm">
-    <p className="tracking-wide">pilotmieux Inc.</p>
-    <p className="mt-1">代表取締役社長 CEO　椿 謙一</p>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={fadeUp}
+      transition={{ delay: 0.4, duration: 0.7 }}
+      className="mt-12"
+    >
+      <Link
+        href="/contact"
+        className="inline-block rounded-full bg-indigo-500 px-10 py-4 text-white font-medium hover:bg-indigo-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 transition"
+      >
+        お問合せフォーム
+      </Link>
+
+      <div className="border-t border-slate-700 pt-6 max-w-sm mt-8">
+        <p className="tracking-wide">pilotmieux Inc.</p>
+        <p className="mt-1">代表取締役社長 CEO　椿 謙一</p>
+      </div>
+    </motion.div>
   </div>
-  
-          </motion.div>
+</section>
 
-
-
-        </div>
-      </section>
-
-      <footer className="bg-black text-slate-400 py-10 text-center text-sm">
-        © {new Date().getFullYear()} pilotmieux
-      </footer>
     </main>
   )
 }
