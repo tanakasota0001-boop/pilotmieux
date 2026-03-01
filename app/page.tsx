@@ -182,7 +182,6 @@ const services = [
       </section>
 
 {/* CONTACT */}
-// CONTACT セクション全体を置き換え
 <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white py-40">
   <div className="noise pointer-events-none" aria-hidden="true" />
 
