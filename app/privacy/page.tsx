@@ -15,7 +15,7 @@ export default function Privacy() {
 
         <p className="mt-6 text-slate-600 leading-relaxed">
           pilotmieux Inc.（以下「当社」といいます。）は、
-          当社のウェブサイト（https://www.pilotmieux.com/）における
+          当社のウェブサイト（https://pilotmieux.com/）における
           個人情報の取扱いについて、以下のとおりプライバシーポリシーを定めます。
         </p>
 
