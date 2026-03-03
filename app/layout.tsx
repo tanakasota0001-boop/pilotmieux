@@ -26,8 +26,14 @@ export const metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', rel: 'icon', sizes: '16x16 32x32' },
-      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+
+      // 32x32 PNG（高解像度UIで綺麗に見えやすい）
+      // 互換用
+      { url: '/pm-favicon-circle-large.ico', rel: 'shortcut icon', type: 'image/x-icon' },     
+      { url: '/pm-favicon-32-circle-large.png', type: 'image/png', sizes: '32x32' },
+      { url: '/pm-favicon-circle-large.ico', rel: 'icon', sizes: '16x16 32x32', type: 'image/x-icon' }
+
+
     ],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
