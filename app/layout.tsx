@@ -12,7 +12,7 @@ export const metadata = {
   description:
     'pilotmieuxは、中小企業の課題を構造化し、実行・改善・定着までを一貫して支援します。',
   applicationName: 'pilotmieux',
-  manifest: '/manifest.json',
+  manifest: '/site.webmanifest',
   metadataBase: new URL('https://www.pilotmieux.com/'),
   alternates: {
     canonical: '/',
@@ -25,8 +25,13 @@ export const metadata = {
     url: 'https://www.pilotmieux.com/',
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.ico', rel: 'icon', sizes: '16x16 32x32' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
+
 }
 
 export default function RootLayout({
