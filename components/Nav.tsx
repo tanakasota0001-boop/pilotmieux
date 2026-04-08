@@ -12,20 +12,22 @@ export default function Nav() {
 
   return (
     <nav className="text-sm space-x-6">
-      {/* <Link
-        href="/service"
-        className={`${base} ${pathname === '/service' ? active : inactive}`}
-        aria-current={pathname === '/service' ? 'page' : undefined}
-      >
-        Service
-      </Link>
       <Link
         href="/about"
         className={`${base} ${pathname === '/about' ? active : inactive}`}
         aria-current={pathname === '/about' ? 'page' : undefined}
       >
         About
+      </Link>
+
+      {/* <Link
+        href="/service"
+        className={`${base} ${pathname === '/service' ? active : inactive}`}
+        aria-current={pathname === '/service' ? 'page' : undefined}
+      >
+        Service
       </Link> */}
+
       <Link
         href="/contact"
         className={`${base} ${pathname === '/contact' ? active : inactive}`}
@@ -34,5 +36,6 @@ export default function Nav() {
         Contact
       </Link>
     </nav>
-  )
+
+)
 }
