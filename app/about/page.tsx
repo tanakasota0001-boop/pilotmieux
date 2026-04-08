@@ -13,7 +13,7 @@ type CompanyInfo = {
 };
 
 const companyInfo: CompanyInfo = {
-  name: "株式会社パイロットミュー（pilotmieux. Inc.）",
+  name: "株式会社パイロットミュー（pilotmieux, Inc.）",
   established: "2026年3月17日",
   address: "長野県松本市笹部1-4-8",
   representative: "椿　謙一",

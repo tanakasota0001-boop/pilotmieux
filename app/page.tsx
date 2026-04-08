@@ -85,7 +85,7 @@ const services = [
               transition={{ delay: 0.2, duration: 0.9 }}
               className="mt-10 max-w-xl text-lg text-slate-600 leading-relaxed"
             >
-            pilotmieuxは、中小企業の複雑な課題を可視化し、
+            パイロットミュー（pilotmieux）は、中小企業の複雑な課題を可視化し、
             解決策の設計・実行・定着までを共に行います。
             さらに、新たな事業やサービス、ブランドの創出まで伴走し、
             利益が生まれるところまで共に取り組みます。

@@ -8,18 +8,18 @@ import Nav from '../components/Nav'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'pilotmieux｜課題を構造化し、実行まで伴走する',
+  title: '株式会社パイロットミュー（pilotmieux）｜課題を構造化し、実行まで伴走する',
   description:
-    'pilotmieuxは、中小企業の課題を構造化し、実行・改善・定着までを一貫して支援します。',
-  applicationName: 'pilotmieux',
+    '株式会社パイロットミュー（pilotmieux）は、中小企業の課題を構造化し、実行・改善・定着までを一貫して支援します。',
+  applicationName: '株式会社パイロットミュー（pilotmieux）',
   manifest: '/site.webmanifest',
   metadataBase: new URL('https://www.pilotmieux.com/'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    siteName: 'pilotmieux',
-    title: 'pilotmieux',
+    siteName: '株式会社パイロットミュー（pilotmieux）',
+    title: '株式会社パイロットミュー（pilotmieux）',
     description: '課題を構造化し、実行まで伴走する',
     images: ['/og.jpg'],
     url: 'https://www.pilotmieux.com/',
@@ -71,7 +71,7 @@ export default function RootLayout({
 
         {/* ===== FOOTER ===== */}
         <footer className="bg-black text-neutral-400 py-10 text-center text-sm space-y-2 mt-20">
-          <div>© {new Date().getFullYear()} pilotmieux Inc.</div>
+          <div>© {new Date().getFullYear()} 株式会社パイロットミュー（pilotmieux, Inc.）</div>
           <div>
             <Link href="/privacy" className="hover:text-white transition">
               Privacy Policy
