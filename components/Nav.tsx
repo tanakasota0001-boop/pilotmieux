@@ -13,11 +13,11 @@ export default function Nav() {
   return (
     <nav className="text-sm space-x-6">
       <Link
-        href="/about"
-        className={`${base} ${pathname === '/about' ? active : inactive}`}
-        aria-current={pathname === '/about' ? 'page' : undefined}
+        href="/company"
+        className={`${base} ${pathname === '/company' ? active : inactive}`}
+        aria-current={pathname === '/company' ? 'page' : undefined}
       >
-        About
+        Company
       </Link>
 
       {/* <Link
