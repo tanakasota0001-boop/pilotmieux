@@ -20,13 +20,21 @@ export default function Nav() {
         Company
       </Link>
 
-      {/* <Link
-        href="/service"
-        className={`${base} ${pathname === '/service' ? active : inactive}`}
-        aria-current={pathname === '/service' ? 'page' : undefined}
+      <Link
+        href="/members"
+        className={`${base} ${pathname === '/members' ? active : inactive}`}
+        aria-current={pathname === '/members' ? 'page' : undefined}
       >
-        Service
-      </Link> */}
+        Members
+      </Link>
+
+      <Link
+        href="/services"
+        className={`${base} ${pathname === '/services' ? active : inactive}`}
+        aria-current={pathname === '/services' ? 'page' : undefined}
+      >
+        Services
+      </Link>
 
       <Link
         href="/contact"
