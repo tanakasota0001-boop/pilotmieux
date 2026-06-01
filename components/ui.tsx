@@ -20,7 +20,7 @@ export function FadeUp({
       ref={ref}
       initial={{ opacity: 0, y: 52 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.72, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.72, delay, ease: [0.22, 1, 0.36, 1] as const }}
       className={className}
     >
       {children}
@@ -84,9 +84,9 @@ export const staggerItem = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
   },
-};
+} as const;
 
 /* ── Floating blobs (hero) ── */
 export function Blobs() {
