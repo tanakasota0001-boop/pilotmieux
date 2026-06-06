@@ -130,8 +130,8 @@ const pillars = [
 const marqueeWords = ["経営支援","AI・DX導入","業務改善","データ活用","新規事業開発","構造化","伴走型支援","現場実装","ダッシュボード構築","生成AI活用"];
 
 const worksTeaser = [
-  { company: "株式会社タカノ", tagline: "現場データ活用の伴走支援", industry: "精密板金加工メーカー", gradient: "from-sky-400 to-blue-500", border: "border-sky-200" },
-  { company: "ネットアストーヨー住器株式会社", tagline: "営業活動のプロセス効率化支援", industry: "住宅建材・リフォーム", gradient: "from-emerald-400 to-teal-500", border: "border-emerald-200" },
+  { company: "株式会社タカノ", tagline: "現場データ活用の伴走支援", industry: "精密板金加工メーカー", gradient: "from-sky-400 to-blue-500", border: "border-sky-200", hasDetail: true },
+  { company: "ネットアストーヨー住器株式会社", tagline: "", industry: "住宅建材・リフォーム", gradient: "from-emerald-400 to-teal-500", border: "border-emerald-200", hasDetail: false },
 ];
 
 /* ================================================================
@@ -336,11 +336,13 @@ export default function Home() {
                   <SpotlightCard className={`rounded-2xl border ${w.border} bg-white p-6 shadow-sm transition-all hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02] duration-300 cursor-pointer`}>
                     <div className={`inline-block rounded-full bg-gradient-to-r ${w.gradient} px-3 py-1 text-[0.65rem] font-bold tracking-wider text-white`}>{w.industry}</div>
                     <h3 className="mt-3 text-lg font-bold text-gray-900">{w.company}<span className="ml-1 text-sm font-normal text-gray-400">様</span></h3>
-                    <p className="mt-1.5 text-sm text-gray-500">{w.tagline}</p>
-                    <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-indigo-500">
-                      詳しく見る
-                      <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-                    </div>
+                    {w.tagline && <p className="mt-1.5 text-sm text-gray-500">{w.tagline}</p>}
+                    {w.hasDetail && (
+                      <div className="mt-3 flex items-center gap-1 text-xs font-semibold text-indigo-500">
+                        詳しく見る
+                        <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                      </div>
+                    )}
                   </SpotlightCard>
                 </Link>
               </motion.div>
