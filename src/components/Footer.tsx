@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Compass } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -8,17 +8,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
           {/* 左カラム：ロゴと基本情報 */}
           <div className="md:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5 group w-fit">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary text-white shadow-md">
-                <Compass className="h-4.5 w-4.5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg font-extrabold tracking-tight text-white">
-                  pilotmieux
-                </span>
-                <span className="text-[8px] font-medium tracking-[0.2em] text-slate-500 uppercase -mt-0.5">
-                  パイロットミュー
-                </span>
+            <Link href="/" className="flex items-center group w-fit">
+              <div className="relative h-7 w-auto aspect-[320/70] group-hover:scale-[1.02] transition-transform duration-300">
+                <Image
+                  src="/logo.png"
+                  alt="pilotmieux"
+                  width={120}
+                  height={26}
+                  className="h-full w-auto object-contain invert brightness-200"
+                />
               </div>
             </Link>
             <p className="text-xs leading-relaxed max-w-sm">

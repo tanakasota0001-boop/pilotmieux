@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, Compass } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
@@ -48,18 +49,16 @@ export default function Header() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* ロゴ */}
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform duration-300">
-                <Compass className="h-5 w-5" />
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary opacity-0 blur-md group-hover:opacity-40 transition-opacity duration-300"></div>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent">
-                  pilotmieux
-                </span>
-                <span className="text-[9px] font-medium tracking-[0.2em] text-slate-400 uppercase -mt-0.5">
-                  パイロットミュー
-                </span>
+            <Link href="/" className="flex items-center group">
+              <div className="relative h-7 sm:h-8 w-auto aspect-[320/70] group-hover:scale-[1.02] transition-transform duration-300">
+                <Image
+                  src="/logo.png"
+                  alt="pilotmieux"
+                  width={140}
+                  height={30}
+                  priority
+                  className="h-full w-auto object-contain brightness-95"
+                />
               </div>
             </Link>
 
