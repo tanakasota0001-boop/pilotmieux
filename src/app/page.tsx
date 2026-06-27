@@ -14,7 +14,8 @@ import {
   Sparkles,
   Search,
   PenTool,
-  Users2
+  Users2,
+  MapPin
 } from "lucide-react";
 
 // フェードイン＆スライドアップの基本アニメーション
@@ -242,83 +243,136 @@ export default function Home() {
       </section>
 
       {/* Philosophy (スタンス) */}
-      <section className="relative bg-slate-50 py-20 sm:py-32 overflow-hidden border-t border-slate-200/30">
-        <div className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: "radial-gradient(#4f46e5 2px, transparent 2px)", backgroundSize: "32px 32px" }}></div>
+      <section className="relative bg-slate-900 py-24 sm:py-32 overflow-hidden text-white border-t border-slate-800">
+        <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" style={{ backgroundImage: "radial-gradient(#4f46e5 2px, transparent 2px)", backgroundSize: "32px 32px" }}></div>
+        <div className="absolute -bottom-48 -left-48 h-96 w-96 rounded-full bg-brand-primary/20 blur-3xl"></div>
+        <div className="absolute top-12 right-12 h-[400px] w-[400px] rounded-full bg-brand-secondary/10 blur-3xl"></div>
         
-        <div className="relative z-10 mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-primary">Philosophy</span>
-            <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-900 sm:text-4xl">スタンス</h2>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8 text-center max-w-3xl mx-auto"
-          >
-            <div className="relative rounded-2xl bg-white p-8 sm:p-12 shadow-sm border border-slate-100">
-              <div className="absolute -top-5 left-1/2 -translate-x-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-indigo-50 border border-indigo-100 text-brand-primary">
-                <CheckCircle2 className="h-5 w-5" />
-              </div>
-              
-              <div className="space-y-6 text-slate-600 text-sm sm:text-base leading-loose">
-                <p>
-                  私たちは「きれいな資料を作って終わり」ではありません。<br />
-                  ツールを導入して終えるような支援でもありません。
-                </p>
-                <p>
-                  企業の利益が生まれるまで、そして生み続けられるように、<br />
-                  共に悩み、考え、歩む<strong className="text-slate-900 font-bold bg-indigo-50 px-2 py-0.5 rounded">伴走型のパートナー</strong>です。
-                </p>
-                <p>
-                  机上の空論ではなく、現場で確実に機能する形に落とし込み、<br />
-                  理論を実行と成果へ結びつけます。
-                </p>
-                <p>
-                  「考える」から「動かす」までを切り離さず、<br />
-                  企業の成長と利益創出を一貫して支援し続けます。
-                </p>
-              </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-12 items-center">
+            {/* 左側：大見出しと力強いメッセージ */}
+            <div className="lg:col-span-5 space-y-6">
+              <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.2em] text-brand-accent">
+                <Sparkles className="h-3 w-3" />
+                Philosophy
+              </span>
+              <h2 className="text-3xl font-black tracking-tight text-white sm:text-5xl leading-tight">
+                「きれいな資料」で<br />終わらせない。
+              </h2>
+              <p className="text-sm text-slate-400 leading-relaxed max-w-md">
+                私たちはツールを導入して終えるような支援はしません。
+                企業の利益が生まれるまで、そして生み続けられるように、共に悩み、考え、歩みます。
+              </p>
             </div>
-          </motion.div>
+
+            {/* 右側：3つのスタンスカード */}
+            <div className="lg:col-span-7 grid gap-6 sm:grid-cols-1">
+              <motion.div 
+                whileHover={{ x: 4 }}
+                className="relative rounded-2xl border border-slate-800 bg-slate-950/60 p-6 sm:p-8 backdrop-blur-sm"
+              >
+                <div className="flex gap-4 items-start">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-primary to-brand-secondary text-white font-bold">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">伴走型のパートナー</h3>
+                    <p className="mt-2 text-xs leading-relaxed text-slate-400">
+                      助言にとどまらず、企業の利益が生まれ、持続的に成長できる仕組みができるまで共に歩み続けます。
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ x: 4 }}
+                className="relative rounded-2xl border border-slate-800 bg-slate-950/60 p-6 sm:p-8 backdrop-blur-sm"
+              >
+                <div className="flex gap-4 items-start">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-secondary to-brand-accent text-white font-bold">
+                    2
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">現場で機能する実効性</h3>
+                    <p className="mt-2 text-xs leading-relaxed text-slate-400">
+                      机上の空論や資料作成ではなく、現場のスタッフが日常業務で確実に使いこなせる形への落とし込みを徹底します。
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ x: 4 }}
+                className="relative rounded-2xl border border-slate-800 bg-slate-950/60 p-6 sm:p-8 backdrop-blur-sm"
+              >
+                <div className="flex gap-4 items-start">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-accent to-pink-500 text-white font-bold">
+                    3
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">一貫した成長支援</h3>
+                    <p className="mt-2 text-xs leading-relaxed text-slate-400">
+                      「考える（戦略設計）」から「動かす（現場実装）」までを分断せず、企業の成長と利益創出を一貫して支え続けます。
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Works (導入実績) */}
-      <section className="relative py-20 sm:py-28 bg-white border-t border-slate-200/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-primary">Works</span>
-            <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-900 sm:text-4xl">導入実績</h2>
+      <section className="relative py-24 sm:py-32 bg-white border-t border-slate-200/50 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-slate-50 opacity-40 blur-3xl pointer-events-none z-0"></div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-brand-primary">
+              <Sparkles className="h-3 w-3" />
+              Works
+            </span>
+            <h2 className="mt-3 text-3xl font-black tracking-tight text-slate-900 sm:text-5xl">導入実績</h2>
             <p className="mt-4 text-sm sm:text-base text-slate-500">
-              地域に根差す企業の成長パートナーとして、伴走支援を行っています。
+              地域に根差す企業の成長パートナーとして、データと実践を武器に数々の支援を行っています。
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+          <div className="grid gap-8 lg:grid-cols-2 max-w-5xl mx-auto">
             {/* 実績カード1: タカノ様 */}
             <motion.div 
               whileHover={{ y: -6 }}
               transition={{ duration: 0.3 }}
-              className="flex flex-col justify-between rounded-2xl border border-sky-100 bg-white p-8 shadow-sm hover:shadow-lg transition-all"
+              className="flex flex-col justify-between rounded-3xl border border-slate-200/70 bg-white p-8 shadow-sm hover:shadow-lg hover:border-slate-300 transition-all"
             >
               <div>
-                <div className="inline-block rounded-full bg-gradient-to-r from-sky-400 to-blue-500 px-3 py-1 text-[10px] font-bold tracking-wider text-white uppercase">
-                  精密板金加工メーカー
+                <div className="flex items-center justify-between gap-4">
+                  <span className="inline-block rounded-md bg-sky-50 px-2.5 py-1 text-[10px] font-bold tracking-wider text-sky-600 uppercase">
+                    精密板金加工メーカー
+                  </span>
+                  <span className="text-xs text-slate-400 font-semibold flex items-center gap-1">
+                    <MapPin className="h-3.5 w-3.5 text-slate-400" /> 長野県松本市
+                  </span>
                 </div>
-                <h3 className="mt-4 text-xl font-bold text-slate-900">
+                <h3 className="mt-5 text-2xl font-black text-slate-900 leading-tight">
                   株式会社タカノ <span className="text-sm font-normal text-slate-400">様</span>
                 </h3>
-                <p className="mt-2 text-sm text-sky-600 font-semibold">— 現場データ活用の伴走支援</p>
-                <p className="mt-4 text-xs leading-relaxed text-slate-500">
-                  大型・精密板金加工をコア技術とする長野県松本市の製造業様にて、現場の生産実績や品質検査データの可視化基盤を設計。データに基づく意思決定プロセス構築を伴走支援しています。
-                </p>
+                <p className="mt-2 text-sm text-sky-600 font-bold">— 現場データ活用の伴走支援</p>
+                
+                <div className="mt-6 space-y-3.5 text-xs text-slate-600 border-t border-slate-100 pt-5">
+                  <div className="flex gap-2">
+                    <span className="font-bold text-slate-800 shrink-0 w-12">課題:</span>
+                    <span>生産データや品質管理データが属人化し、有効に活用しきれていなかった</span>
+                  </div>
+                  <div className="flex gap-2">
+                    <span className="font-bold text-sky-600 shrink-0 w-12">支援:</span>
+                    <span>現場データの可視化基盤設計、KPIダッシュボード構築、データ活用の伴走・定着トレーニング</span>
+                  </div>
+                </div>
               </div>
-              <div className="mt-8 pt-4 border-t border-slate-100">
-                <Link href="/works" className="inline-flex items-center gap-1 text-xs font-bold text-brand-primary hover:text-brand-primary-hover">
-                  詳しく見る <ArrowRight className="h-3.5 w-3.5" />
+              <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-[10px] text-slate-400 font-medium">生産管理・品質管理・DX推進</span>
+                <Link href="/works" className="inline-flex items-center gap-1 text-xs font-bold text-brand-primary hover:text-brand-primary-hover group">
+                  詳しく見る <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
             </motion.div>

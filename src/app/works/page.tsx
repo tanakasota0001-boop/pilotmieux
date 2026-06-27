@@ -83,28 +83,31 @@ export default function WorksPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl border border-sky-100 bg-white p-8 shadow-sm sm:p-12"
+            className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-12 shadow-sm"
           >
             {/* 事例ヘッダー */}
             <div className="border-b border-slate-100 pb-8">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-50 px-3.5 py-1 text-xs font-bold tracking-wider text-sky-600 uppercase">
-                CASE 01
-              </span>
-              <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-slate-400">
-                <span className="flex items-center gap-1">
-                  <Building className="h-3.5 w-3.5" />
-                  精密板金加工メーカー
+              <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                <span className="inline-flex items-center gap-1.5 rounded-md bg-sky-50 px-3.5 py-1 text-xs font-bold tracking-wider text-sky-600 uppercase">
+                  CASE 01
                 </span>
-                <span className="text-slate-200">|</span>
-                <span className="flex items-center gap-1">
-                  <MapPin className="h-3.5 w-3.5" />
-                  長野県松本市
-                </span>
+                <div className="flex items-center gap-3 text-xs text-slate-400 font-semibold">
+                  <span className="flex items-center gap-1">
+                    <Building className="h-3.5 w-3.5" />
+                    精密板金加工メーカー
+                  </span>
+                  <span className="text-slate-200">|</span>
+                  <span className="flex items-center gap-1">
+                    <MapPin className="h-3.5 w-3.5" />
+                    長野県松本市
+                  </span>
+                </div>
               </div>
-              <h2 className="mt-3 text-2xl sm:text-3xl font-black text-slate-900">
+              
+              <h2 className="text-3xl font-black text-slate-900 tracking-tight sm:text-4xl">
                 株式会社タカノ 様
               </h2>
-              <p className="mt-2 text-base font-bold text-sky-600">
+              <p className="mt-2 text-base font-extrabold text-sky-600">
                 — 現場データ活用の伴走支援
               </p>
 
@@ -113,10 +116,10 @@ export default function WorksPage() {
                   href="https://www.takano-s.co.jp/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-sky-600 hover:text-sky-700 hover:underline underline-offset-4"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-sky-600 hover:text-sky-700 hover:underline underline-offset-4 group"
                 >
                   公式サイトを開く
-                  <ExternalLink className="h-3.5 w-3.5" />
+                  <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </a>
               </div>
             </div>
@@ -131,7 +134,7 @@ export default function WorksPage() {
               ].map((tag) => (
                 <span 
                   key={tag}
-                  className="rounded-full bg-sky-50/50 border border-sky-100/80 px-3.5 py-1.5 text-xs font-semibold text-sky-600"
+                  className="rounded-full bg-slate-50 border border-slate-200 px-3.5 py-1.5 text-xs font-bold text-slate-600"
                 >
                   {tag}
                 </span>
@@ -139,45 +142,47 @@ export default function WorksPage() {
             </div>
 
             {/* 詳細コンテンツ */}
-            <div className="space-y-10 text-[15px] leading-relaxed text-slate-700">
+            <div className="space-y-12 text-[15px] leading-relaxed text-slate-700">
               
               {/* 企業概要 */}
               <div>
-                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">
+                <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-3">
                   企業概要
                 </h3>
-                <p className="bg-slate-50/50 border border-slate-100 rounded-2xl p-5">
+                <p className="bg-slate-50/50 border border-slate-100 rounded-2xl p-5 font-medium text-slate-600 text-sm">
                   大型・精密板金加工をコア技術に、ステンレスフレームユニットの多品種少量生産から量産まで対応する松本市の製造企業。最新鋭の設備と自動倉庫を擁し、サプライチェーンの中核を担う安定供給体制を構築されています。
                 </p>
               </div>
 
-              {/* 支援アプローチ */}
+              {/* 支援アプローチ（縦型タイムライン） */}
               <div>
-                <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5">
+                <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-6">
                   支援アプローチ
                 </h3>
-                <div className="space-y-4">
+                <div className="relative border-l border-slate-200 ml-3.5 space-y-8 pl-6">
                   {approaches.map((step, idx) => (
-                    <div key={idx} className="flex items-start gap-4">
-                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-sky-400 to-blue-500 text-xs font-bold text-white shadow-sm">
+                    <div key={idx} className="relative">
+                      {/* タイムラインの丸 */}
+                      <span className="absolute -left-[35px] top-0 flex h-6 w-6 items-center justify-center rounded-full bg-sky-50 border-2 border-sky-500 text-[10px] font-bold text-sky-600 bg-white">
                         {idx + 1}
-                      </div>
-                      <p className="pt-0.5 text-slate-800 font-semibold">{step}</p>
+                      </span>
+                      <p className="text-slate-800 font-bold text-base leading-snug">{step}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* ご支援の価値 */}
-              <div className="rounded-2xl bg-gradient-to-r from-sky-50 to-blue-50/50 border-l-4 border-sky-400 p-6 sm:p-8">
-                <h3 className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-sky-700 mb-3">
-                  <Award className="h-4 w-4" />
+              <div className="relative overflow-hidden rounded-3xl bg-slate-900 p-8 sm:p-10 text-white shadow-xl">
+                {/* 装飾の光 */}
+                <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-sky-500/20 blur-2xl"></div>
+                
+                <h3 className="flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-sky-400 mb-4">
+                  <Award className="h-4.5 w-4.5" />
                   ご支援の価値
                 </h3>
-                <p className="text-slate-800 leading-relaxed font-medium">
-                  単なるツール導入ではなく、現場の方々が自らデータを活用し、
-                  改善アクションにつなげられる状態を目指して伴走しています。
-                  データに基づく判断が日常になることで、品質向上・生産性改善・リードタイム短縮といった成果を継続的に生み出す基盤づくりをご支援しています。
+                <p className="text-slate-200 text-sm sm:text-base leading-loose font-medium">
+                  単なるツール導入ではなく、現場の方々が自らデータを活用し、改善アクションにつなげられる状態を目指して伴走しています。データに基づく判断が日常になることで、品質向上・生産性改善・リードタイム短縮といった成果を継続的に生み出す基盤づくりをご支援しています。
                 </p>
               </div>
 
