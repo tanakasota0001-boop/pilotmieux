@@ -3,20 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- STICKY HEADER & SCROLL EFFECTS ---
   const header = document.getElementById('header');
   const scrollTopBtn = document.getElementById('scroll-top');
-  let handleServiceScroll;
-  
-  // Service section snapping & locking variables
-  let serviceSnapPoints = [];
-  let activeCardIndex = 0;
-  let isLockedInService = false;
-  let isScrollingToCard = false;
-  
   // Section positions cache for performant & smooth layout calculations
   const sectionPositions = {
     statement: { top: 0, height: 0 },
     companyBanner: { top: 0, height: 0 },
-    tickerSection: { top: 0, height: 0 },
-    service: { top: 0, height: 0 }
+    tickerSection: { top: 0, height: 0 }
   };
 
   const updateSectionPositions = () => {
@@ -43,21 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sectionPositions.tickerSection.height = rect.height;
     }
 
-    const serviceSection = document.getElementById('service');
-    if (serviceSection) {
-      const rect = serviceSection.getBoundingClientRect();
-      sectionPositions.service.top = rect.top + scrollY;
-      sectionPositions.service.height = rect.height;
-      
-      // Calculate snap points for desktop
-      const serviceStart = sectionPositions.service.top;
-      const vh = window.innerHeight;
-      serviceSnapPoints = [
-        serviceStart,
-        serviceStart + vh,
-        serviceStart + 2 * vh
-      ];
-    }
+
   };
 
   // Smooth scroll interpolation variables
@@ -203,8 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const viewportHeight = window.innerHeight;
       
       if (rectTop < viewportHeight && rectBottom > 0) {
-        const enterEnd = 0.3;
-        const exitStart = 0.7;
+        const enterEnd = 0.12;
+        const exitStart = 0.88;
         const globalOverlay = document.querySelector('.global-dark-overlay');
         if (globalOverlay) {
           let radius = 0;
@@ -228,26 +205,30 @@ document.addEventListener('DOMContentLoaded', () => {
           globalOverlay.style.clipPath = `circle(${radius}px at 50% ${sectionCenterY}px)`;
         }
         
-        // Label opacity control (Philosophy)
-        const label = statementSection.querySelector('.section-label');
-        if (label) {
-          let labelOpacity = 0;
-          if (statementProgress >= 0.1 && statementProgress <= 0.3) {
-            labelOpacity = (statementProgress - 0.1) / 0.2;
-          } else if (statementProgress > 0.3 && statementProgress < 0.7) {
-            labelOpacity = 1;
-          } else if (statementProgress >= 0.7 && statementProgress <= 0.9) {
-            labelOpacity = 1 - (statementProgress - 0.7) / 0.2;
-          }
-          label.style.opacity = labelOpacity;
-        }
-        
-        if (statementProgress >= 0.05 && statementProgress <= 0.95) {
+        // Header & Theater mode activation
+        if (statementProgress >= 0.08 && statementProgress <= 0.92) {
           statementSection.classList.add('active-theater');
           header.classList.add('header-dark');
         } else {
           statementSection.classList.remove('active-theater');
           header.classList.remove('header-dark');
+        }
+
+        // Label opacity control (Philosophy)
+        // Responsive fade in right as dark overlay covers the screen (progress >= 0.10)
+        const label = statementSection.querySelector('.section-label');
+        if (label) {
+          let labelOpacity = 0;
+          if (statementProgress >= 0.10 && statementProgress <= 0.18) {
+            labelOpacity = (statementProgress - 0.10) / 0.08;
+          } else if (statementProgress > 0.18 && statementProgress < 0.82) {
+            labelOpacity = 1;
+          } else if (statementProgress >= 0.82 && statementProgress <= 0.90) {
+            labelOpacity = 1 - (statementProgress - 0.82) / 0.08;
+          } else {
+            labelOpacity = 0;
+          }
+          label.style.opacity = labelOpacity;
         }
         
         const creditRoll = statementSection.querySelector('.credit-roll');
@@ -263,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const endY = -rollHeight - windowHeight * 0.05;
           
           let scrollProgress = 0;
-          const scrollStart = 0.38;
+          const scrollStart = 0.15;
           
           if (statementProgress < scrollStart) {
             scrollProgress = 0;
@@ -277,13 +258,16 @@ document.addEventListener('DOMContentLoaded', () => {
           creditRoll.style.transform = `translateY(${currentY}px)`;
           
           // Credit roll opacity control
+          // Responsive fade in right after dark overlay covers screen (progress >= 0.12)
           let rollOpacity = 0;
-          if (statementProgress >= 0.25 && statementProgress <= 0.35) {
-            rollOpacity = (statementProgress - 0.25) / 0.1;
-          } else if (statementProgress > 0.35 && statementProgress < 0.65) {
+          if (statementProgress >= 0.12 && statementProgress <= 0.20) {
+            rollOpacity = (statementProgress - 0.12) / 0.08;
+          } else if (statementProgress > 0.20 && statementProgress < 0.80) {
             rollOpacity = 1;
-          } else if (statementProgress >= 0.65 && statementProgress <= 0.75) {
-            rollOpacity = 1 - (statementProgress - 0.65) / 0.1;
+          } else if (statementProgress >= 0.80 && statementProgress <= 0.88) {
+            rollOpacity = 1 - (statementProgress - 0.80) / 0.08;
+          } else {
+            rollOpacity = 0;
           }
           creditRoll.style.opacity = rollOpacity;
           
@@ -291,12 +275,16 @@ document.addEventListener('DOMContentLoaded', () => {
           
           paragraphs.forEach((el) => {
             if (!el) return;
+            if (rollOpacity === 0) {
+              el.style.opacity = 0;
+              return;
+            }
+            
             const elRect = el.getBoundingClientRect();
             const elCenterY = elRect.top + elRect.height / 2;
             
             let diffY = elCenterY - windowCenterY;
             
-            // 下方向（次に読まれる行）へはっきり表示する範囲を2行分（約24%）拡張する
             const lineOffset = windowHeight * 0.24;
             if (diffY > 0) {
               diffY = Math.max(0, diffY - lineOffset);
@@ -307,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let x = diffY / maxDistance;
             x = Math.max(-1, Math.min(1, x));
             
-            const elOpacity = Math.max(0, Math.cos(x * Math.PI / 2));
+            const elOpacity = Math.max(0, Math.cos(x * Math.PI / 2)) * rollOpacity;
             const elRotateX = x * -20;
             const elTranslateY = x * -10;
             
@@ -324,16 +312,17 @@ document.addEventListener('DOMContentLoaded', () => {
         header.classList.remove('header-dark');
         
         const label = statementSection.querySelector('.section-label');
+        const creditRoll = statementSection.querySelector('.credit-roll');
         const paragraphs = statementSection.querySelectorAll('.statement-desc p');
         
-        const resetEl = (el) => {
-          if (el) {
-            el.style.opacity = '';
-            el.style.transform = '';
+        if (label) label.style.opacity = '0';
+        if (creditRoll) creditRoll.style.opacity = '0';
+        paragraphs.forEach(p => {
+          if (p) {
+            p.style.opacity = '0';
+            p.style.transform = '';
           }
-        };
-        resetEl(label);
-        paragraphs.forEach(p => resetEl(p));
+        });
       }
     }
   };
@@ -355,9 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     renderAnimations(smoothScrollY);
-    if (typeof handleServiceScroll === 'function') {
-      handleServiceScroll(smoothScrollY);
-    }
+
     
     if (isAnimating) {
       requestAnimationFrame(animateLoop);
@@ -377,9 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targetScrollY = window.scrollY;
     smoothScrollY = window.scrollY;
     renderAnimations(window.scrollY);
-    if (typeof handleServiceScroll === 'function') {
-      handleServiceScroll(window.scrollY);
-    }
+
   });
 
   // Initial load
@@ -574,261 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // --- SERVICE STICKY SCROLL SWITCHING ---
-  const serviceSection = document.getElementById('service');
-  if (serviceSection) {
-    const cards = serviceSection.querySelectorAll('.service-content-card');
-    const navItems = serviceSection.querySelectorAll('.service-nav-item');
-    const dots = serviceSection.querySelectorAll('.service-dot');
-    
-    handleServiceScroll = (scrollY) => {
-      // Only run sticky calculations on desktop (screen width >= 992px)
-      if (window.innerWidth < 992) {
-        // Reset styles for mobile just in case
-        cards.forEach(card => {
-          card.classList.remove('active', 'exit-up', 'exit-down');
-        });
-        navItems.forEach(item => item.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        return;
-      }
 
-      const pos = sectionPositions.service;
-      const rectTop = pos.top - scrollY;
-      const viewportHeight = window.innerHeight;
-      const totalScrollable = pos.height - viewportHeight;
-      
-      if (totalScrollable <= 0) return;
-
-      // Manually trigger reveal animations when scroll reaches the sticky section
-      if (scrollY >= pos.top - 120) {
-        const leftCol = serviceSection.querySelector('.service-sticky-left');
-        const rightCol = serviceSection.querySelector('.service-sticky-right');
-        if (leftCol && !leftCol.classList.contains('visible')) {
-          leftCol.classList.add('visible');
-        }
-        if (rightCol && !rightCol.classList.contains('visible')) {
-          rightCol.classList.add('visible');
-        }
-      }
-      
-      // Calculate scroll progress within the sticky section
-      const scrolled = -rectTop;
-      let progress = scrolled / totalScrollable;
-      progress = Math.max(0, Math.min(1, progress));
-      
-      const numCards = cards.length;
-      let activeIndex = Math.floor(progress * numCards);
-      if (activeIndex >= numCards) activeIndex = numCards - 1;
-      
-      // Update active state of cards
-      cards.forEach((card, idx) => {
-        if (idx === activeIndex) {
-          card.classList.add('active');
-          card.classList.remove('exit-up', 'exit-down');
-        } else {
-          card.classList.remove('active');
-          if (idx < activeIndex) {
-            card.classList.add('exit-up');
-            card.classList.remove('exit-down');
-          } else {
-            card.classList.add('exit-down');
-            card.classList.remove('exit-up');
-          }
-        }
-      });
-      
-      // Update active state of nav items
-      navItems.forEach((item, idx) => {
-        if (idx === activeIndex) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
-      });
-
-      // Update active state of dots
-      dots.forEach((dot, idx) => {
-        if (idx === activeIndex) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
-    };
-    
-    // Helper function to find closest card snap point
-    const getClosestSnapPointIndex = (scrollY) => {
-      let closestIndex = 0;
-      let minDiff = Infinity;
-      serviceSnapPoints.forEach((point, idx) => {
-        const diff = Math.abs(point - scrollY);
-        if (diff < minDiff) {
-          minDiff = diff;
-          closestIndex = idx;
-        }
-      });
-      return closestIndex;
-    };
-
-    // Smoothly scrolls to target card snap point and enforces a cooldown
-    const scrollToSnapPoint = (index) => {
-      if (index < 0 || index >= serviceSnapPoints.length) return;
-      isScrollingToCard = true;
-      const targetY = serviceSnapPoints[index];
-      
-      window.scrollTo({
-        top: targetY,
-        behavior: 'smooth'
-      });
-      
-      setTimeout(() => {
-        isScrollingToCard = false;
-      }, 600);
-    };
-
-    // Add click listeners to nav items for smooth navigation to segments
-    navItems.forEach((item, idx) => {
-      item.addEventListener('click', () => {
-        isLockedInService = true;
-        activeCardIndex = idx;
-        scrollToSnapPoint(idx);
-      });
-    });
-
-    // Add click listeners to dots for smooth navigation to segments
-    dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
-        isLockedInService = true;
-        activeCardIndex = idx;
-        scrollToSnapPoint(idx);
-      });
-    });
-
-    // Intercept scroll wheel events to lock in the What We Do section
-    window.addEventListener('wheel', (e) => {
-      if (window.innerWidth < 992) return;
-      if (serviceSnapPoints.length < 3) return;
-
-      const currentScrollY = window.scrollY;
-      const deltaY = e.deltaY;
-      
-      const serviceStart = serviceSnapPoints[0];
-      const serviceEnd = serviceSnapPoints[2];
-      
-      // Ignore wheel input while scroll animation is in progress
-      if (isScrollingToCard) {
-        e.preventDefault();
-        return;
-      }
-      
-      if (isLockedInService) {
-        if (deltaY > 0) {
-          // Scroll Down
-          if (activeCardIndex < 2) {
-            e.preventDefault();
-            activeCardIndex++;
-            scrollToSnapPoint(activeCardIndex);
-          } else {
-            // Exiting downwards
-            isLockedInService = false;
-          }
-        } else if (deltaY < 0) {
-          // Scroll Up
-          if (activeCardIndex > 0) {
-            e.preventDefault();
-            activeCardIndex--;
-            scrollToSnapPoint(activeCardIndex);
-          } else {
-            // Exiting upwards
-            isLockedInService = false;
-          }
-        }
-        return;
-      }
-      
-      // Check if we should lock into service sticky scroll snapping
-      if (currentScrollY >= serviceStart - 15 && currentScrollY <= serviceEnd + 15) {
-        // Do not snap lock if user is scrolling in the exit direction
-        if (currentScrollY <= serviceStart + 50 && deltaY < 0) {
-          return; // Exiting upwards
-        }
-        if (currentScrollY >= serviceEnd - 50 && deltaY > 0) {
-          return; // Exiting downwards
-        }
-        
-        e.preventDefault();
-        isLockedInService = true;
-        activeCardIndex = getClosestSnapPointIndex(currentScrollY);
-        scrollToSnapPoint(activeCardIndex);
-      }
-    }, { passive: false });
-
-    // Intercept key down events to support keyboard scroll locking (Arrows, PageUp/PageDown, Space)
-    window.addEventListener('keydown', (e) => {
-      if (window.innerWidth < 992) return;
-      if (serviceSnapPoints.length < 3) return;
-
-      const keys = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' '];
-      if (!keys.includes(e.key)) return;
-
-      const currentScrollY = window.scrollY;
-      const serviceStart = serviceSnapPoints[0];
-      const serviceEnd = serviceSnapPoints[2];
-
-      if (isScrollingToCard) {
-        e.preventDefault();
-        return;
-      }
-
-      let direction = 0; // 1 for down, -1 for up
-      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
-        direction = 1;
-      } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        direction = -1;
-      }
-
-      if (direction === 0) return;
-
-      if (isLockedInService) {
-        if (direction === 1) {
-          if (activeCardIndex < 2) {
-            e.preventDefault();
-            activeCardIndex++;
-            scrollToSnapPoint(activeCardIndex);
-          } else {
-            isLockedInService = false;
-          }
-        } else {
-          if (activeCardIndex > 0) {
-            e.preventDefault();
-            activeCardIndex--;
-            scrollToSnapPoint(activeCardIndex);
-          } else {
-            isLockedInService = false;
-          }
-        }
-        return;
-      }
-
-      if (currentScrollY >= serviceStart - 15 && currentScrollY <= serviceEnd + 15) {
-        if (currentScrollY <= serviceStart + 50 && direction === -1) {
-          return; // Exiting upwards
-        }
-        if (currentScrollY >= serviceEnd - 50 && direction === 1) {
-          return; // Exiting downwards
-        }
-        
-        e.preventDefault();
-        isLockedInService = true;
-        activeCardIndex = getClosestSnapPointIndex(currentScrollY);
-        scrollToSnapPoint(activeCardIndex);
-      }
-    }, { passive: false });
-
-    // Initial trigger
-    handleServiceScroll(window.scrollY);
-  }
 
 
   // --- CONTACT FORM SUBMISSION ---
