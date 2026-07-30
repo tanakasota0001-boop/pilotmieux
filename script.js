@@ -180,8 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const viewportHeight = window.innerHeight;
       
       if (rectTop < viewportHeight && rectBottom > 0) {
-        const enterEnd = 0.12;
-        const exitStart = 0.88;
+        const enterEnd = 0.22;
+        const exitStart = 0.78;
         const globalOverlay = document.querySelector('.global-dark-overlay');
         if (globalOverlay) {
           let radius = 0;
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Header & Theater mode activation
-        if (statementProgress >= 0.08 && statementProgress <= 0.92) {
+        if (statementProgress >= 0.18 && statementProgress <= 0.82) {
           statementSection.classList.add('active-theater');
           header.classList.add('header-dark');
         } else {
@@ -215,16 +215,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Label opacity control (Philosophy)
-        // Responsive fade in right as dark overlay covers the screen (progress >= 0.10)
         const label = statementSection.querySelector('.section-label');
         if (label) {
           let labelOpacity = 0;
-          if (statementProgress >= 0.10 && statementProgress <= 0.18) {
-            labelOpacity = (statementProgress - 0.10) / 0.08;
-          } else if (statementProgress > 0.18 && statementProgress < 0.82) {
+          if (statementProgress >= 0.25 && statementProgress <= 0.30) {
+            labelOpacity = (statementProgress - 0.25) / 0.05;
+          } else if (statementProgress > 0.30 && statementProgress < 0.72) {
             labelOpacity = 1;
-          } else if (statementProgress >= 0.82 && statementProgress <= 0.90) {
-            labelOpacity = 1 - (statementProgress - 0.82) / 0.08;
+          } else if (statementProgress >= 0.72 && statementProgress <= 0.78) {
+            labelOpacity = 1 - (statementProgress - 0.72) / 0.06;
           } else {
             labelOpacity = 0;
           }
@@ -244,28 +243,28 @@ document.addEventListener('DOMContentLoaded', () => {
           const endY = -rollHeight - windowHeight * 0.05;
           
           let scrollProgress = 0;
-          const scrollStart = 0.15;
+          const scrollStart = 0.32;
+          const scrollExit = 0.72;
           
           if (statementProgress < scrollStart) {
             scrollProgress = 0;
-          } else if (statementProgress > exitStart) {
+          } else if (statementProgress > scrollExit) {
             scrollProgress = 1;
           } else {
-            scrollProgress = (statementProgress - scrollStart) / (exitStart - scrollStart);
+            scrollProgress = (statementProgress - scrollStart) / (scrollExit - scrollStart);
           }
           const currentY = startY + scrollProgress * (endY - startY);
           
           creditRoll.style.transform = `translateY(${currentY}px)`;
           
           // Credit roll opacity control
-          // Responsive fade in right after dark overlay covers screen (progress >= 0.12)
           let rollOpacity = 0;
-          if (statementProgress >= 0.12 && statementProgress <= 0.20) {
-            rollOpacity = (statementProgress - 0.12) / 0.08;
-          } else if (statementProgress > 0.20 && statementProgress < 0.80) {
+          if (statementProgress >= 0.26 && statementProgress <= 0.32) {
+            rollOpacity = (statementProgress - 0.26) / 0.06;
+          } else if (statementProgress > 0.32 && statementProgress < 0.72) {
             rollOpacity = 1;
-          } else if (statementProgress >= 0.80 && statementProgress <= 0.88) {
-            rollOpacity = 1 - (statementProgress - 0.80) / 0.08;
+          } else if (statementProgress >= 0.72 && statementProgress <= 0.78) {
+            rollOpacity = 1 - (statementProgress - 0.72) / 0.06;
           } else {
             rollOpacity = 0;
           }
@@ -285,12 +284,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             let diffY = elCenterY - windowCenterY;
             
-            const lineOffset = windowHeight * 0.24;
+            const lineOffsetDown = windowHeight * 0.24;
+            const lineOffsetUp = windowHeight * 0.20;
             if (diffY > 0) {
-              diffY = Math.max(0, diffY - lineOffset);
+              diffY = Math.max(0, diffY - lineOffsetDown);
+            } else if (diffY < 0) {
+              diffY = Math.min(0, diffY + lineOffsetUp);
             }
             
-            const maxDistance = windowHeight * 0.45;
+            const maxDistance = windowHeight * 0.50;
             
             let x = diffY / maxDistance;
             x = Math.max(-1, Math.min(1, x));

@@ -475,7 +475,7 @@ li {
 /* --- STATEMENT SECTION --- */
 #statement {
   position: relative;
-  height: 280vh; /* Responsive scroll length for smooth transition */
+  height: 350vh; /* Responsive scroll length for smooth transition */
   background-color: transparent;
 }
 
