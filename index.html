@@ -13,8 +13,7 @@
 
 <body>
 
-  <!-- Global Dark Overlay for seamless section transitions -->
-  <div class="global-dark-overlay"></div>
+
 
   <!-- Floating Ambient Orbs (Glassmorphism Background with Parallax) -->
   <div class="bg-glow-orb-wrapper orb-w-1">
@@ -38,8 +37,6 @@
         <ul class="nav-list">
           <li><a href="#service" class="nav-link">Services</a></li>
           <li><a href="#works" class="nav-link">Works</a></li>
-          <li><a href="#company" class="nav-link">Company</a></li>
-          <li><a href="#members" class="nav-link">Members</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -57,31 +54,29 @@
     <canvas id="hero-canvas"></canvas>
     <div class="hero-gradient-overlay"></div>
     <div class="container">
-      <div class="hero-content reveal">
-        <div class="hero-badge">中小企業の成長を、共に。</div>
-        <h1 class="hero-title">
+      <div class="hero-content">
+        <div class="hero-badge reveal reveal-fade">中小企業の成長を、共に。</div>
+        <h1 class="hero-title reveal reveal-slide-in reveal-delay-1">
           課題を可視化し、<br>
           成果と成長を共に創り続ける<br><span>伴走パートナー</span>
         </h1>
-        <p class="hero-desc">
+        <p class="hero-desc reveal reveal-fade reveal-delay-2">
           中小企業の複雑な課題を可視化し、解決策の設計・実行・定着までを一貫して共に行います。
           さらに、新たな成長フェーズに向けた新規事業・サービス・ブランドの創出まで全力で伴走いたします。
         </p>
-        <div class="hero-buttons">
+        <div class="hero-buttons reveal reveal-fade reveal-delay-3">
           <a href="#contact" class="hero-btn">
             お問合せ
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
               stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
+              <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </a>
           <a href="#service" class="hero-btn-secondary">
             サービスを見る
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
               stroke-linecap="round" stroke-linejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
+              <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </a>
         </div>
@@ -156,9 +151,6 @@
       <div class="service-orb orb-1"></div>
       <div class="service-orb orb-2"></div>
       <div class="service-orb orb-3"></div>
-      <div class="glass-shape shape-1"></div>
-      <div class="glass-shape shape-2"></div>
-      <div class="glass-shape shape-3"></div>
     </div>
 
     <!-- Top Heading -->
@@ -185,9 +177,8 @@
             </p>
           </div>
         </div>
-        <div class="service-item-visual">
-          <div class="visual-decorative-circle circle-1"></div>
-          <div class="visual-number-float">01</div>
+        <div class="service-item-visual has-image">
+          <img src="structure.png" alt="構造化の概念図" class="service-visual-img">
         </div>
       </div>
 
@@ -206,10 +197,7 @@
             </p>
           </div>
         </div>
-        <div class="service-item-visual">
-          <div class="visual-decorative-circle circle-2"></div>
-          <div class="visual-number-float">02</div>
-        </div>
+        <div class="service-item-visual"></div>
       </div>
 
       <!-- Item 03 -->
@@ -227,10 +215,7 @@
             </p>
           </div>
         </div>
-        <div class="service-item-visual">
-          <div class="visual-decorative-circle circle-3"></div>
-          <div class="visual-number-float">03</div>
-        </div>
+        <div class="service-item-visual"></div>
       </div>
 
     </div>
@@ -239,20 +224,21 @@
   <!-- --- STATEMENT SECTION --- -->
   <section class="section" id="statement">
     <div class="container">
-      <div class="statement-container">
-        <span class="section-label">Philosophy</span>
-        <div class="credit-window">
-          <div class="credit-roll">
-            <div class="statement-desc">
-              <p>私たちは「きれいな資料を作って終わり」ではありません。</p>
-              <p>ツールを導入して終えるような支援でもありません。</p>
-              <p>企業の利益が生まれるまで、そして生み続けられるように、</p>
-              <p>共に悩み、考え、歩む<span class="highlight-keyword">伴走型のパートナー</span>です。</p>
-              <p>机上の空論ではなく、現場で確実に機能する形に落とし込み、</p>
-              <p>理論を実行と成果へ結びつけます。</p>
-              <p>「考える」から「動かす」までを切り離さず、</p>
-              <p>企業の成長と利益創出を一貫して支援し続けます。</p>
-            </div>
+      <div class="statement-grid">
+        <div class="statement-left reveal reveal-right">
+          <span class="section-label">Philosophy</span>
+          <h2 class="statement-title">コンセプト</h2>
+        </div>
+        <div class="statement-right reveal reveal-delay-2">
+          <div class="statement-desc">
+            <p>私たちは「きれいな資料を作って終わり」ではありません。</p>
+            <p>ツールを導入して終えるような支援でもありません。</p>
+            <p>企業の利益が生まれるまで、そして生み続けられるように、</p>
+            <p>共に悩み、考え、歩む<span class="highlight-keyword">伴走型のパートナー</span>です。</p>
+            <p>机上の空論ではなく、現場で確実に機能する形に落とし込み、</p>
+            <p>理論を実行と成果へ結びつけます。</p>
+            <p>「考える」から「動かす」までを切り離さず、</p>
+            <p>企業の成長と利益創出を一貫して支援し続けます。</p>
           </div>
         </div>
       </div>
@@ -260,275 +246,100 @@
   </section>
 
   <!-- --- WORKS SECTION --- -->
-  <section class="section" id="works">
+  <section class="service-section" id="works">
+    <!-- Ambient backgrounds for fluid art -->
+    <div class="service-ambient-bg">
+      <div class="service-orb orb-1"></div>
+      <div class="service-orb orb-2"></div>
+      <div class="service-orb orb-3"></div>
+    </div>
     <div class="container">
-      <div class="service-intro reveal">
+      <div class="service-header reveal">
         <span class="section-label">Works</span>
-        <h2>最先端技術の社会実装・開発実績</h2>
-        <p>
-          これまでに私たちが支援させていただいた、AIモデルの構築やシステム開発、プロダクト戦略設計のプロジェクト実績の一部をご紹介いたします。
-        </p>
+        <h2 class="service-heading">導入実績</h2>
+        <p class="section-desc">地域に根差す企業の成長パートナーとしての伴走支援</p>
       </div>
 
       <div class="works-grid">
 
         <!-- Work Item 01 -->
-        <div class="work-item reveal reveal-delay-1">
+        <div class="work-item reveal reveal-left reveal-delay-1">
           <div class="work-image-placeholder">
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            <svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <defs>
+                <linearGradient id="grad-icon-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(255, 140, 100, 0.4)" />
+                  <stop offset="100%" stop-color="rgba(255, 90, 120, 0.4)" />
+                </linearGradient>
+              </defs>
+              <circle cx="12" cy="12" r="9" fill="url(#grad-icon-1)" opacity="0.3" stroke="none" />
+              <rect x="5" y="5" width="14" height="14" rx="2" ry="2" stroke="var(--color-text-primary)" stroke-width="1.5"></rect>
+              <rect x="9" y="9" width="6" height="6" stroke="var(--color-accent)" fill="rgba(0, 180, 216, 0.2)" stroke-width="1.75"></rect>
+              <path d="M9 1v4M15 1v4M9 19v4M15 19v4M20 9h3M20 15h3M1 9h4M1 15h4" stroke="var(--color-text-secondary)" stroke-width="1.5"></path>
             </svg>
           </div>
           <div class="work-content">
-            <span class="work-tag">AI System</span>
-            <h3 class="work-title">大手製造業向け生成AI業務支援システム</h3>
-            <p class="work-desc">社内ドキュメントの探索と自動ドラフト作成を行う独自RAGシステムの構築。作業効率を約40%削減しました。</p>
+            <span class="work-tag">現場データ活用の伴走支援</span>
+            <h3 class="work-title">株式会社タカノ 様</h3>
+            <p class="work-desc">精密板金加工メーカー</p>
           </div>
         </div>
 
         <!-- Work Item 02 -->
-        <div class="work-item reveal reveal-delay-2">
+        <div class="work-item reveal reveal-left reveal-delay-2">
           <div class="work-image-placeholder">
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
-              stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-              <polyline points="2 17 12 22 22 17"></polyline>
-              <polyline points="2 12 12 17 22 12"></polyline>
+            <svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <defs>
+                <linearGradient id="grad-icon-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(255, 140, 100, 0.4)" />
+                  <stop offset="100%" stop-color="rgba(255, 90, 120, 0.4)" />
+                </linearGradient>
+              </defs>
+              <circle cx="12" cy="12" r="9" fill="url(#grad-icon-2)" opacity="0.3" stroke="none" />
+              <polygon points="12 4 4 8 12 12 20 8 12 4" stroke="var(--color-accent)" fill="rgba(0, 180, 216, 0.25)" stroke-width="1.75"></polygon>
+              <path d="M4 12l8 4 8-4" stroke="var(--color-text-primary)" stroke-width="1.5"></path>
+              <path d="M4 16l8 4 8-4" stroke="var(--color-text-secondary)" stroke-width="1.5"></path>
             </svg>
           </div>
           <div class="work-content">
-            <span class="work-tag">Product Strategy</span>
-            <h3 class="work-title">新規BtoB SaaSプロダクトの戦略設計</h3>
-            <p class="work-desc">仮説検証プロセスを通じたプロダクト定義、MVP開発仕様の策定からPMFまでの戦略立案をトータルで伴走支援。</p>
-          </div>
-        </div>
-
-        <!-- Work Item 03 -->
-        <div class="work-item reveal reveal-delay-3">
-          <div class="work-image-placeholder">
-            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-              <line x1="12" y1="18" x2="12.01" y2="18"></line>
-            </svg>
-          </div>
-          <div class="work-content">
-            <span class="work-tag">Mobile Application</span>
-            <h3 class="work-title">医療従事者向けDXモバイルアプリ開発</h3>
-            <p class="work-desc">複雑な業務フローを極限までシンプルにしたUI/UX設計と、高セキュリティ基準を満たすiOS/Androidアプリ開発。</p>
+            <span class="work-tag">業務効率化の伴走支援</span>
+            <h3 class="work-title">ネットアストーヨー住器株式会社 様</h3>
+            <p class="work-desc">住宅建材・リフォーム</p>
           </div>
         </div>
 
       </div>
+
+      <div class="works-action reveal">
+        <a href="#" class="btn-more">
+          すべての実績を見る
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </a>
+      </div>
+
     </div>
   </section>
 
-  <!-- --- COMPANY BANNER (VIDEO MASK) --- -->
-  <section class="company-banner" id="company-banner">
-    <div class="company-video-container">
-      <video src="https://assets.mixkit.co/videos/preview/mixkit-abstract-laser-lights-background-loop-41851-large.mp4"
-        loop muted playsinline autoplay></video>
-    </div>
-    <div class="container">
-      <div class="company-banner-content reveal">
-        <h2 class="company-banner-title">Company</h2>
-        <p class="company-banner-desc">
-          ビジョンを実現するテクノロジーの裏側。私たちは、AIを活用した業務変革からスタートアップのプロダクト戦略支援まで、幅広いサービスを提供しています。
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- --- COMPANY DETAILS --- -->
-  <section class="section company-details" id="company">
-    <div class="container">
-      <div class="company-grid">
-
-        <div class="company-philosophy reveal">
-          <span class="section-label">Philosophy</span>
-
-          <div class="philosophy-item">
-            <h3>経営理念</h3>
-            <p>
-              常識にとらわれない新たな発想で価値を生み出し、人々と社会の豊かさを創造する。
-              テクノロジーを使って複雑な課題をスマートに解決し、面白い未来を作り出します。
-            </p>
-          </div>
-
-          <div class="philosophy-item">
-            <h3>プロフェッショナル精神</h3>
-            <p>
-              最新AI技術を素早くビジネスに適合させ、開発・運用コストを最適化。
-              お客様の事業拡大に深くコミットし、唯一無二のパートナーであり続けます。
-            </p>
-          </div>
-        </div>
-
-        <div class="company-outline reveal reveal-delay-2">
-          <span class="section-label">Overview</span>
-
-          <table class="company-info-table">
-            <tr>
-              <th>会社名</th>
-              <td>株式会社pilotmieux（pilotmieux, Inc.）</td>
-            </tr>
-            <tr>
-              <th>設立</th>
-              <td>2021年8月</td>
-            </tr>
-            <tr>
-              <th>主な事業</th>
-              <td>
-                AI導入・DX支援コンサルティング<br>
-                新規事業プロダクト戦略開発支援<br>
-                Web・スマートフォンアプリ受託開発
-              </td>
-            </tr>
-            <tr>
-              <th>所在地</th>
-              <td>東京都新宿区新宿一丁目36番2号 新宿第七葉山ビル3階</td>
-            </tr>
-          </table>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- --- MEMBERS SECTION --- -->
-  <section class="section section-secondary" id="members">
-    <div class="container">
-      <div class="service-intro reveal">
-        <span class="section-label">Members</span>
-        <h2>挑戦と創造を推進するコアメンバー</h2>
-        <p>
-          多様なバックグラウンドを持つ精鋭のメンバーが、あなたのビジョン実現に向けて高い技術力とコミットメントで伴走します。
-        </p>
-      </div>
-
-      <div class="members-grid">
-
-        <!-- Member 01 -->
-        <div class="member-card reveal reveal-delay-1">
-          <div class="member-avatar">
-            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </div>
-          <div class="member-role">CEO &amp; Founder</div>
-          <h3 class="member-name">山田 健太 / Kenta Yamada</h3>
-          <p class="member-bio">ITコンサルティングファームにて多数のDX・AI推進プロジェクトをリード。2021年にpilotmieuxを設立。</p>
-        </div>
-
-        <!-- Member 02 -->
-        <div class="member-card reveal reveal-delay-2">
-          <div class="member-avatar">
-            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </div>
-          <div class="member-role">Head of AI Technology</div>
-          <h3 class="member-name">佐藤 舞 / Mai Sato</h3>
-          <p class="member-bio">AIアルゴリズム開発、RAGやLLMのファインチューニング研究を牽引。実用的で高性能なAIアプリ開発を得意とする。</p>
-        </div>
-
-        <!-- Member 03 -->
-        <div class="member-card reveal reveal-delay-3">
-          <div class="member-avatar">
-            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-          </div>
-          <div class="member-role">Head of Product Design</div>
-          <h3 class="member-name">鈴木 拓海 / Takumi Suzuki</h3>
-          <p class="member-bio">UI/UXデザインを専門とし、数多くの新規プロダクトの立ち上げに従事。見た目と使いやすさを両立させた設計を行う。</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- --- CONTACT SECTION --- -->
   <section class="section" id="contact">
     <div class="container">
-      <div class="contact-grid">
-
-        <div class="contact-info reveal">
-          <span class="section-label">Contact</span>
-          <h2>お気軽にお問い合わせください</h2>
-          <p>
-            AI導入のご相談、お見積りのご依頼、協業のご提案など、
-            どのような内容でもお気軽にご連絡ください。担当者より2〜3営業日以内にご返信いたします。
-          </p>
-
-          <div class="contact-channels">
-            <div class="contact-item">
-              <div class="contact-item-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-              </div>
-              <div class="contact-item-details">
-                <h4>メールアドレス</h4>
-                <p>info@pilotmieux.com (Demo)</p>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-item-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <div class="contact-item-details">
-                <h4>所在地</h4>
-                <p>東京都新宿区新宿1-36-2 新宿第七葉山ビル3階</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal reveal-delay-2">
-          <div class="form-success-alert" id="form-success-alert">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      <div class="contact-cta-wrapper reveal">
+        <span class="section-label">Contact</span>
+        <h2 class="contact-cta-heading">まずはお気軽にご相談ください</h2>
+        <p class="contact-cta-desc">課題整理から、新たな事業づくりや改善の打ち手まで</p>
+        <div class="contact-cta-btn-wrapper">
+          <a href="#" class="contact-cta-btn">
+            お問合せフォームへ
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
               stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"></polyline>
+              <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
-            <span>お問い合わせが送信されました。内容を確認後、担当者よりご連絡いたします。</span>
-          </div>
-
-          <form class="contact-form" id="contact-form">
-            <div class="form-group">
-              <label class="form-label" for="name">お名前 / 企業名</label>
-              <input class="form-control" type="text" id="name" required placeholder="パイロットミュー 太郎">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="email">メールアドレス</label>
-              <input class="form-control" type="email" id="email" required placeholder="example@pilotmieux.com">
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="message">お問い合わせ内容</label>
-              <textarea class="form-control" id="message" required
-                placeholder="AI導入に関する相談をしたい、見積りを希望したいなど..."></textarea>
-            </div>
-
-            <button class="submit-btn" type="submit">送信する</button>
-          </form>
+          </a>
         </div>
-
       </div>
     </div>
   </section>
@@ -558,10 +369,8 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Company</h4>
+          <h4 class="footer-heading">Contact</h4>
           <ul class="footer-links">
-            <li><a href="#company">経営理念</a></li>
-            <li><a href="#company">会社概要</a></li>
             <li><a href="#contact">お問合せ</a></li>
           </ul>
         </div>

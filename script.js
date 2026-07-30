@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Section positions cache for performant & smooth layout calculations
   const sectionPositions = {
     statement: { top: 0, height: 0 },
-    companyBanner: { top: 0, height: 0 },
     tickerSection: { top: 0, height: 0 }
   };
+
+
 
   const updateSectionPositions = () => {
     const scrollY = window.scrollY;
@@ -20,21 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
       sectionPositions.statement.height = rect.height;
     }
 
-    const companyBanner = document.getElementById('company-banner');
-    if (companyBanner) {
-      const rect = companyBanner.getBoundingClientRect();
-      sectionPositions.companyBanner.top = rect.top + scrollY;
-      sectionPositions.companyBanner.height = rect.height;
-    }
-
     const tickerSection = document.getElementById('ticker-section');
     if (tickerSection) {
       const rect = tickerSection.getBoundingClientRect();
       sectionPositions.tickerSection.top = rect.top + scrollY;
       sectionPositions.tickerSection.height = rect.height;
     }
-
-
   };
 
   // Smooth scroll interpolation variables
@@ -61,33 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- PRE-CALCULATE STATEMENT SCROLL PROGRESS ---
+    // --- PRE-CALCULATE STATEMENT SCROLL PROGRESS ---
     let bgOpacity = 0;
-    let statementProgress = 0;
     const statementSection = document.getElementById('statement');
-    
-    if (statementSection) {
-      const pos = sectionPositions.statement;
-      const rectTop = pos.top - scrollY;
-      const rectBottom = rectTop + pos.height;
-      const viewportHeight = window.innerHeight;
-      
-      if (rectTop < viewportHeight && rectBottom > 0) {
-        const totalDist = pos.height + viewportHeight;
-        const scrolledDist = viewportHeight - rectTop;
-        statementProgress = Math.max(0, Math.min(1, scrolledDist / totalDist));
-        
-        const fadeRange = 0.3; // 30% のフェード区間
-        if (statementProgress < fadeRange) {
-          const ratio = statementProgress / fadeRange;
-          bgOpacity = Math.sin(ratio * Math.PI / 2);
-        } else if (statementProgress > (1 - fadeRange)) {
-          const ratio = (1 - statementProgress) / fadeRange;
-          bgOpacity = Math.sin(ratio * Math.PI / 2);
-        } else {
-          bgOpacity = 1;
-        }
-      }
-    }
 
     // --- PARALLAX & COLLAPSE EFFECT ---
     const orb1 = document.querySelector('.orb-w-1');
@@ -125,22 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
       heroCanvas.style.transform = `translateY(${scrollY * 0.15}px)`;
     }
 
-    // 3. Company Banner Video
-    const companyBanner = document.getElementById('company-banner');
-    if (companyBanner) {
-      const companyVideo = companyBanner.querySelector('video');
-      if (companyVideo) {
-        const pos = sectionPositions.companyBanner;
-        const rectTop = pos.top - scrollY;
-        const rectBottom = rectTop + pos.height;
-        const viewportHeight = window.innerHeight;
-        if (rectTop < viewportHeight && rectBottom > 0) {
-          const scrollPercent = (rectTop + pos.height) / (viewportHeight + pos.height);
-          const translateVal = (scrollPercent - 0.5) * 90;
-          companyVideo.style.transform = `scale(1.15) translateY(${translateVal}px)`;
-        }
-      }
-    }
+
 
     // 4. Parallax & Fade on Ticker Section (Arts-site Style)
     const tickerSection = document.getElementById('ticker-section');
@@ -154,8 +107,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const viewportCenter = viewportHeight / 2;
       const distanceFromCenter = Math.abs(tickerCenter - viewportCenter);
       
-      const maxDistance = viewportHeight * 0.7;
-      let opacity = 1 - (distanceFromCenter / maxDistance);
+      // Center active zone (70% of viewport) stays 100% visible. Fades smoothly only near top/bottom edges.
+      const activeRange = viewportHeight * 0.35;
+      const fadeRange = viewportHeight * 0.35;
+      
+      let opacity = 1;
+      if (distanceFromCenter > activeRange) {
+        opacity = 1 - ((distanceFromCenter - activeRange) / fadeRange);
+      }
       opacity = Math.max(0, Math.min(1, opacity));
       
       const scale = 0.93 + opacity * 0.07;
@@ -172,157 +131,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 5. Cinematic Credit Roll Section (#statement) with Art Animations
+    // 5. Normal Header Dark Toggle on Statement Section
     if (statementSection) {
       const pos = sectionPositions.statement;
       const rectTop = pos.top - scrollY;
       const rectBottom = rectTop + pos.height;
-      const viewportHeight = window.innerHeight;
       
-      if (rectTop < viewportHeight && rectBottom > 0) {
-        const enterEnd = 0.12;
-        const exitStart = 0.88;
-        const globalOverlay = document.querySelector('.global-dark-overlay');
-        if (globalOverlay) {
-          let radius = 0;
-          const sectionCenterY = rectTop + pos.height / 2;
-          const diagonal = Math.sqrt(window.innerWidth ** 2 + window.innerHeight ** 2);
-          const maxRadius = (diagonal / 2) * 1.15;
-          
-          if (statementProgress < enterEnd) {
-            const ratio = statementProgress / enterEnd;
-            const easedRatio = ratio * ratio * (3 - 2 * ratio);
-            radius = easedRatio * maxRadius;
-          } else if (statementProgress > exitStart) {
-            const ratio = (statementProgress - exitStart) / (1 - exitStart);
-            const t = 1 - ratio;
-            const easedRatio = t * t * (3 - 2 * t);
-            radius = easedRatio * maxRadius;
-          } else {
-            radius = maxRadius;
-          }
-          
-          globalOverlay.style.clipPath = `circle(${radius}px at 50% ${sectionCenterY}px)`;
-        }
-        
-        // Header & Theater mode activation
-        if (statementProgress >= 0.08 && statementProgress <= 0.92) {
-          statementSection.classList.add('active-theater');
-          header.classList.add('header-dark');
-        } else {
-          statementSection.classList.remove('active-theater');
-          header.classList.remove('header-dark');
-        }
-
-        // Label opacity control (Philosophy)
-        // Responsive fade in right as dark overlay covers the screen (progress >= 0.10)
-        const label = statementSection.querySelector('.section-label');
-        if (label) {
-          let labelOpacity = 0;
-          if (statementProgress >= 0.10 && statementProgress <= 0.18) {
-            labelOpacity = (statementProgress - 0.10) / 0.08;
-          } else if (statementProgress > 0.18 && statementProgress < 0.82) {
-            labelOpacity = 1;
-          } else if (statementProgress >= 0.82 && statementProgress <= 0.90) {
-            labelOpacity = 1 - (statementProgress - 0.82) / 0.08;
-          } else {
-            labelOpacity = 0;
-          }
-          label.style.opacity = labelOpacity;
-        }
-        
-        const creditRoll = statementSection.querySelector('.credit-roll');
-        const creditWindow = statementSection.querySelector('.credit-window');
-        
-        if (creditRoll && creditWindow) {
-          const rollHeight = creditRoll.offsetHeight;
-          const windowHeight = creditWindow.offsetHeight;
-          const windowRect = creditWindow.getBoundingClientRect();
-          const windowCenterY = windowRect.top + windowHeight / 2;
-          
-          const startY = windowHeight * 1.05;
-          const endY = -rollHeight - windowHeight * 0.05;
-          
-          let scrollProgress = 0;
-          const scrollStart = 0.15;
-          
-          if (statementProgress < scrollStart) {
-            scrollProgress = 0;
-          } else if (statementProgress > exitStart) {
-            scrollProgress = 1;
-          } else {
-            scrollProgress = (statementProgress - scrollStart) / (exitStart - scrollStart);
-          }
-          const currentY = startY + scrollProgress * (endY - startY);
-          
-          creditRoll.style.transform = `translateY(${currentY}px)`;
-          
-          // Credit roll opacity control
-          // Responsive fade in right after dark overlay covers screen (progress >= 0.12)
-          let rollOpacity = 0;
-          if (statementProgress >= 0.12 && statementProgress <= 0.20) {
-            rollOpacity = (statementProgress - 0.12) / 0.08;
-          } else if (statementProgress > 0.20 && statementProgress < 0.80) {
-            rollOpacity = 1;
-          } else if (statementProgress >= 0.80 && statementProgress <= 0.88) {
-            rollOpacity = 1 - (statementProgress - 0.80) / 0.08;
-          } else {
-            rollOpacity = 0;
-          }
-          creditRoll.style.opacity = rollOpacity;
-          
-          const paragraphs = statementSection.querySelectorAll('.statement-desc p');
-          
-          paragraphs.forEach((el) => {
-            if (!el) return;
-            if (rollOpacity === 0) {
-              el.style.opacity = 0;
-              return;
-            }
-            
-            const elRect = el.getBoundingClientRect();
-            const elCenterY = elRect.top + elRect.height / 2;
-            
-            let diffY = elCenterY - windowCenterY;
-            
-            const lineOffset = windowHeight * 0.24;
-            if (diffY > 0) {
-              diffY = Math.max(0, diffY - lineOffset);
-            }
-            
-            const maxDistance = windowHeight * 0.45;
-            
-            let x = diffY / maxDistance;
-            x = Math.max(-1, Math.min(1, x));
-            
-            const elOpacity = Math.max(0, Math.cos(x * Math.PI / 2)) * rollOpacity;
-            const elRotateX = x * -20;
-            const elTranslateY = x * -10;
-            
-            el.style.opacity = elOpacity;
-            el.style.transform = `translateY(${elTranslateY}px) rotateX(${elRotateX}deg)`;
-          });
-        }
+      // ヘッダー（高さ約80px）が #statement セクションに入っている間、ヘッダーをダークにする
+      if (rectTop <= 80 && rectBottom >= 0) {
+        header.classList.add('header-dark');
       } else {
-        const globalOverlay = document.querySelector('.global-dark-overlay');
-        if (globalOverlay) {
-          globalOverlay.style.clipPath = 'circle(0px at 50% 50%)';
-        }
-        statementSection.classList.remove('active-theater');
         header.classList.remove('header-dark');
-        
-        const label = statementSection.querySelector('.section-label');
-        const creditRoll = statementSection.querySelector('.credit-roll');
-        const paragraphs = statementSection.querySelectorAll('.statement-desc p');
-        
-        if (label) label.style.opacity = '0';
-        if (creditRoll) creditRoll.style.opacity = '0';
-        paragraphs.forEach(p => {
-          if (p) {
-            p.style.opacity = '0';
-            p.style.transform = '';
-          }
-        });
       }
     }
   };
@@ -561,38 +380,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-  // --- CONTACT FORM SUBMISSION ---
-  const contactForm = document.getElementById('contact-form');
-  const successAlert = document.getElementById('form-success-alert');
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const submitBtn = contactForm.querySelector('.submit-btn');
-      const originalText = submitBtn.textContent;
-      
-      // Show sending loading state
-      submitBtn.disabled = true;
-      submitBtn.textContent = '送信中...';
-      submitBtn.style.opacity = '0.7';
-
-      // Mock API delay
-      setTimeout(() => {
-        // Reset button
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        submitBtn.style.opacity = '1';
-        
-        // Hide form, show alert message
-        contactForm.style.display = 'none';
-        successAlert.style.display = 'flex';
-        
-        // Scroll slightly to position success alert nicely
-        successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 1500);
-    });
-  }
 
 });
