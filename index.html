@@ -11,9 +11,28 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="loading">
 
-
+  <!-- --- ARTISTIC LOADING OVERLAY --- -->
+  <div id="loader-overlay" class="loader-overlay">
+    <div class="loader-bg-glow"></div>
+    <div class="loader-content">
+      <div class="loader-logo-wrapper">
+        <div class="loader-logo-container">
+          <!-- Character P -->
+          <div class="loader-char char-p">
+            <img src="load.png" alt="pilotmieux" class="loader-logo-img loader-logo-base">
+            <img src="load.png" alt="pilotmieux" class="loader-logo-img loader-logo-fill">
+          </div>
+          <!-- Character M -->
+          <div class="loader-char char-m">
+            <img src="load.png" alt="pilotmieux" class="loader-logo-img loader-logo-base">
+            <img src="load.png" alt="pilotmieux" class="loader-logo-img loader-logo-fill">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Floating Ambient Orbs (Glassmorphism Background with Parallax) -->
   <div class="bg-glow-orb-wrapper orb-w-1">

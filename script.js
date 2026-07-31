@@ -1,5 +1,49 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- ARTISTIC LOADER CONTROL ---
+  const loaderOverlay = document.getElementById('loader-overlay');
+  const minLoadingTime = 1600; // minimum display time in ms (1.6s)
+  const startTime = Date.now();
+  let initRevealObserver = null;
+
+  const hideLoader = () => {
+    const elapsedTime = Date.now() - startTime;
+    const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+
+    setTimeout(() => {
+      if (loaderOverlay && !loaderOverlay.classList.contains('exit')) {
+        loaderOverlay.classList.add('exit');
+        document.body.classList.remove('loading');
+        
+        // Trigger scroll position updates and animations after loader fades
+        setTimeout(() => {
+          loaderOverlay.style.display = 'none';
+          updateSectionPositions();
+          renderAnimations(window.scrollY);
+          
+          // Start scroll reveal animations precisely after loader has completely disappeared
+          if (typeof initRevealObserver === 'function') {
+            initRevealObserver();
+          }
+        }, 1000); // matches the 1.0s transition duration in CSS
+      }
+    }, remainingTime);
+  };
+
+  // Run when the whole page and all resources are loaded
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader);
+  }
+
+  // Fallback to prevent infinite loading in case of slow resources
+  setTimeout(() => {
+    if (loaderOverlay && !loaderOverlay.classList.contains('exit')) {
+      hideLoader();
+    }
+  }, 5000);
+
   // --- STICKY HEADER & SCROLL EFFECTS ---
   const header = document.getElementById('header');
   const scrollTopBtn = document.getElementById('scroll-top');
@@ -256,9 +300,16 @@ document.addEventListener('DOMContentLoaded', () => {
     rootMargin: '0px 0px -50px 0px'
   });
 
-  revealElements.forEach(element => {
-    revealObserver.observe(element);
-  });
+  initRevealObserver = () => {
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+  };
+
+  // If loader overlay is not present, initialize reveal animations immediately
+  if (!loaderOverlay) {
+    initRevealObserver();
+  }
 
 
   // --- INTERACTIVE CANVAS - ARTISTIC FLUID WAVES ---
