@@ -332,7 +332,12 @@ li {
   align-items: center;
   position: relative;
   overflow: hidden;
-  background-color: transparent; /* Transparent to let floating ambient orbs show */
+  /* メッシュグラデーション背景を追加（HTML要素は増やさずCSSのみで表現） */
+  background: 
+    radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.16) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(114, 9, 183, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(72, 149, 239, 0.10) 0%, transparent 60%),
+    var(--color-bg-primary);
 }
 
 .hero::after {
@@ -359,14 +364,15 @@ li {
 
 .hero-gradient-overlay {
   position: absolute;
-  width: 50vw;
-  height: 50vw;
+  width: 60vw;
+  height: 60vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 180, 216, 0.12) 0%, rgba(0, 180, 216, 0) 70%);
-  top: -10%;
+  /* 単色から、バイオレットとシアンが混ざり合うグラデーションに変更 */
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.15) 0%, rgba(114, 9, 183, 0.08) 40%, rgba(0, 0, 0, 0) 70%);
+  top: -15%;
   right: -10%;
   z-index: 2;
-  animation: float 20s infinite alternate ease-in-out;
+  animation: float 25s infinite alternate ease-in-out;
   pointer-events: none;
 }
 
@@ -412,11 +418,13 @@ li {
 }
 
 .hero-desc {
-  font-size: 1.2rem;
-  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  color: var(--color-text-primary);
+  font-weight: 500;
   margin-bottom: 3rem;
-  max-width: 600px;
-  line-height: 1.8;
+  max-width: 680px;
+  line-height: 1.85;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .hero-btn {
@@ -486,6 +494,72 @@ li {
 .hero-btn-secondary:hover svg {
   stroke: #ffffff;
   transform: translateX(6px);
+}
+
+/* --- HERO SCROLL INDICATOR --- */
+.hero-scroll-indicator {
+  position: absolute;
+  right: 3.5rem;
+  bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.scroll-text {
+  font-family: var(--font-futura);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.3em;
+  writing-mode: vertical-rl;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.scroll-line-wrapper {
+  position: relative;
+  width: 1px;
+  height: 90px;
+  background-color: rgba(23, 24, 28, 0.15);
+  overflow: hidden;
+}
+
+.scroll-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-accent-gradient);
+  transform: translateY(-100%);
+  animation: scroll-line-anim 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes scroll-line-anim {
+  0% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .hero-scroll-indicator {
+    right: 1.5rem;
+    bottom: 2.5rem;
+  }
+  .scroll-line-wrapper {
+    height: 60px;
+  }
 }
 
 @keyframes float {
@@ -1763,6 +1837,9 @@ li {
 }
 
 @media (max-width: 768px) {
+  .pc-only {
+    display: none !important;
+  }
   .ticker-section {
     padding: 6rem 0 6rem 0;
   }
@@ -1816,7 +1893,7 @@ li {
   }
   
   .hero-desc {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     margin-bottom: 2rem;
   }
   

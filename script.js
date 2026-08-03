@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Definition of three wave bands with differing frequencies, waves, and speeds (cyan/blue theme)
+    // Definition of three wave bands with differing frequencies, waves, and speeds (cyan/blue/purple gradient mapping)
     const waves = [
       {
         y: 0.55, // Center line position (55% height)
@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
         amplitude: 70, // Height of the waves
         speed: 0.008, // Animation speed
         lines: 10, // Number of parallel lines to draw
-        color: 'rgba(0, 180, 216, 0.05)' // Light cyan color
+        type: 'cyan'
       },
       {
         y: 0.60,
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
         amplitude: 45,
         speed: 0.015,
         lines: 8,
-        color: 'rgba(72, 149, 239, 0.04)' // Soft blue color
+        type: 'blue'
       },
       {
         y: 0.50,
@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         amplitude: 85,
         speed: 0.004,
         lines: 6,
-        color: 'rgba(67, 97, 238, 0.03)' // Deep indigo-blue color
+        type: 'purple'
       }
     ];
 
@@ -390,7 +390,23 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let j = 0; j < wave.lines; j++) {
           ctx.beginPath();
           ctx.lineWidth = 0.8 + j * 0.12;
-          ctx.strokeStyle = wave.color;
+          
+          // Create horizontal gradient for waves to look more artistic
+          const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+          if (wave.type === 'cyan') {
+            grad.addColorStop(0, 'rgba(0, 180, 216, 0.08)');
+            grad.addColorStop(0.5, 'rgba(72, 149, 239, 0.28)');
+            grad.addColorStop(1, 'rgba(114, 9, 183, 0.08)');
+          } else if (wave.type === 'blue') {
+            grad.addColorStop(0, 'rgba(72, 149, 239, 0.06)');
+            grad.addColorStop(0.5, 'rgba(114, 9, 183, 0.24)');
+            grad.addColorStop(1, 'rgba(247, 37, 133, 0.06)');
+          } else {
+            grad.addColorStop(0, 'rgba(114, 9, 183, 0.05)');
+            grad.addColorStop(0.5, 'rgba(0, 180, 216, 0.20)');
+            grad.addColorStop(1, 'rgba(72, 149, 239, 0.05)');
+          }
+          ctx.strokeStyle = grad;
           
           for (let x = 0; x < canvas.width; x += 15) {
             // Wave calculations combining trigonometric offsets and time
