@@ -406,6 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
             grad.addColorStop(0.5, 'rgba(0, 180, 216, 0.10)'); // Opacity reduced
             grad.addColorStop(1, 'rgba(72, 149, 239, 0.02)');
           }
+          }
           ctx.strokeStyle = grad;
           
           for (let x = 0; x < canvas.width; x += 15) {
