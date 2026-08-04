@@ -1,14 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- ARTISTIC LOADER CONTROL ---
+  const loaderOverlay = document.getElementById('loader-overlay');
+  const minLoadingTime = 1600; // minimum display time in ms (1.6s)
+  const startTime = Date.now();
+  let initRevealObserver = null;
+
+  const hideLoader = () => {
+    const elapsedTime = Date.now() - startTime;
+    const remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+
+    setTimeout(() => {
+      if (loaderOverlay && !loaderOverlay.classList.contains('exit')) {
+        loaderOverlay.classList.add('exit');
+        document.body.classList.remove('loading');
+        
+        // Trigger scroll position updates and animations after loader fades
+        setTimeout(() => {
+          loaderOverlay.style.display = 'none';
+          updateSectionPositions();
+          renderAnimations(window.scrollY);
+          
+          // Start scroll reveal animations precisely after loader has completely disappeared
+          if (typeof initRevealObserver === 'function') {
+            initRevealObserver();
+          }
+        }, 1000); // matches the 1.0s transition duration in CSS
+      }
+    }, remainingTime);
+  };
+
+  // Run when the whole page and all resources are loaded
+  if (document.readyState === 'complete') {
+    hideLoader();
+  } else {
+    window.addEventListener('load', hideLoader);
+  }
+
+  // Fallback to prevent infinite loading in case of slow resources
+  setTimeout(() => {
+    if (loaderOverlay && !loaderOverlay.classList.contains('exit')) {
+      hideLoader();
+    }
+  }, 5000);
+
   // --- STICKY HEADER & SCROLL EFFECTS ---
   const header = document.getElementById('header');
   const scrollTopBtn = document.getElementById('scroll-top');
   // Section positions cache for performant & smooth layout calculations
   const sectionPositions = {
     statement: { top: 0, height: 0 },
-    companyBanner: { top: 0, height: 0 },
     tickerSection: { top: 0, height: 0 }
   };
+
+
 
   const updateSectionPositions = () => {
     const scrollY = window.scrollY;
@@ -20,21 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
       sectionPositions.statement.height = rect.height;
     }
 
-    const companyBanner = document.getElementById('company-banner');
-    if (companyBanner) {
-      const rect = companyBanner.getBoundingClientRect();
-      sectionPositions.companyBanner.top = rect.top + scrollY;
-      sectionPositions.companyBanner.height = rect.height;
-    }
-
     const tickerSection = document.getElementById('ticker-section');
     if (tickerSection) {
       const rect = tickerSection.getBoundingClientRect();
       sectionPositions.tickerSection.top = rect.top + scrollY;
       sectionPositions.tickerSection.height = rect.height;
     }
-
-
   };
 
   // Smooth scroll interpolation variables
@@ -61,33 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- PRE-CALCULATE STATEMENT SCROLL PROGRESS ---
+    // --- PRE-CALCULATE STATEMENT SCROLL PROGRESS ---
     let bgOpacity = 0;
-    let statementProgress = 0;
     const statementSection = document.getElementById('statement');
-    
-    if (statementSection) {
-      const pos = sectionPositions.statement;
-      const rectTop = pos.top - scrollY;
-      const rectBottom = rectTop + pos.height;
-      const viewportHeight = window.innerHeight;
-      
-      if (rectTop < viewportHeight && rectBottom > 0) {
-        const totalDist = pos.height + viewportHeight;
-        const scrolledDist = viewportHeight - rectTop;
-        statementProgress = Math.max(0, Math.min(1, scrolledDist / totalDist));
-        
-        const fadeRange = 0.3; // 30% のフェード区間
-        if (statementProgress < fadeRange) {
-          const ratio = statementProgress / fadeRange;
-          bgOpacity = Math.sin(ratio * Math.PI / 2);
-        } else if (statementProgress > (1 - fadeRange)) {
-          const ratio = (1 - statementProgress) / fadeRange;
-          bgOpacity = Math.sin(ratio * Math.PI / 2);
-        } else {
-          bgOpacity = 1;
-        }
-      }
-    }
 
     // --- PARALLAX & COLLAPSE EFFECT ---
     const orb1 = document.querySelector('.orb-w-1');
@@ -125,22 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
       heroCanvas.style.transform = `translateY(${scrollY * 0.15}px)`;
     }
 
-    // 3. Company Banner Video
-    const companyBanner = document.getElementById('company-banner');
-    if (companyBanner) {
-      const companyVideo = companyBanner.querySelector('video');
-      if (companyVideo) {
-        const pos = sectionPositions.companyBanner;
-        const rectTop = pos.top - scrollY;
-        const rectBottom = rectTop + pos.height;
-        const viewportHeight = window.innerHeight;
-        if (rectTop < viewportHeight && rectBottom > 0) {
-          const scrollPercent = (rectTop + pos.height) / (viewportHeight + pos.height);
-          const translateVal = (scrollPercent - 0.5) * 90;
-          companyVideo.style.transform = `scale(1.15) translateY(${translateVal}px)`;
-        }
-      }
-    }
+
 
     // 4. Parallax & Fade on Ticker Section (Arts-site Style)
     const tickerSection = document.getElementById('ticker-section');
@@ -154,8 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const viewportCenter = viewportHeight / 2;
       const distanceFromCenter = Math.abs(tickerCenter - viewportCenter);
       
-      const maxDistance = viewportHeight * 0.7;
-      let opacity = 1 - (distanceFromCenter / maxDistance);
+      // Center active zone (70% of viewport) stays 100% visible. Fades smoothly only near top/bottom edges.
+      const activeRange = viewportHeight * 0.35;
+      const fadeRange = viewportHeight * 0.35;
+      
+      let opacity = 1;
+      if (distanceFromCenter > activeRange) {
+        opacity = 1 - ((distanceFromCenter - activeRange) / fadeRange);
+      }
       opacity = Math.max(0, Math.min(1, opacity));
       
       const scale = 0.93 + opacity * 0.07;
@@ -172,159 +175,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 5. Cinematic Credit Roll Section (#statement) with Art Animations
+    // 5. Normal Header Dark Toggle on Statement Section
     if (statementSection) {
       const pos = sectionPositions.statement;
       const rectTop = pos.top - scrollY;
       const rectBottom = rectTop + pos.height;
-      const viewportHeight = window.innerHeight;
       
-      if (rectTop < viewportHeight && rectBottom > 0) {
-        const enterEnd = 0.22;
-        const exitStart = 0.78;
-        const globalOverlay = document.querySelector('.global-dark-overlay');
-        if (globalOverlay) {
-          let radius = 0;
-          const sectionCenterY = rectTop + pos.height / 2;
-          const diagonal = Math.sqrt(window.innerWidth ** 2 + window.innerHeight ** 2);
-          const maxRadius = (diagonal / 2) * 1.15;
-          
-          if (statementProgress < enterEnd) {
-            const ratio = statementProgress / enterEnd;
-            const easedRatio = ratio * ratio * (3 - 2 * ratio);
-            radius = easedRatio * maxRadius;
-          } else if (statementProgress > exitStart) {
-            const ratio = (statementProgress - exitStart) / (1 - exitStart);
-            const t = 1 - ratio;
-            const easedRatio = t * t * (3 - 2 * t);
-            radius = easedRatio * maxRadius;
-          } else {
-            radius = maxRadius;
-          }
-          
-          globalOverlay.style.clipPath = `circle(${radius}px at 50% ${sectionCenterY}px)`;
-        }
-        
-        // Header & Theater mode activation
-        if (statementProgress >= 0.18 && statementProgress <= 0.82) {
-          statementSection.classList.add('active-theater');
-          header.classList.add('header-dark');
-        } else {
-          statementSection.classList.remove('active-theater');
-          header.classList.remove('header-dark');
-        }
-
-        // Label opacity control (Philosophy)
-        const label = statementSection.querySelector('.section-label');
-        if (label) {
-          let labelOpacity = 0;
-          if (statementProgress >= 0.25 && statementProgress <= 0.30) {
-            labelOpacity = (statementProgress - 0.25) / 0.05;
-          } else if (statementProgress > 0.30 && statementProgress < 0.72) {
-            labelOpacity = 1;
-          } else if (statementProgress >= 0.72 && statementProgress <= 0.78) {
-            labelOpacity = 1 - (statementProgress - 0.72) / 0.06;
-          } else {
-            labelOpacity = 0;
-          }
-          label.style.opacity = labelOpacity;
-        }
-        
-        const creditRoll = statementSection.querySelector('.credit-roll');
-        const creditWindow = statementSection.querySelector('.credit-window');
-        
-        if (creditRoll && creditWindow) {
-          const rollHeight = creditRoll.offsetHeight;
-          const windowHeight = creditWindow.offsetHeight;
-          const windowRect = creditWindow.getBoundingClientRect();
-          const windowCenterY = windowRect.top + windowHeight / 2;
-          
-          const startY = windowHeight * 1.05;
-          const endY = -rollHeight - windowHeight * 0.05;
-          
-          let scrollProgress = 0;
-          const scrollStart = 0.32;
-          const scrollExit = 0.72;
-          
-          if (statementProgress < scrollStart) {
-            scrollProgress = 0;
-          } else if (statementProgress > scrollExit) {
-            scrollProgress = 1;
-          } else {
-            scrollProgress = (statementProgress - scrollStart) / (scrollExit - scrollStart);
-          }
-          const currentY = startY + scrollProgress * (endY - startY);
-          
-          creditRoll.style.transform = `translateY(${currentY}px)`;
-          
-          // Credit roll opacity control
-          let rollOpacity = 0;
-          if (statementProgress >= 0.26 && statementProgress <= 0.32) {
-            rollOpacity = (statementProgress - 0.26) / 0.06;
-          } else if (statementProgress > 0.32 && statementProgress < 0.72) {
-            rollOpacity = 1;
-          } else if (statementProgress >= 0.72 && statementProgress <= 0.78) {
-            rollOpacity = 1 - (statementProgress - 0.72) / 0.06;
-          } else {
-            rollOpacity = 0;
-          }
-          creditRoll.style.opacity = rollOpacity;
-          
-          const paragraphs = statementSection.querySelectorAll('.statement-desc p');
-          
-          paragraphs.forEach((el) => {
-            if (!el) return;
-            if (rollOpacity === 0) {
-              el.style.opacity = 0;
-              return;
-            }
-            
-            const elRect = el.getBoundingClientRect();
-            const elCenterY = elRect.top + elRect.height / 2;
-            
-            let diffY = elCenterY - windowCenterY;
-            
-            const lineOffsetDown = windowHeight * 0.24;
-            const lineOffsetUp = windowHeight * 0.20;
-            if (diffY > 0) {
-              diffY = Math.max(0, diffY - lineOffsetDown);
-            } else if (diffY < 0) {
-              diffY = Math.min(0, diffY + lineOffsetUp);
-            }
-            
-            const maxDistance = windowHeight * 0.50;
-            
-            let x = diffY / maxDistance;
-            x = Math.max(-1, Math.min(1, x));
-            
-            const elOpacity = Math.max(0, Math.cos(x * Math.PI / 2)) * rollOpacity;
-            const elRotateX = x * -20;
-            const elTranslateY = x * -10;
-            
-            el.style.opacity = elOpacity;
-            el.style.transform = `translateY(${elTranslateY}px) rotateX(${elRotateX}deg)`;
-          });
-        }
+      // ヘッダー（高さ約80px）が #statement セクションに入っている間、ヘッダーをダークにする
+      if (rectTop <= 80 && rectBottom >= 0) {
+        header.classList.add('header-dark');
       } else {
-        const globalOverlay = document.querySelector('.global-dark-overlay');
-        if (globalOverlay) {
-          globalOverlay.style.clipPath = 'circle(0px at 50% 50%)';
-        }
-        statementSection.classList.remove('active-theater');
         header.classList.remove('header-dark');
-        
-        const label = statementSection.querySelector('.section-label');
-        const creditRoll = statementSection.querySelector('.credit-roll');
-        const paragraphs = statementSection.querySelectorAll('.statement-desc p');
-        
-        if (label) label.style.opacity = '0';
-        if (creditRoll) creditRoll.style.opacity = '0';
-        paragraphs.forEach(p => {
-          if (p) {
-            p.style.opacity = '0';
-            p.style.transform = '';
-          }
-        });
       }
     }
   };
@@ -439,9 +300,16 @@ document.addEventListener('DOMContentLoaded', () => {
     rootMargin: '0px 0px -50px 0px'
   });
 
-  revealElements.forEach(element => {
-    revealObserver.observe(element);
-  });
+  initRevealObserver = () => {
+    revealElements.forEach(element => {
+      revealObserver.observe(element);
+    });
+  };
+
+  // If loader overlay is not present, initialize reveal animations immediately
+  if (!loaderOverlay) {
+    initRevealObserver();
+  }
 
 
   // --- INTERACTIVE CANVAS - ARTISTIC FLUID WAVES ---
@@ -476,31 +344,31 @@ document.addEventListener('DOMContentLoaded', () => {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Definition of three wave bands with differing frequencies, waves, and speeds (cyan/blue theme)
+    // Definition of three wave bands shifted downwards to prevent text overlap, with reduced opacity for enhanced readability
     const waves = [
       {
-        y: 0.55, // Center line position (55% height)
+        y: 0.68, // Center line position shifted down (68% height)
         length: 0.002, // Wave frequency (low, long waves)
         amplitude: 70, // Height of the waves
         speed: 0.008, // Animation speed
         lines: 10, // Number of parallel lines to draw
-        color: 'rgba(0, 180, 216, 0.05)' // Light cyan color
+        type: 'cyan'
       },
       {
-        y: 0.60,
+        y: 0.73, // Shifted down (73% height)
         length: 0.004, // Wave frequency (mid)
         amplitude: 45,
         speed: 0.015,
         lines: 8,
-        color: 'rgba(72, 149, 239, 0.04)' // Soft blue color
+        type: 'blue'
       },
       {
-        y: 0.50,
+        y: 0.63, // Shifted down (63% height)
         length: 0.0015, // Wave frequency (very long waves)
         amplitude: 85,
         speed: 0.004,
         lines: 6,
-        color: 'rgba(67, 97, 238, 0.03)' // Deep indigo-blue color
+        type: 'purple'
       }
     ];
 
@@ -522,7 +390,23 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let j = 0; j < wave.lines; j++) {
           ctx.beginPath();
           ctx.lineWidth = 0.8 + j * 0.12;
-          ctx.strokeStyle = wave.color;
+          
+          // Create horizontal gradient for waves to look more artistic and subtle
+          const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+          if (wave.type === 'cyan') {
+            grad.addColorStop(0, 'rgba(0, 180, 216, 0.02)');
+            grad.addColorStop(0.5, 'rgba(72, 149, 239, 0.15)'); // Opacity reduced to prevent text overlap
+            grad.addColorStop(1, 'rgba(114, 9, 183, 0.02)');
+          } else if (wave.type === 'blue') {
+            grad.addColorStop(0, 'rgba(72, 149, 239, 0.02)');
+            grad.addColorStop(0.5, 'rgba(114, 9, 183, 0.12)'); // Opacity reduced
+            grad.addColorStop(1, 'rgba(247, 37, 133, 0.02)');
+          } else {
+            grad.addColorStop(0, 'rgba(114, 9, 183, 0.02)');
+            grad.addColorStop(0.5, 'rgba(0, 180, 216, 0.10)'); // Opacity reduced
+            grad.addColorStop(1, 'rgba(72, 149, 239, 0.02)');
+          }
+          ctx.strokeStyle = grad;
           
           for (let x = 0; x < canvas.width; x += 15) {
             // Wave calculations combining trigonometric offsets and time
@@ -563,38 +447,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-  // --- CONTACT FORM SUBMISSION ---
-  const contactForm = document.getElementById('contact-form');
-  const successAlert = document.getElementById('form-success-alert');
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const submitBtn = contactForm.querySelector('.submit-btn');
-      const originalText = submitBtn.textContent;
-      
-      // Show sending loading state
-      submitBtn.disabled = true;
-      submitBtn.textContent = '送信中...';
-      submitBtn.style.opacity = '0.7';
-
-      // Mock API delay
-      setTimeout(() => {
-        // Reset button
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        submitBtn.style.opacity = '1';
-        
-        // Hide form, show alert message
-        contactForm.style.display = 'none';
-        successAlert.style.display = 'flex';
-        
-        // Scroll slightly to position success alert nicely
-        successAlert.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 1500);
-    });
-  }
 
 });
