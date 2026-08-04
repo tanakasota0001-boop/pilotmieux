@@ -427,6 +427,14 @@ li {
   text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
+.hero-desc-line {
+  display: block;
+}
+
+.hero-desc-line:not(:last-child) {
+  margin-bottom: 1.0em;
+}
+
 .hero-btn {
   display: inline-flex;
   align-items: center;
