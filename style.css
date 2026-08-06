@@ -330,14 +330,15 @@ li {
   height: 100vh;
   display: flex;
   align-items: center;
-  padding-top: 60px; /* ヘッダーの存在を考慮しつつ、ボタンが下がりすぎないようにパディングを微調整 */
+  padding-top: 55px; /* 行間拡張に伴い、コンテンツ全体の垂直バランスを再調整 */
   position: relative;
   overflow: hidden;
-  /* メッシュグラデーション背景を追加（HTML要素は増やさずCSSのみで表現） */
+  /* コントラストと視認性を高めた立体的なメッシュグラデーション */
   background: 
-    radial-gradient(circle at 80% 20%, rgba(0, 180, 216, 0.16) 0%, transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(114, 9, 183, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(72, 149, 239, 0.10) 0%, transparent 60%),
+    radial-gradient(circle at 85% 15%, rgba(0, 180, 216, 0.25) 0%, transparent 55%), /* 右上のシアン光 */
+    radial-gradient(circle at 15% 85%, rgba(114, 9, 183, 0.18) 0%, transparent 50%), /* 左下のバイオレット影 */
+    radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.8) 0%, transparent 60%), /* テキスト背面を明るくする光源 */
+    radial-gradient(circle at 50% 50%, rgba(72, 149, 239, 0.12) 0%, transparent 65%), /* 中央のソフトブルー */
     var(--color-bg-primary);
 }
 
@@ -348,8 +349,8 @@ li {
   bottom: 0;
   width: 100%;
   height: 250px;
-  background: linear-gradient(to bottom, transparent, var(--color-bg-primary));
-  z-index: 2;
+  background: linear-gradient(to bottom, rgba(240, 243, 248, 0), var(--color-bg-primary));
+  z-index: 2.5;
   pointer-events: none;
 }
 
@@ -368,8 +369,8 @@ li {
   width: 60vw;
   height: 60vw;
   border-radius: 50%;
-  /* 単色から、バイオレットとシアンが混ざり合うグラデーションに変更 */
-  background: radial-gradient(circle, rgba(0, 180, 216, 0.15) 0%, rgba(114, 9, 183, 0.08) 40%, rgba(0, 0, 0, 0) 70%);
+  /* 光のメリハリを強めるため、グラデーションの彩度と範囲を調整 */
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.22) 0%, rgba(114, 9, 183, 0.12) 45%, rgba(0, 0, 0, 0) 70%);
   top: -15%;
   right: -10%;
   z-index: 2;
@@ -399,8 +400,8 @@ li {
   font-size: 0.8rem;
   font-weight: 700;
   border-radius: 100px;
-  margin-top: 0.75rem; /* ヘッダーとの距離を保ちつつ、ボタンが下がりすぎないよう上部余白を最適化 */
-  margin-bottom: 1.25rem; /* タイトルとの間隔を引き締める */
+  margin-top: 1rem; /* ヘッダーとの適切な余白を維持 */
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -408,9 +409,9 @@ li {
 .hero-title {
   font-size: 3.5rem;
   font-weight: 800;
-  line-height: 1.25;
-  letter-spacing: -1px;
-  margin-bottom: 1.25rem; /* タイトル下のマージンをさらに引き締める */
+  line-height: 1.38; /* 行間を広げてゆとりと高級感を演出 */
+  letter-spacing: 0.03em; /* 文字の詰まりを解消し、洗練された印象に */
+  margin-bottom: 1.5rem; /* タイトル下の余白を最適化 */
 }
 
 .hero-title span {
@@ -418,20 +419,33 @@ li {
   font-size: 1.08em; /* 文字サイズを一回り大きくして目立たせる */
   letter-spacing: 0.05em; /* 文字間をわずかに広げて視認性と存在感を向上 */
   /* ブランドカラーのシアンから深みのあるバイオレットへと変化する、コントラストの高いグラデーション */
-  background: linear-gradient(135deg, #0077b6 0%, #00b4d8 45%, #7209b7 100%);
+  background: linear-gradient(120deg, #0077b6 0%, #00b4d8 25%, #7209b7 50%, #00b4d8 75%, #0077b6 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: textShine 6s linear infinite;
   /* 文字を背景から浮かび上がらせる微細なドロップシャドウ（グロー効果） */
-  filter: drop-shadow(0 2px 8px rgba(0, 180, 216, 0.2));
+  filter: drop-shadow(0 2px 8px rgba(0, 180, 216, 0.25)) drop-shadow(0 4px 12px rgba(114, 9, 183, 0.15));
 }
 
+@keyframes textShine {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+
+
 .hero-desc {
-  font-size: 1.05rem;
+  font-size: 1.0rem; /* タイトルとの強弱をつけるため、わずかにフォントサイズを微調整 */
   color: var(--color-text-primary);
   font-weight: 500;
-  margin-bottom: 1.75rem; /* ボタンが下がりすぎないようにマージンを最適化 */
+  margin-bottom: 2.25rem; /* ボタン群とのバランスを考慮した余白 */
   max-width: 680px;
-  line-height: 1.85;
+  line-height: 1.75; /* 行間をやや引き締め、読みやすさを向上 */
   text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
@@ -440,7 +454,7 @@ li {
 }
 
 .hero-desc-line:not(:last-child) {
-  margin-bottom: 0.75em; /* 行間の余白をわずかに詰め、全体をコンパクトに */
+  margin-bottom: 0.6em; /* 段落間の余白を最適化し、説明文の一体感を強化 */
 }
 
 .hero-btn {
@@ -1626,6 +1640,7 @@ li {
 .contact-cta-btn:hover svg {
   transform: translateX(4px);
 }
+
 @media (max-width: 768px) {
   .contact-cta-wrapper {
     padding: 4rem 1.5rem;
@@ -1732,7 +1747,7 @@ li {
   padding: 10rem 0 10rem 0;
   overflow: hidden;
   position: relative;
-  background-color: transparent;
+  background: linear-gradient(to bottom, var(--color-bg-primary) 0%, rgba(240, 243, 248, 0) 100%);
   z-index: 5;
   pointer-events: auto;
   opacity: 0;
@@ -1855,6 +1870,7 @@ li {
   .pc-only {
     display: none !important;
   }
+  
   .ticker-section {
     padding: 6rem 0 6rem 0;
   }
@@ -1918,13 +1934,16 @@ li {
   }
   
   .hero-title {
-    font-size: 2.25rem;
-    margin-bottom: 1rem;
+    font-size: 2.0rem; /* モバイル画面幅での適切な折り返しと圧迫感軽減のため微調整 */
+    line-height: 1.4; /* モバイル表示での読みやすさを考慮した行間 */
+    letter-spacing: 0.02em;
+    margin-bottom: 1.25rem;
   }
   
   .hero-desc {
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem; /* モバイル時のボタンが下がりすぎないように余白を詰める */
+    font-size: 0.9rem;
+    line-height: 1.7; /* モバイル表示での読みやすさを向上 */
+    margin-bottom: 1.75rem;
   }
   
   .company-grid, .contact-grid {
@@ -2146,6 +2165,17 @@ body.loading {
   }
   60% {
     transform: translateY(1.5px);
+  }
+  85% {
+    transform: translateY(-0.5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes loader-logo-entrance {
+  0% {
     opacity: 0;
     transform: translateY(25px) scale(0.92);
   }
@@ -2173,24 +2203,6 @@ body.loading {
     -webkit-mask-position: 0% 0;
     mask-position: 0% 0;
   }
-}
-
-/* Exit Transition states */
-.loader-overlay.exit {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition: opacity 1.0s cubic-bezier(0.85, 0, 0.15, 1),
-              visibility 1.0s;
-}
-
-.loader-overlay.exit .loader-logo-wrapper {
-  transform: scale(1.35);
-  opacity: 0;
-  filter: blur(12px);
-  transition: transform 0.9s cubic-bezier(0.85, 0, 0.15, 1),
-              opacity 0.7s ease-in,
-              filter 0.7s ease-in;
 }
 
 /* Exit Transition states */

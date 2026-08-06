@@ -128,13 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Hero Section Elements
     const heroContent = document.querySelector('.hero-content');
-    const heroCanvas = document.getElementById('hero-canvas');
     if (heroContent) {
-      heroContent.style.transform = `translateY(${scrollY * 0.35}px)`;
       heroContent.style.opacity = Math.max(0, 1 - scrollY / 700);
-    }
-    if (heroCanvas) {
-      heroCanvas.style.transform = `translateY(${scrollY * 0.15}px)`;
     }
 
 
@@ -344,28 +339,28 @@ document.addEventListener('DOMContentLoaded', () => {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Definition of three wave bands shifted downwards to prevent text overlap, with reduced opacity for enhanced readability
+    // Definition of three wave bands shifted downwards to prevent overlap with text
     const waves = [
       {
-        y: 0.68, // Center line position shifted down (68% height)
+        y: 0.72, // Center line position shifted down (72% height) to sit below text
         length: 0.002, // Wave frequency (low, long waves)
-        amplitude: 70, // Height of the waves
+        amplitude: 50, // Height of the waves (slightly reduced to avoid text overlap)
         speed: 0.008, // Animation speed
         lines: 10, // Number of parallel lines to draw
         type: 'cyan'
       },
       {
-        y: 0.73, // Shifted down (73% height)
+        y: 0.78, // Shifted down (78% height)
         length: 0.004, // Wave frequency (mid)
-        amplitude: 45,
+        amplitude: 30, // Reduced amplitude
         speed: 0.015,
         lines: 8,
         type: 'blue'
       },
       {
-        y: 0.63, // Shifted down (63% height)
+        y: 0.66, // Shifted down (66% height)
         length: 0.0015, // Wave frequency (very long waves)
-        amplitude: 85,
+        amplitude: 55, // Reduced amplitude
         speed: 0.004,
         lines: 6,
         type: 'purple'
@@ -391,21 +386,20 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.beginPath();
           ctx.lineWidth = 0.8 + j * 0.12;
           
-          // Create horizontal gradient for waves to look more artistic and subtle
+          // Create horizontal gradient for waves (opacity reduced for better text contrast)
           const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
           if (wave.type === 'cyan') {
-            grad.addColorStop(0, 'rgba(0, 180, 216, 0.02)');
-            grad.addColorStop(0.5, 'rgba(72, 149, 239, 0.15)'); // Opacity reduced to prevent text overlap
-            grad.addColorStop(1, 'rgba(114, 9, 183, 0.02)');
+            grad.addColorStop(0, 'rgba(0, 180, 216, 0.04)');
+            grad.addColorStop(0.5, 'rgba(72, 149, 239, 0.15)');
+            grad.addColorStop(1, 'rgba(114, 9, 183, 0.04)');
           } else if (wave.type === 'blue') {
-            grad.addColorStop(0, 'rgba(72, 149, 239, 0.02)');
-            grad.addColorStop(0.5, 'rgba(114, 9, 183, 0.12)'); // Opacity reduced
-            grad.addColorStop(1, 'rgba(247, 37, 133, 0.02)');
+            grad.addColorStop(0, 'rgba(72, 149, 239, 0.03)');
+            grad.addColorStop(0.5, 'rgba(114, 9, 183, 0.12)');
+            grad.addColorStop(1, 'rgba(247, 37, 133, 0.03)');
           } else {
             grad.addColorStop(0, 'rgba(114, 9, 183, 0.02)');
-            grad.addColorStop(0.5, 'rgba(0, 180, 216, 0.10)'); // Opacity reduced
+            grad.addColorStop(0.5, 'rgba(0, 180, 216, 0.10)');
             grad.addColorStop(1, 'rgba(72, 149, 239, 0.02)');
-          }
           }
           ctx.strokeStyle = grad;
           
