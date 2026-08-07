@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     targetScrollY = window.scrollY;
     smoothScrollY = window.scrollY;
     renderAnimations(window.scrollY);
-
+    initScrollytelling();
   });
 
   // Initial load
@@ -439,8 +439,61 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
   }
 
+  // --- SCROLLYTELLING CONTROL ---
+  const scrollySteps = document.querySelectorAll('.scrolly-step');
+  const scrollyVisualItems = document.querySelectorAll('.scrolly-visual-item');
+  let scrollyObserver = null;
 
+  const initScrollytelling = () => {
+    // Clean up existing observer if any
+    if (scrollyObserver) {
+      scrollyObserver.disconnect();
+    }
 
+    if (window.innerWidth >= 992) {
+      // Desktop scrollytelling mode
+      scrollySteps.forEach(step => step.classList.remove('active'));
+      scrollyVisualItems.forEach(item => item.classList.remove('active'));
 
+      // Set initial first step active to avoid empty visual on load
+      if (scrollySteps[0]) scrollySteps[0].classList.add('active');
+      if (scrollyVisualItems[0]) scrollyVisualItems[0].classList.add('active');
+
+      scrollyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const stepIndex = entry.target.getAttribute('data-step');
+            
+            // Deactivate all steps & visuals
+            scrollySteps.forEach(step => step.classList.remove('active'));
+            scrollyVisualItems.forEach(item => item.classList.remove('active'));
+            
+            // Activate current step & visual
+            entry.target.classList.add('active');
+            const activeVisual = document.querySelector(`.scrolly-visual-item[data-step="${stepIndex}"]`);
+            if (activeVisual) {
+              activeVisual.classList.add('active');
+            }
+          }
+        });
+      }, {
+        root: null,
+        // Trigger when the step enters the middle section of the viewport
+        rootMargin: '-30% 0px -40% 0px',
+        threshold: 0
+      });
+
+      scrollySteps.forEach(step => {
+        scrollyObserver.observe(step);
+      });
+    } else {
+      // Mobile fallback: all active
+      scrollySteps.forEach(step => step.classList.add('active'));
+      scrollyVisualItems.forEach(item => item.classList.add('active'));
+    }
+  };
+
+  // Initialize scrollytelling
+  initScrollytelling();
 
 });
