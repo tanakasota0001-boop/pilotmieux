@@ -5,7 +5,7 @@
   --color-bg-primary: #f0f3f8; /* Soft blue-grey cool base for glassmorphism */
   --color-bg-card: rgba(255, 255, 255, 0.55);
   --color-bg-secondary: rgba(247, 248, 250, 0.4); /* Transparent base to reveal background orbs */
-  --color-service-bg: #d5dbe3; /* Cool grey base inherited by philosophy section transition */
+  --color-service-bg: #ffffff; /* Clean white base for contrast and crisp images */
   --color-text-primary: #17181c;
   --color-text-secondary: #585d69;
   
@@ -278,6 +278,19 @@ li {
   gap: 2.5rem;
 }
 
+/* --- SECTION LABELS --- */
+.section-label {
+  font-family: var(--font-futura), sans-serif;
+  font-size: 0.9rem;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-accent) !important; /* テーマカラーの水色 #00b4d8 */
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
 .nav-link {
   font-weight: 500;
   font-size: 0.95rem;
@@ -333,24 +346,40 @@ li {
   padding-top: 55px; /* 行間拡張に伴い、コンテンツ全体の垂直バランスを再調整 */
   position: relative;
   overflow: hidden;
-  /* コントラストと視認性を高めた立体的なメッシュグラデーション */
-  background: 
-    radial-gradient(circle at 85% 15%, rgba(0, 180, 216, 0.25) 0%, transparent 55%), /* 右上のシアン光 */
-    radial-gradient(circle at 15% 85%, rgba(114, 9, 183, 0.18) 0%, transparent 50%), /* 左下のバイオレット影 */
-    radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.8) 0%, transparent 60%), /* テキスト背面を明るくする光源 */
-    radial-gradient(circle at 50% 50%, rgba(72, 149, 239, 0.12) 0%, transparent 65%), /* 中央のソフトブルー */
-    var(--color-bg-primary);
+  /* レイヤー1: 最背面はグラデーション無しの純単色 */
+  background: #dce4ee !important;
 }
 
-.hero::after {
+/* レイヤー2: 右下にずれて重なるグラデーションレイヤー (シャープな左上コーナー) */
+.hero-bg-front {
+  position: absolute;
+  top: 95px;
+  left: 440px;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  border-top-left-radius: 24px;
+  overflow: hidden;
+  background: 
+    radial-gradient(circle at 85% 15%, rgba(0, 195, 235, 0.45) 0%, transparent 50%), /* 右上の輝くシアン光 */
+    radial-gradient(circle at 15% 85%, rgba(124, 25, 205, 0.32) 0%, transparent 55%), /* 左下の深いバイオレット */
+    radial-gradient(circle at 65% 55%, rgba(67, 97, 238, 0.28) 0%, transparent 60%), /* 右下の鮮やかなディープブルー */
+    radial-gradient(circle at 25% 30%, rgba(255, 255, 255, 0.95) 0%, transparent 55%), /* テキスト背面を際立たせる強光源 */
+    #e2eaf5;
+  box-shadow: none;
+  border: none;
+  pointer-events: none;
+}
+
+.hero-bg-front::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 250px;
+  height: 200px;
   background: linear-gradient(to bottom, rgba(240, 243, 248, 0), var(--color-bg-primary));
-  z-index: 2.5;
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -360,20 +389,20 @@ li {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
   pointer-events: all;
 }
 
 .hero-gradient-overlay {
   position: absolute;
-  width: 60vw;
-  height: 60vw;
+  width: 65vw;
+  height: 65vw;
   border-radius: 50%;
   /* 光のメリハリを強めるため、グラデーションの彩度と範囲を調整 */
-  background: radial-gradient(circle, rgba(0, 180, 216, 0.22) 0%, rgba(114, 9, 183, 0.12) 45%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(circle, rgba(0, 200, 240, 0.38) 0%, rgba(124, 25, 205, 0.22) 45%, rgba(0, 0, 0, 0) 70%);
   top: -15%;
   right: -10%;
-  z-index: 2;
+  z-index: 1;
   animation: float 25s infinite alternate ease-in-out;
   pointer-events: none;
 }
@@ -460,27 +489,34 @@ li {
 .hero-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.95rem;
-  padding: 1.1rem 2.35rem;
-  background: var(--color-accent-gradient);
-  color: #ffffff;
+  gap: 0.75rem;
+  padding: 1.2rem 2.8rem;
+  background: #ffffff;
+  color: var(--color-text-primary);
   font-weight: 700;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.2);
-  transition: var(--transition-normal);
+  font-size: 1.1rem;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px -5px rgba(0, 180, 216, 0.12);
+  border: 1px solid var(--color-accent); /* ブランドカラー #00b4d8 の細い縁取り */
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  pointer-events: auto;
 }
 
 .hero-btn:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-glow);
+  background: #ffffff;
+  color: var(--color-accent);
+  border-color: var(--color-accent-hover);
+  box-shadow: 0 15px 30px -5px rgba(0, 180, 216, 0.28);
 }
 
 .hero-btn svg {
-  transition: var(--transition-normal);
+  transition: transform 0.3s ease;
 }
 
 .hero-btn:hover svg {
-  transform: translateX(7px);
+  transform: translateX(4px);
 }
 
 .hero-buttons {
@@ -493,37 +529,36 @@ li {
 .hero-btn-secondary {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.1rem 2.35rem;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: var(--color-text-primary);
+  gap: 0.75rem;
+  padding: 1.2rem 2.8rem;
+  background: var(--color-text-primary); /* フッターの背景色と同じ */
+  color: #ffffff;
   font-weight: 700;
-  border-radius: 12px;
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-subtle);
-  transition: var(--transition-normal);
+  font-size: 1.1rem;
+  border-radius: 50px;
+  border: 1px solid var(--color-text-primary);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   pointer-events: auto;
+  text-decoration: none;
 }
 
 .hero-btn-secondary:hover {
   transform: translateY(-3px);
-  background-color: var(--color-accent);
-  border-color: var(--color-accent);
+  background: #2b303b;
   color: #ffffff;
-  box-shadow: 0 6px 20px rgba(0, 180, 216, 0.25);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.25);
 }
 
 .hero-btn-secondary svg {
-  stroke: var(--color-accent);
+  stroke: currentColor;
   transition: transform 0.3s ease, stroke 0.3s ease;
 }
 
 .hero-btn-secondary:hover svg {
   stroke: #ffffff;
-  transform: translateX(6px);
+  transform: translateX(4px);
 }
 
 /* --- HERO SCROLL INDICATOR --- */
@@ -612,34 +647,70 @@ li {
   will-change: clip-path;
 }
 
-/* --- STATEMENT SECTION --- */
+/* --- STATEMENT SECTION (PHILOSOPHY SCROLLYTELLING) --- */
 #statement {
   position: relative;
-  padding: 10rem 0; /* 普通のセクションと同等の余白 */
-  background-color: #17181c; /* ダーク背景（従来のTheater Mode背景色に合わせる） */
+  padding: 12rem 0 14rem 0;
+  background-color: #17181c;
   color: #ffffff;
   z-index: 10;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Ambient Background Orbs */
+.statement-ambient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.statement-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.orb-p-1 {
+  width: 500px;
+  height: 500px;
+  top: 20%;
+  left: -100px;
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.6) 0%, rgba(72, 149, 239, 0.2) 70%, transparent 100%);
+}
+
+.orb-p-2 {
+  width: 450px;
+  height: 450px;
+  bottom: 10%;
+  right: -50px;
+  background: radial-gradient(circle, rgba(114, 9, 183, 0.5) 0%, rgba(247, 37, 133, 0.2) 70%, transparent 100%);
+}
+
 #statement .container {
   position: relative;
   height: auto;
-  display: block; /* gridが正しく広がるように block に変更 */
+  display: block;
   z-index: 10;
 }
 
 .statement-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr; /* 左右2分割 */
-  gap: 4rem;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
   width: 100%;
   align-items: flex-start;
 }
 
 .statement-left {
   position: sticky;
-  top: 120px; /* スクロール時に見出しが固定される */
+  top: 140px;
 }
 
 .statement-title {
@@ -650,126 +721,65 @@ li {
   color: #ffffff;
   letter-spacing: -0.5px;
   position: relative;
-  padding-bottom: 1.5rem;
 }
 
 .statement-title::after {
   content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 240px;
-  height: 2px;
-  background: linear-gradient(to right, var(--color-accent) 0%, rgba(0, 180, 216, 0) 100%);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-
-.statement-left.visible .statement-title::after {
-  transform: scaleX(1);
-  transition-delay: 0.6s;
-}
-
-.section-label {
-  font-family: var(--font-futura);
-  font-size: 0.9rem;
-  font-style: normal;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--color-accent);
-  font-weight: 700;
-  margin-bottom: 1.5rem;
   display: block;
-  transition: color 0.8s ease;
-  will-change: opacity, transform;
-}
-
-.statement-headline {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 3.5rem;
-  font-weight: 400; /* Fine serif look */
-  line-height: 1.4;
-  letter-spacing: 0.3em; /* Initially wide spaced */
-  margin-bottom: 3.5rem;
-  transition: color 0.8s ease, text-shadow 0.8s ease;
-  will-change: opacity, transform, letter-spacing;
+  width: 140px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, rgba(114, 9, 183, 0.8) 100%);
+  border-radius: 3px;
+  margin-top: 1.25rem;
+  box-shadow: 0 0 12px rgba(0, 180, 216, 0.5);
 }
 
 .statement-desc {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* 左寄せ */
-  gap: 1.5rem;
+  align-items: flex-start;
+  gap: 0;
   position: relative;
-  padding-bottom: 4rem;
-  padding-right: 4rem;
   width: 100%;
 }
 
-/* 内側の極細ライン */
-.statement-desc::before {
-  content: '';
-  position: absolute;
-  bottom: 14px;
-  right: 14px;
-  width: 70px;
-  height: 70px;
-  border-right: 1px solid rgba(0, 180, 216, 0.45);
-  border-bottom: 1px solid rgba(0, 180, 216, 0.45);
-  border-bottom-right-radius: 12px;
-  opacity: 0;
-  transform: translate(15px, 15px) scale(0.95);
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-  z-index: 2;
+/* Scrollytelling Steps */
+.philosophy-step {
+  min-height: 42vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  opacity: 0.25;
+  transform: translateY(25px) scale(0.98);
+  filter: blur(1.5px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+  padding: 2rem 0;
 }
 
-/* 外側のグラデーションガラス（グロー＆ブラー効果付き） */
-.statement-desc::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 130px;
-  height: 130px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.01) 0%, rgba(0, 180, 216, 0.04) 100%);
-  border-right: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.18);
-  border-bottom-right-radius: 20px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 10px 10px 30px rgba(0, 180, 216, 0.12); /* 柔らかい水色光のグロー */
-  opacity: 0;
-  transform: translate(25px, 25px) scale(0.92);
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-  z-index: 1;
-}
-
-/* 表示トリガー（外側がスッと入った直後に、内側が追うように現れる） */
-.statement-right.visible .statement-desc::before {
-  opacity: 0.55;
-  transform: translate(0, 0) scale(1);
-  transition-delay: 0.9s;
-}
-
-.statement-right.visible .statement-desc::after {
+.philosophy-step.active {
   opacity: 1;
-  transform: translate(0, 0) scale(1);
-  transition-delay: 0.75s;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
 }
 
-.statement-desc p {
-  font-family: var(--font-primary); /* 他のセクションと合わせる */
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 1.15rem; /* 他のセクションに合わせたサイズ */
+.philosophy-step p {
+  font-family: var(--font-primary);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.35rem;
   font-weight: 400;
-  line-height: 1.8;
-  text-align: left; /* 左寄せ */
+  line-height: 2.0;
+  text-align: left;
   margin: 0;
-  transition: color 0.8s ease;
+  transition: color 0.6s ease, text-shadow 0.6s ease;
+}
+
+.philosophy-step.active p {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
 }
 
 .highlight-keyword {
@@ -842,11 +852,11 @@ li {
   opacity: 0.35;
 }
 
-/* Default positions for Orbs */
+/* Default positions for Orbs - reduced opacity to keep background whitish and crisp */
 .service-orb.orb-1 {
   width: 50vw;
   height: 50vw;
-  background-color: rgba(0, 180, 216, 0.45); /* Turquoise */
+  background-color: rgba(0, 180, 216, 0.12); /* Subtle Turquoise */
   top: -10%;
   left: -10%;
 }
@@ -854,7 +864,7 @@ li {
 .service-orb.orb-2 {
   width: 45vw;
   height: 45vw;
-  background-color: rgba(114, 9, 183, 0.25); /* Royal Blue */
+  background-color: rgba(114, 9, 183, 0.08); /* Subtle Royal Blue */
   bottom: 0%;
   right: -5%;
 }
@@ -862,10 +872,45 @@ li {
 .service-orb.orb-3 {
   width: 40vw;
   height: 40vw;
-  background-color: rgba(247, 37, 133, 0.2); /* Violet */
+  background-color: rgba(247, 37, 133, 0.06); /* Subtle Violet */
   top: 30%;
   left: 45%;
 }
+
+/* Water Dots / Bubbles inside What We Do (Static, Clear & Larger) */
+.floating-dots-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.bubble-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(0, 220, 255, 0.65) 0%, rgba(0, 180, 216, 0.35) 60%, rgba(72, 149, 239, 0.12) 100%);
+  box-shadow: 0 8px 25px rgba(0, 180, 216, 0.3), inset 0 0 14px rgba(255, 255, 255, 0.65);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0.85;
+}
+
+/* Individual Bubble Configurations (Extreme contrast in size: 14px micro-dots to 380px giant bubbles) */
+.bubble-dot.b-dot-1 { width: 220px; height: 220px; top: 30%; left: -3%; opacity: 0.85; }
+.bubble-dot.b-dot-2 { width: 14px; height: 14px; top: 36%; right: 14%; opacity: 0.95; }
+.bubble-dot.b-dot-3 { width: 340px; height: 340px; top: 45%; left: -6%; opacity: 0.85; }
+.bubble-dot.b-dot-4 { width: 22px; height: 22px; top: 52%; right: 22%; opacity: 0.9; }
+.bubble-dot.b-dot-5 { width: 260px; height: 260px; top: 70%; left: 2%; opacity: 0.85; }
+.bubble-dot.b-dot-6 { width: 18px; height: 18px; top: 78%; right: 16%; opacity: 0.95; }
+.bubble-dot.b-dot-7 { width: 16px; height: 16px; top: 42%; left: 88%; opacity: 0.95; }
+.bubble-dot.b-dot-8 { width: 380px; height: 380px; top: 56%; right: -8%; opacity: 0.85; }
+.bubble-dot.b-dot-9 { width: 28px; height: 28px; top: 86%; left: 16%; opacity: 0.9; }
+.bubble-dot.b-dot-10 { width: 120px; height: 120px; top: 92%; right: 18%; opacity: 0.8; }
 
 /* Floating Glass Shapes */
 .glass-shape {
@@ -956,286 +1001,281 @@ li {
   margin-right: auto;
 }
 
-.service-items {
+/* --- SCROLLYTELLING SHOWCASE --- */
+.scrolly-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 5vh; /* extra space at bottom */
+}
+
+.scrolly-container {
   display: flex;
-  flex-direction: column;
-  gap: 8rem;
+  position: relative;
+  gap: 4rem;
+}
+
+.scrolly-content-track {
+  flex: 1.2;
+  position: relative;
+  /* Top padding to allow first element to scroll in before visual is fully active */
+  padding-top: 15vh;
+  padding-bottom: 25vh;
+}
+
+.scrolly-step {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  opacity: 0.18;
+  transform: translateY(30px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 12vh;
+}
+
+.scrolly-step:last-child {
+  margin-bottom: 0;
+}
+
+.scrolly-step.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.scrolly-step-inner {
+  width: 100%;
+  position: relative;
   z-index: 2;
 }
 
-.service-item {
-  display: flex;
-  align-items: center;
-  gap: 5rem;
-  width: 100%;
-}
-
-/* Alternating logic */
-.service-item:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.service-item-card-wrapper {
-  flex: 1.1;
-  position: relative;
-}
-
-.service-item-visual {
-  flex: 0.9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 350px;
-}
-
-.service-visual-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.05),
-    0 1px 3px rgba(0, 0, 0, 0.02);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.service-item:hover .service-visual-img {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 20px 45px rgba(0, 180, 216, 0.15),
-    0 1px 3px rgba(0, 180, 216, 0.05);
-}
-
-/* Glass Card styles adjusted from absolute to block - Neo-Minimalist Ultra-Glass */
-.service-content-card {
-  position: relative;
-  width: 100%;
-  padding: 4.5rem 4rem;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 
-    0 4px 30px rgba(0, 0, 0, 0.02),
-    0 30px 60px -12px rgba(0, 77, 118, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.6);
-  transform: scale(1);
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.4s ease,
-              border-color 0.4s ease;
-}
-
-/* Deactivating old gradient border */
-.service-content-card::before {
-  display: none;
-}
-
-/* Deactivating old reflection */
-.service-content-card::after {
-  display: none;
-}
-
-.service-content-card:hover {
-  transform: translateY(-10px) scale(1.01) !important;
-  background: rgba(255, 255, 255, 0.55);
-  border-color: rgba(0, 180, 216, 0.4);
-  box-shadow: 
-    0 10px 40px -10px rgba(0, 180, 216, 0.12),
-    0 40px 80px -15px rgba(0, 77, 118, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.8);
-}
-
-.card-num-large {
+.scrolly-num {
   font-family: var(--font-futura);
-  font-size: 3.5rem;
-  font-weight: 800;
+  font-size: 6.5rem;
+  font-weight: 900;
   line-height: 1;
-  opacity: 0.75; /* はっきり表示させるためopacityを大幅アップ */
-  color: var(--color-accent);
-  position: absolute;
-  top: 3rem;
-  right: 4rem;
-  z-index: 1;
-  pointer-events: none;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(0, 180, 216, 0.25);
+  margin-bottom: 1.2rem;
+  transition: color 0.6s ease, -webkit-text-stroke 0.6s ease;
+  user-select: none;
 }
 
-.service-content-card:hover .card-num-large {
-  transform: translateY(-3px);
-  opacity: 0.95; /* ホバー時はほぼ不透明に近く */
+.scrolly-step.active .scrolly-num {
+  color: rgba(0, 180, 216, 0.08);
+  -webkit-text-stroke: 1.5px var(--color-accent);
 }
 
-.card-title-large {
-  font-size: 2rem;
+.scrolly-title {
+  font-size: 2.25rem;
   font-weight: 800;
-  color: var(--color-accent); /* 通常時から見出しを数字と同じ青（アクセントカラー）に統一 */
+  color: var(--color-text-primary);
   margin-bottom: 1.5rem;
   letter-spacing: -0.5px;
-  position: relative;
-  z-index: 2;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-              color 0.5s ease;
+  transition: color 0.5s ease, transform 0.5s ease;
 }
 
-.service-content-card:hover .card-title-large {
-  transform: translateX(8px);
-  color: var(--color-accent); /* ホバー時も色を維持 */
+.scrolly-step.active .scrolly-title {
+  color: var(--color-accent);
+  text-shadow: 0 0 30px rgba(0, 180, 216, 0.2);
 }
 
-/* Divider replaced with clean padding */
-.card-divider {
-  display: none;
-}
-
-.card-lead {
-  font-size: 1.2rem;
+.scrolly-lead {
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-text-primary);
   line-height: 1.6;
-  position: relative;
-  z-index: 2;
   margin-bottom: 1.5rem;
 }
 
-.card-description {
-  font-size: 0.95rem;
+.scrolly-progress-line {
+  height: 2px;
+  width: 80px;
+  background: rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.8rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.scrolly-progress-line span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: var(--color-accent-gradient);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scrolly-step.active .scrolly-progress-line span {
+  width: 100%;
+}
+
+.scrolly-description {
+  font-size: 1rem;
   color: var(--color-text-secondary);
   line-height: 1.8;
+  max-width: 550px;
+}
+
+/* Mobile Image in list (hidden by default on desktop) */
+.scrolly-mobile-visual {
+  display: none;
+}
+
+/* Right Column: Sticky Image showcase */
+.scrolly-visual-sticky {
+  flex: 0.8;
+  position: sticky;
+  top: 15vh;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  will-change: transform;
+}
+
+.scrolly-visual-frame {
   position: relative;
-  z-index: 2;
+  width: 100%;
+  height: 100%;
+  max-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Decorative visual element on the opposite side of each card */
-.visual-decorative-circle {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  position: relative;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: var(--shadow-subtle), inset 0 2px 4px rgba(255, 255, 255, 0.4);
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.circle-1 {
-  background: radial-gradient(circle at 30% 30%, rgba(0, 180, 216, 0.2) 0%, rgba(76, 201, 240, 0.05) 75%);
-  animation: visual-float 8s infinite alternate ease-in-out;
-}
-
-.circle-2 {
-  background: radial-gradient(circle at 30% 30%, rgba(72, 149, 239, 0.2) 0%, rgba(114, 9, 183, 0.05) 75%);
-  animation: visual-float-reverse 10s infinite alternate ease-in-out;
-  border-radius: 43% 57% 50% 50% / 40% 45% 55% 60%; /* Blob shape for variety */
-}
-
-.circle-3 {
-  background: radial-gradient(circle at 30% 30%, rgba(114, 9, 183, 0.15) 0%, rgba(247, 37, 133, 0.05) 75%);
-  animation: visual-float 9s infinite alternate ease-in-out;
-}
-
-.visual-number-float {
-  font-family: var(--font-futura);
-  font-size: 8.5rem;
-  font-weight: 900;
-  color: var(--color-accent);
-  opacity: 0.12;
+.scrolly-visual-item {
   position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.92) translateY(20px) rotate(-2deg);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.scrolly-visual-item.active {
+  opacity: 1;
+  transform: scale(1) translateY(0) rotate(0deg);
+  pointer-events: auto;
+}
+
+.scrolly-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Use drop-shadow to outline the actual transparent png shapes instead of card boxes */
+  filter: drop-shadow(0 15px 35px rgba(0, 180, 216, 0.12)) drop-shadow(0 4px 10px rgba(0, 0, 0, 0.05));
+}
+
+.scrolly-visual-item:hover .scrolly-img {
+  transform: scale(1.04) translateY(-8px) rotate(1deg);
+  filter: drop-shadow(0 25px 45px rgba(0, 180, 216, 0.22)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08));
+}
+
+.scrolly-visual-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.22) 0%, rgba(114, 9, 183, 0.06) 60%, transparent 100%);
+  filter: blur(50px);
   z-index: -1;
   pointer-events: none;
-  letter-spacing: -2px;
-  user-select: none;
-  animation: number-float 6s infinite alternate ease-in-out;
+  opacity: 0.85;
+  animation: pulse-glow 6s infinite alternate ease-in-out;
 }
 
-.service-item:nth-child(even) .visual-number-float {
-  animation-delay: -3s;
-}
-
-.service-item:hover .visual-decorative-circle {
-  transform: scale(1.08) rotate(15deg);
-}
-
-@keyframes visual-float {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-15px) rotate(10deg); }
-}
-
-@keyframes visual-float-reverse {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(15px) rotate(-10deg); }
-}
-
-@keyframes number-float {
-  0% { transform: translate(-50%, -46%) scale(1); }
-  100% { transform: translate(-50%, -54%) scale(1.05); }
+@keyframes pulse-glow {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 0.95; }
 }
 
 .desktop-only {
   display: inline;
 }
 
+/* Mobile & Tablet Fallback */
 @media (max-width: 991px) {
-  .service-section {
-    padding: 6rem 0;
-  }
-  .service-header {
-    margin-bottom: 4rem;
-  }
-  .service-heading {
-    font-size: 2rem;
-  }
-  .service-items {
+  .scrolly-container {
+    flex-direction: column;
     gap: 4rem;
   }
-  .service-item {
-    flex-direction: column !important; /* Stack items vertically */
-    gap: 2.5rem;
+
+  .scrolly-content-track {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
-  .service-item-card-wrapper {
-    width: 100%;
+
+  .scrolly-step {
+    min-height: auto;
+    opacity: 1; /* Keep fully visible on scroll for mobile */
+    transform: none !important;
+    margin-bottom: 6rem;
   }
-  .service-item-visual {
-    display: none;
-  }
-  .service-item-visual.has-image {
+
+  .scrolly-step-inner {
     display: flex;
-    height: auto;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    flex-direction: column;
   }
-  .service-content-card {
-    padding: 3rem 2.25rem;
-    border-radius: 20px;
+
+  .scrolly-num {
+    font-size: 4rem;
+    margin-bottom: 0.8rem;
+    color: rgba(0, 180, 216, 0.08);
+    -webkit-text-stroke: 1.5px var(--color-accent);
   }
-  .card-num-large {
-    font-size: 2.5rem;
-    top: 2rem;
-    right: 2.25rem;
-  }
-  .card-title-large {
-    font-size: 1.6rem;
+
+  .scrolly-title {
+    font-size: 1.8rem;
+    color: var(--color-accent);
     margin-bottom: 1rem;
   }
-  .card-lead {
-    font-size: 1.05rem;
+
+  .scrolly-lead {
+    font-size: 1.1rem;
     margin-bottom: 1.25rem;
   }
-  .card-description {
+
+  /* Show inline visual on mobile */
+  .scrolly-mobile-visual {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 1.5rem 0;
+    align-self: center;
+  }
+
+  .scrolly-mobile-visual .scrolly-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .scrolly-progress-line {
+    margin-bottom: 1.25rem;
+    width: 100%;
+  }
+
+  .scrolly-progress-line span {
+    width: 100% !important; /* progress line always filled on mobile */
+  }
+
+  .scrolly-description {
     font-size: 0.95rem;
   }
+
+  /* Hide sticky side on mobile */
+  .scrolly-visual-sticky {
+    display: none;
+  }
+
   .desktop-only {
     display: none;
   }
@@ -1243,21 +1283,7 @@ li {
 
 
 /* --- WORKS SECTION --- */
-#works.service-section {
-  background: linear-gradient(135deg, rgba(255, 140, 100, 0.05) 0%, rgba(255, 90, 120, 0.05) 100%), var(--color-service-bg);
-}
 
-#works .service-orb.orb-1 {
-  background-color: rgba(255, 120, 100, 0.35);
-}
-
-#works .service-orb.orb-2 {
-  background-color: rgba(255, 75, 120, 0.2);
-}
-
-#works .service-orb.orb-3 {
-  background-color: rgba(255, 180, 120, 0.25);
-}
 
 .works-grid {
   display: grid;
@@ -1289,23 +1315,111 @@ li {
 }
 
 .work-image-placeholder {
-  height: 140px;
-  background-color: rgba(255, 255, 255, 0.3);
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-secondary);
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  /* ヒーローセクションと同様の立体的なメッシュグラデーション背景 */
+  background: 
+    radial-gradient(circle at 85% 15%, rgba(0, 180, 216, 0.28) 0%, transparent 60%),
+    radial-gradient(circle at 15% 85%, rgba(114, 9, 183, 0.2) 0%, transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(72, 149, 239, 0.15) 0%, transparent 65%),
+    linear-gradient(135deg, rgba(240, 243, 248, 0.95) 0%, rgba(255, 255, 255, 0.75) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  transition: var(--transition-normal);
+}
+
+/* 静的流体アートオーブ (ソフトなぼかし) */
+.work-image-placeholder::before {
+  content: '';
+  position: absolute;
+  top: -25px;
+  right: -15px;
+  width: 140px;
+  height: 120px;
+  border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.35) 0%, rgba(114, 9, 183, 0.18) 70%, transparent 100%);
+  filter: blur(14px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.work-image-placeholder::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: -15px;
+  width: 130px;
+  height: 110px;
+  border-radius: 40% 60% 50% 50% / 40% 50% 50% 60%;
+  background: radial-gradient(circle, rgba(72, 149, 239, 0.3) 0%, rgba(0, 180, 216, 0.15) 70%, transparent 100%);
+  filter: blur(12px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.work-fluid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.work-icon-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 180, 216, 0.18);
+  transition: var(--transition-normal);
+}
+
+.work-item:hover .work-icon-wrapper {
+  transform: scale(1.08) translateY(-2px);
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(0, 180, 216, 0.25);
+}
+
+.work-icon {
+  width: 26px;
+  height: 26px;
+  stroke: #0077b6;
   transition: var(--transition-normal);
 }
 
 .work-content {
-  padding: 1.5rem 2rem;
+  padding: 1.15rem 1.5rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+}
+
+.work-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0077b6;
+  background-color: rgba(0, 180, 216, 0.08);
+  border: 1px solid rgba(0, 180, 216, 0.22);
+  border-radius: 100px;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
 }
 
 .work-tag {
@@ -1314,21 +1428,21 @@ li {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--color-accent);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.35rem;
 }
 
 .work-title {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  line-height: 1.4;
+  margin-bottom: 0.35rem;
+  line-height: 1.35;
   color: var(--color-text-primary);
 }
 
 .work-desc {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--color-text-secondary);
-  line-height: 1.6;
+  line-height: 1.5;
   flex-grow: 1;
 }
 
@@ -1583,33 +1697,121 @@ li {
 }
 
 /* --- CONTACT SECTION --- */
+#contact {
+  position: relative;
+  overflow: hidden;
+  /* WORKSセクションのアイコンエリアと同様の鮮やかで立体的なメッシュグラデーション背景 */
+  background: 
+    radial-gradient(circle at 85% 15%, rgba(0, 180, 216, 0.42) 0%, transparent 60%),
+    radial-gradient(circle at 15% 85%, rgba(114, 9, 183, 0.32) 0%, transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(72, 149, 239, 0.3) 0%, transparent 65%),
+    linear-gradient(135deg, rgba(238, 244, 250, 0.98) 0%, rgba(255, 255, 255, 0.85) 100%);
+  border-top: 1px solid rgba(0, 180, 216, 0.15);
+}
+
+.contact-fluid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#contact::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 450px;
+  height: 380px;
+  border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.48) 0%, rgba(114, 9, 183, 0.28) 70%, transparent 100%);
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#contact::after {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 420px;
+  height: 350px;
+  border-radius: 40% 60% 50% 50% / 40% 50% 50% 60%;
+  background: radial-gradient(circle, rgba(72, 149, 239, 0.45) 0%, rgba(0, 180, 216, 0.25) 70%, transparent 100%);
+  filter: blur(22px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#contact > .container {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+}
+
 .contact-cta-wrapper {
-  max-width: 800px;
+  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
-  text-align: center;
   background-color: rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 24px;
-  padding: 5rem 2rem;
+  padding: 3.5rem 4rem;
   box-shadow: var(--shadow-subtle);
 }
 
-.contact-cta-heading {
-  font-size: 2.75rem;
-  font-weight: 800;
+.contact-cta-header {
+  text-align: left;
   margin-bottom: 1.5rem;
+}
+
+.contact-cta-header .section-label {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.contact-cta-grid {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.contact-cta-col-left {
+  text-align: left;
+}
+
+.contact-cta-heading {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin-bottom: 0;
+  line-height: 1.35;
+  white-space: nowrap;
   background: linear-gradient(135deg, var(--color-text-primary) 0%, rgba(10, 25, 47, 0.8) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+.contact-cta-col-mid {
+  text-align: left;
+}
+
 .contact-cta-desc {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--color-text-secondary);
-  margin-bottom: 3rem;
-  line-height: 1.6;
+  margin-bottom: 0;
+  line-height: 1.7;
+}
+
+.contact-cta-col-right {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .contact-cta-btn {
@@ -1618,13 +1820,14 @@ li {
   gap: 0.75rem;
   background: var(--color-accent-gradient);
   color: #ffffff;
-  padding: 1.2rem 2.8rem;
+  padding: 1.1rem 2.4rem;
   border-radius: 50px;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   text-decoration: none;
   box-shadow: 0 10px 25px -5px rgba(0, 180, 216, 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
 }
 
 .contact-cta-btn:hover {
@@ -1641,20 +1844,44 @@ li {
   transform: translateX(4px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .contact-cta-wrapper {
-    padding: 4rem 1.5rem;
+    padding: 3.5rem 2.5rem;
+  }
+  .contact-cta-header {
+    text-align: center;
+  }
+  .contact-cta-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    text-align: center;
+  }
+  .contact-cta-col-left,
+  .contact-cta-col-mid {
+    text-align: center;
+  }
+  .contact-cta-col-right {
+    justify-content: center;
   }
   .contact-cta-heading {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-cta-wrapper {
+    padding: 3rem 1.5rem;
+  }
+  .contact-cta-heading {
+    font-size: 1.5rem;
   }
   .contact-cta-desc {
-    font-size: 1rem;
-    margin-bottom: 2.5rem;
+    font-size: 0.95rem;
   }
   .contact-cta-btn {
-    padding: 1rem 2.2rem;
-    font-size: 1rem;
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -1799,7 +2026,7 @@ li {
   font-size: 4.2vw;
   font-weight: 900;
   letter-spacing: -2px;
-  color: rgba(23, 24, 28, 0.22);
+  color: rgba(23, 24, 28, 0.45);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.4s ease, -webkit-text-stroke 0.4s ease;
   display: inline-block;
   cursor: default;
@@ -1808,7 +2035,7 @@ li {
 
 .ticker-word.outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(23, 24, 28, 0.32);
+  -webkit-text-stroke: 1px rgba(23, 24, 28, 0.50);
 }
 
 .ticker-word:hover {
@@ -1928,6 +2155,18 @@ li {
     align-items: center;
   }
   
+  .hero-bg-front {
+    top: 40px;
+    left: 95px;
+    border-top-left-radius: 14px;
+  }
+  
+  .hero-btn,
+  .hero-btn-secondary {
+    padding: 1rem 2.2rem;
+    font-size: 1rem;
+  }
+  
   .hero-badge {
     margin-top: 0.5rem;
     margin-bottom: 1rem;
@@ -1980,18 +2219,36 @@ li {
   }
 
   /* Philosophy Section Adjustments for Mobile */
+  #statement {
+    padding: 6rem 0 8rem 0;
+  }
   .statement-grid {
-    grid-template-columns: 1fr; /* 1カラムにする */
+    grid-template-columns: 1fr;
     gap: 2.5rem;
   }
   .statement-left {
-    position: static; /* sticky解除 */
+    position: static;
   }
   .statement-title {
     font-size: 2.2rem;
   }
-  .statement-desc p {
-    font-size: 1.05rem;
+  .statement-title::after {
+    margin-top: 1rem;
+    width: 110px;
+  }
+  .philosophy-step {
+    min-height: auto;
+    padding: 2rem 0;
+    opacity: 0.85;
+    transform: none;
+    filter: none;
+  }
+  .philosophy-step.active {
+    opacity: 1;
+  }
+  .philosophy-step p {
+    font-size: 1.1rem;
+    line-height: 1.8;
   }
   .section-label {
     font-size: 0.8rem;

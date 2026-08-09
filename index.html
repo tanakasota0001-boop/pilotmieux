@@ -70,8 +70,10 @@
 
   <!-- --- HERO SECTION --- -->
   <section class="hero" id="hero">
+    <div class="hero-bg-front">
+      <div class="hero-gradient-overlay"></div>
+    </div>
     <canvas id="hero-canvas"></canvas>
-    <div class="hero-gradient-overlay"></div>
     <div class="container">
       <div class="hero-content">
         <div class="hero-badge reveal reveal-fade">中小企業の成長を、共に。</div>
@@ -172,11 +174,25 @@
 
   <!-- --- SERVICES SECTION --- -->
   <section class="service-section" id="service">
-    <!-- Ambient backgrounds for fluid art -->
+    <!-- Ambient backgrounds for fluid art & floating bubbles -->
     <div class="service-ambient-bg">
       <div class="service-orb orb-1"></div>
       <div class="service-orb orb-2"></div>
       <div class="service-orb orb-3"></div>
+
+      <!-- Floating Water Dots / Bubbles -->
+      <div class="floating-dots-container">
+        <div class="bubble-dot b-dot-1" data-speed="0.35"></div>
+        <div class="bubble-dot b-dot-2" data-speed="-0.25"></div>
+        <div class="bubble-dot b-dot-3" data-speed="0.45"></div>
+        <div class="bubble-dot b-dot-4" data-speed="-0.15"></div>
+        <div class="bubble-dot b-dot-5" data-speed="0.55"></div>
+        <div class="bubble-dot b-dot-6" data-speed="-0.35"></div>
+        <div class="bubble-dot b-dot-7" data-speed="0.2"></div>
+        <div class="bubble-dot b-dot-8" data-speed="-0.4"></div>
+        <div class="bubble-dot b-dot-9" data-speed="0.5"></div>
+        <div class="bubble-dot b-dot-10" data-speed="-0.2"></div>
+      </div>
     </div>
 
     <!-- Top Heading -->
@@ -185,86 +201,124 @@
       <h2 class="service-heading">パイロットミューの支援は、<br>次の3つの柱で成り立っています。</h2>
     </div>
 
-    <!-- Alternating Items -->
-    <div class="container service-items">
+    <!-- Scrollytelling Showcase -->
+    <div class="scrolly-wrapper">
+      <div class="container scrolly-container">
 
-      <!-- Item 01 -->
-      <div class="service-item reveal">
-        <div class="service-item-card-wrapper">
-          <div class="service-content-card">
-            <div class="card-num-large">01</div>
-            <h3 class="card-title-large">構造化</h3>
-            <p class="card-lead">
-              丁寧なヒアリングと整理・可視化を通じて、<br class="desktop-only">課題の本質を明らかにします。
-            </p>
-            <div class="card-divider"></div>
-            <p class="card-description">
-              経営・現場業務の本質的課題を明確化し、潜在的な成長機会や新たな価値の種も可視化します。
-            </p>
+        <!-- Left Track: Text steps -->
+        <div class="scrolly-content-track">
+          <!-- Step 01 -->
+          <div class="scrolly-step reveal" data-step="0">
+            <div class="scrolly-step-inner">
+              <div class="scrolly-num">01</div>
+              <h3 class="scrolly-title">構造化</h3>
+              <p class="scrolly-lead">
+                丁寧なヒアリングと整理・可視化を通じて、<br class="desktop-only">課題の本質を明らかにします。
+              </p>
+              <!-- Mobile Visual Fallback -->
+              <div class="scrolly-mobile-visual">
+                <img src="structure.png" alt="構造化の概念図" class="scrolly-img">
+              </div>
+              <div class="scrolly-progress-line"><span></span></div>
+              <p class="scrolly-description">
+                経営や現場業務の本質的な課題を明らかにします。<br>同時に潜在的な成長機会や新たな価値の種も見える化します。
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="scrolly-step reveal" data-step="1">
+            <div class="scrolly-step-inner">
+              <div class="scrolly-num">02</div>
+              <h3 class="scrolly-title">設計</h3>
+              <p class="scrolly-lead">
+                改善策にとどまらず、<br class="desktop-only">高収益モデルにつながる打ち手を設計します。
+              </p>
+              <!-- Mobile Visual Fallback -->
+              <div class="scrolly-mobile-visual">
+                <img src="desgin.png" alt="設計の概念図" class="scrolly-img">
+              </div>
+              <div class="scrolly-progress-line"><span></span></div>
+              <p class="scrolly-description">
+                現場で実行できる形に落とし込み、成果につながる具体的な打ち手を描きます。新規サービス立ち上げ、業務改革、ブランド再構築など、企業の次の収益の柱を共に形にします。
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="scrolly-step reveal" data-step="2">
+            <div class="scrolly-step-inner">
+              <div class="scrolly-num">03</div>
+              <h3 class="scrolly-title">伴走</h3>
+              <p class="scrolly-lead">
+                成果が出るまで、<br class="desktop-only">成果が続く仕組みができるまで伴走します。
+              </p>
+              <!-- Mobile Visual Fallback -->
+              <div class="scrolly-mobile-visual">
+                <img src="pacing.png" alt="伴走の概念図" class="scrolly-img">
+              </div>
+              <div class="scrolly-progress-line"><span></span></div>
+              <p class="scrolly-description">
+                顧問契約を基本とし、経営課題の整理から実行・検証まで伴走します。<br>助言にとどまらず成果が続く仕組みをつくり、成果が出た後も改善提案を継続。経営の意思決定・成長を長期で支えます。
+              </p>
+            </div>
           </div>
         </div>
-        <div class="service-item-visual has-image">
-          <img src="structure.png" alt="構造化の概念図" class="service-visual-img">
-        </div>
-      </div>
 
-      <!-- Item 02 -->
-      <div class="service-item reveal">
-        <div class="service-item-card-wrapper">
-          <div class="service-content-card">
-            <div class="card-num-large">02</div>
-            <h3 class="card-title-large">設計</h3>
-            <p class="card-lead">
-              改善策にとどまらず、<br class="desktop-only">高収益モデルにつながる打ち手を設計します。
-            </p>
-            <div class="card-divider"></div>
-            <p class="card-description">
-              現場実行可能な形への落とし込み、新規サービス立ち上げ・業務改革・ブランド再構築など次の収益の柱を共創します。
-            </p>
+        <!-- Right Track: Sticky Visual -->
+        <div class="scrolly-visual-sticky">
+          <div class="scrolly-visual-frame">
+            <div class="scrolly-visual-item" data-step="0">
+              <img src="structure.png" alt="構造化の概念図" class="scrolly-img">
+            </div>
+            <div class="scrolly-visual-item" data-step="1">
+              <img src="desgin.png" alt="設計の概念図" class="scrolly-img">
+            </div>
+            <div class="scrolly-visual-item" data-step="2">
+              <img src="pacing.png" alt="伴走の概念図" class="scrolly-img">
+            </div>
+            <!-- Dynamic ambient halo under the images -->
+            <div class="scrolly-visual-glow"></div>
           </div>
         </div>
-        <div class="service-item-visual"></div>
-      </div>
 
-      <!-- Item 03 -->
-      <div class="service-item reveal">
-        <div class="service-item-card-wrapper">
-          <div class="service-content-card">
-            <div class="card-num-large">03</div>
-            <h3 class="card-title-large">伴走</h3>
-            <p class="card-lead">
-              成果が出るまで、<br class="desktop-only">成果が続く仕組みができるまで伴走します。
-            </p>
-            <div class="card-divider"></div>
-            <p class="card-description">
-              顧問契約を基本とし、整理から実行・検証まで伴走。<br>成果継続の仕組み構築と長期的な意思決定支援を行います。
-            </p>
-          </div>
-        </div>
-        <div class="service-item-visual"></div>
       </div>
-
     </div>
   </section>
 
   <!-- --- STATEMENT SECTION --- -->
   <section class="section" id="statement">
+    <!-- Ambient background light for Philosophy -->
+    <div class="statement-ambient-bg">
+      <div class="statement-orb orb-p-1"></div>
+      <div class="statement-orb orb-p-2"></div>
+    </div>
+
     <div class="container">
       <div class="statement-grid">
         <div class="statement-left reveal reveal-right">
           <span class="section-label">Philosophy</span>
           <h2 class="statement-title">コンセプト</h2>
         </div>
-        <div class="statement-right reveal reveal-delay-2">
-          <div class="statement-desc">
-            <p>私たちは「きれいな資料を作って終わり」ではありません。</p>
-            <p>ツールを導入して終えるような支援でもありません。</p>
-            <p>企業の利益が生まれるまで、そして生み続けられるように、</p>
-            <p>共に悩み、考え、歩む<span class="highlight-keyword">伴走型のパートナー</span>です。</p>
-            <p>机上の空論ではなく、現場で確実に機能する形に落とし込み、</p>
-            <p>理論を実行と成果へ結びつけます。</p>
-            <p>「考える」から「動かす」までを切り離さず、</p>
-            <p>企業の成長と利益創出を一貫して支援し続けます。</p>
+
+        <div class="statement-right">
+          <div class="statement-desc" id="philosophy-desc-container">
+            <div class="philosophy-step" data-step="0">
+              <p>私たちは「きれいな資料を作って終わり」ではありません。</p>
+              <p>ツールを導入して終えるような支援でもありません。</p>
+            </div>
+            <div class="philosophy-step" data-step="1">
+              <p>企業の利益が生まれるまで、そして生み続けられるように、</p>
+              <p>共に悩み、考え、歩む<span class="highlight-keyword">伴走型のパートナー</span>です。</p>
+            </div>
+            <div class="philosophy-step" data-step="2">
+              <p>机上の空論ではなく、現場で確実に機能する形に落とし込み、</p>
+              <p>理論を実行と成果へ結びつけます。</p>
+            </div>
+            <div class="philosophy-step" data-step="3">
+              <p>「考える」から「動かす」までを切り離さず、</p>
+              <p>企業の成長と利益創出を一貫して支援し続けます。</p>
+            </div>
           </div>
         </div>
       </div>
@@ -283,7 +337,7 @@
       <div class="service-header reveal">
         <span class="section-label">Works</span>
         <h2 class="service-heading">導入実績</h2>
-        <p class="section-desc">地域に根差す企業の成長パートナーとしての伴走支援</p>
+        <p class="section-desc">地域に根差す企業の成長パートナーとして、伴走支援を行っています。</p>
       </div>
 
       <div class="works-grid">
@@ -291,46 +345,80 @@
         <!-- Work Item 01 -->
         <div class="work-item reveal reveal-left reveal-delay-1">
           <div class="work-image-placeholder">
-            <svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <!-- ヒーロー背景風の静的流体アート -->
+            <svg class="work-fluid-bg" viewBox="0 0 400 120" preserveAspectRatio="none" fill="none">
               <defs>
-                <linearGradient id="grad-icon-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="rgba(255, 140, 100, 0.4)" />
-                  <stop offset="100%" stop-color="rgba(255, 90, 120, 0.4)" />
+                <linearGradient id="work-fluid-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.3" />
+                  <stop offset="50%" stop-color="#7209b7" stop-opacity="0.18" />
+                  <stop offset="100%" stop-color="#4895ef" stop-opacity="0.25" />
+                </linearGradient>
+                <linearGradient id="work-fluid-2" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#4895ef" stop-opacity="0.2" />
+                  <stop offset="100%" stop-color="#00b4d8" stop-opacity="0.12" />
                 </linearGradient>
               </defs>
-              <circle cx="12" cy="12" r="9" fill="url(#grad-icon-1)" opacity="0.3" stroke="none" />
-              <rect x="5" y="5" width="14" height="14" rx="2" ry="2" stroke="var(--color-text-primary)" stroke-width="1.5"></rect>
-              <rect x="9" y="9" width="6" height="6" stroke="var(--color-accent)" fill="rgba(0, 180, 216, 0.2)" stroke-width="1.75"></rect>
-              <path d="M9 1v4M15 1v4M9 19v4M15 19v4M20 9h3M20 15h3M1 9h4M1 15h4" stroke="var(--color-text-secondary)" stroke-width="1.5"></path>
+              <path d="M0 35 Q 100 85, 200 30 T 400 65 L 400 120 L 0 120 Z" fill="url(#work-fluid-1)" />
+              <path d="M0 65 Q 130 15, 260 75 T 400 25 L 400 120 L 0 120 Z" fill="url(#work-fluid-2)" />
             </svg>
+            <!-- アイコン視認性を高めるフローティング・ガラスプレート -->
+            <div class="work-icon-wrapper">
+              <!-- 精密機器を表すCPU・マイクロチップアイコン -->
+              <svg class="work-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <line x1="9" y1="1" x2="9" y2="4"></line>
+                <line x1="15" y1="1" x2="15" y2="4"></line>
+                <line x1="9" y1="20" x2="9" y2="23"></line>
+                <line x1="15" y1="20" x2="15" y2="23"></line>
+                <line x1="20" y1="9" x2="23" y2="9"></line>
+                <line x1="20" y1="15" x2="23" y2="15"></line>
+                <line x1="1" y1="9" x2="4" y2="9"></line>
+                <line x1="1" y1="15" x2="4" y2="15"></line>
+              </svg>
+            </div>
           </div>
           <div class="work-content">
-            <span class="work-tag">現場データ活用の伴走支援</span>
+            <span class="work-badge">精密板金加工メーカー</span>
             <h3 class="work-title">株式会社タカノ 様</h3>
-            <p class="work-desc">精密板金加工メーカー</p>
+            <p class="work-desc">現場データ活用の伴走支援</p>
           </div>
         </div>
 
         <!-- Work Item 02 -->
         <div class="work-item reveal reveal-left reveal-delay-2">
           <div class="work-image-placeholder">
-            <svg width="65" height="65" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <!-- ヒーロー背景風の静的流体アート -->
+            <svg class="work-fluid-bg" viewBox="0 0 400 120" preserveAspectRatio="none" fill="none">
               <defs>
-                <linearGradient id="grad-icon-2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="rgba(255, 140, 100, 0.4)" />
-                  <stop offset="100%" stop-color="rgba(255, 90, 120, 0.4)" />
+                <linearGradient id="work-fluid-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.3" />
+                  <stop offset="50%" stop-color="#7209b7" stop-opacity="0.18" />
+                  <stop offset="100%" stop-color="#4895ef" stop-opacity="0.25" />
+                </linearGradient>
+                <linearGradient id="work-fluid-4" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#4895ef" stop-opacity="0.2" />
+                  <stop offset="100%" stop-color="#00b4d8" stop-opacity="0.12" />
                 </linearGradient>
               </defs>
-              <circle cx="12" cy="12" r="9" fill="url(#grad-icon-2)" opacity="0.3" stroke="none" />
-              <polygon points="12 4 4 8 12 12 20 8 12 4" stroke="var(--color-accent)" fill="rgba(0, 180, 216, 0.25)" stroke-width="1.75"></polygon>
-              <path d="M4 12l8 4 8-4" stroke="var(--color-text-primary)" stroke-width="1.5"></path>
-              <path d="M4 16l8 4 8-4" stroke="var(--color-text-secondary)" stroke-width="1.5"></path>
+              <path d="M0 45 Q 120 15, 230 75 T 400 35 L 400 120 L 0 120 Z" fill="url(#work-fluid-3)" />
+              <path d="M0 25 Q 110 80, 210 25 T 400 65 L 400 120 L 0 120 Z" fill="url(#work-fluid-4)" />
             </svg>
+            <!-- アイコン視認性を高めるフローティング・ガラスプレート -->
+            <div class="work-icon-wrapper">
+              <!-- 住宅建材・リフォームを表すハウスアイコン -->
+              <svg class="work-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0077b6" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
           </div>
           <div class="work-content">
-            <span class="work-tag">業務効率化の伴走支援</span>
+            <span class="work-badge">住宅建材・リフォーム</span>
             <h3 class="work-title">ネットアストーヨー住器株式会社 様</h3>
-            <p class="work-desc">住宅建材・リフォーム</p>
+            <p class="work-desc">業務効率化の伴走支援</p>
           </div>
         </div>
 
@@ -352,19 +440,46 @@
 
   <!-- --- CONTACT SECTION --- -->
   <section class="section" id="contact">
+    <!-- WORKSカードアイコンエリア同等の立体流体SVG背景 -->
+    <svg class="contact-fluid-bg" viewBox="0 0 1200 400" preserveAspectRatio="none" fill="none">
+      <defs>
+        <linearGradient id="contact-fluid-1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.38" />
+          <stop offset="50%" stop-color="#7209b7" stop-opacity="0.25" />
+          <stop offset="100%" stop-color="#4895ef" stop-opacity="0.32" />
+        </linearGradient>
+        <linearGradient id="contact-fluid-2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#4895ef" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#00b4d8" stop-opacity="0.2" />
+        </linearGradient>
+      </defs>
+      <path d="M0 100 Q 300 220, 650 90 T 1200 180 L 1200 400 L 0 400 Z" fill="url(#contact-fluid-1)" />
+      <path d="M0 240 Q 350 70, 750 280 T 1200 150 L 1200 400 L 0 400 Z" fill="url(#contact-fluid-2)" />
+    </svg>
+
     <div class="container">
       <div class="contact-cta-wrapper reveal">
-        <span class="section-label">Contact</span>
-        <h2 class="contact-cta-heading">まずはお気軽にご相談ください</h2>
-        <p class="contact-cta-desc">課題整理から、新たな事業づくりや改善の打ち手まで</p>
-        <div class="contact-cta-btn-wrapper">
-          <a href="#" class="contact-cta-btn">
-            お問合せフォームへ
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-              stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </a>
+        <div class="contact-cta-header">
+          <span class="section-label">Contact</span>
+        </div>
+        <div class="contact-cta-grid">
+          <div class="contact-cta-col contact-cta-col-left">
+            <h2 class="contact-cta-heading">まずはお気軽にご相談ください</h2>
+          </div>
+          <div class="contact-cta-col contact-cta-col-mid">
+            <p class="contact-cta-desc">課題整理から、新たな事業づくりや改善の打ち手まで</p>
+          </div>
+          <div class="contact-cta-col contact-cta-col-right">
+            <div class="contact-cta-btn-wrapper">
+              <a href="#" class="contact-cta-btn">
+                お問合せフォームへ
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

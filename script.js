@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // 5. Normal Header Dark Toggle on Statement Section
+    // 5. Normal Header Dark Toggle & Ambient Orbs Parallax on Statement (Philosophy) Section
     if (statementSection) {
       const pos = sectionPositions.statement;
       const rectTop = pos.top - scrollY;
@@ -181,6 +181,15 @@ document.addEventListener('DOMContentLoaded', () => {
         header.classList.add('header-dark');
       } else {
         header.classList.remove('header-dark');
+      }
+
+      // Ambient Orbs parallax inside Philosophy
+      const orbP1 = document.querySelector('.orb-p-1');
+      const orbP2 = document.querySelector('.orb-p-2');
+      if (orbP1 && orbP2) {
+        const offset = (scrollY - pos.top) * 0.15;
+        orbP1.style.transform = `translateY(${offset}px) scale(${1 + Math.sin(scrollY * 0.002) * 0.05})`;
+        orbP2.style.transform = `translateY(${-offset * 0.8}px) scale(${1 + Math.cos(scrollY * 0.002) * 0.05})`;
       }
     }
   };
@@ -222,7 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
     targetScrollY = window.scrollY;
     smoothScrollY = window.scrollY;
     renderAnimations(window.scrollY);
-
+    initScrollytelling();
+    initPhilosophyScrollytelling();
   });
 
   // Initial load
@@ -439,8 +449,107 @@ document.addEventListener('DOMContentLoaded', () => {
     animate();
   }
 
+  // --- SCROLLYTELLING CONTROL ---
+  const scrollySteps = document.querySelectorAll('.scrolly-step');
+  const scrollyVisualItems = document.querySelectorAll('.scrolly-visual-item');
+  let scrollyObserver = null;
 
+  const initScrollytelling = () => {
+    // Clean up existing observer if any
+    if (scrollyObserver) {
+      scrollyObserver.disconnect();
+    }
 
+    if (window.innerWidth >= 992) {
+      // Desktop scrollytelling mode
+      scrollySteps.forEach(step => step.classList.remove('active'));
+      scrollyVisualItems.forEach(item => item.classList.remove('active'));
 
+      // Set initial first step active to avoid empty visual on load
+      if (scrollySteps[0]) scrollySteps[0].classList.add('active');
+      if (scrollyVisualItems[0]) scrollyVisualItems[0].classList.add('active');
+
+      scrollyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const stepIndex = entry.target.getAttribute('data-step');
+            
+            // Deactivate all steps & visuals
+            scrollySteps.forEach(step => step.classList.remove('active'));
+            scrollyVisualItems.forEach(item => item.classList.remove('active'));
+            
+            // Activate current step & visual
+            entry.target.classList.add('active');
+            const activeVisual = document.querySelector(`.scrolly-visual-item[data-step="${stepIndex}"]`);
+            if (activeVisual) {
+              activeVisual.classList.add('active');
+            }
+          }
+        });
+      }, {
+        root: null,
+        // Trigger when the step enters the middle section of the viewport
+        rootMargin: '-30% 0px -40% 0px',
+        threshold: 0
+      });
+
+      scrollySteps.forEach(step => {
+        scrollyObserver.observe(step);
+      });
+    } else {
+      // Mobile fallback: all active
+      scrollySteps.forEach(step => step.classList.add('active'));
+      scrollyVisualItems.forEach(item => item.classList.add('active'));
+    }
+  };
+
+  // Initialize scrollytelling
+  initScrollytelling();
+
+  // --- PHILOSOPHY SCROLLYTELLING CONTROL ---
+  const philosophySteps = document.querySelectorAll('.philosophy-step');
+  let philosophyObserver = null;
+
+  const initPhilosophyScrollytelling = () => {
+    if (philosophyObserver) {
+      philosophyObserver.disconnect();
+    }
+
+    if (philosophySteps.length > 0) {
+      if (window.innerWidth >= 768) {
+        // Desktop / Tablet Scrollytelling mode
+        philosophySteps.forEach((step, idx) => {
+          if (idx === 0) {
+            step.classList.add('active');
+          } else {
+            step.classList.remove('active');
+          }
+        });
+
+        philosophyObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              philosophySteps.forEach(step => step.classList.remove('active'));
+              entry.target.classList.add('active');
+            }
+          });
+        }, {
+          root: null,
+          rootMargin: '-35% 0px -40% 0px',
+          threshold: 0
+        });
+
+        philosophySteps.forEach(step => {
+          philosophyObserver.observe(step);
+        });
+      } else {
+        // Mobile fallback: mark all active
+        philosophySteps.forEach(step => step.classList.add('active'));
+      }
+    }
+  };
+
+  // Initialize philosophy scrollytelling
+  initPhilosophyScrollytelling();
 
 });
