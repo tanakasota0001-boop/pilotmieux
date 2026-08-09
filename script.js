@@ -468,7 +468,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Set initial first step active to avoid empty visual on load
       if (scrollySteps[0]) scrollySteps[0].classList.add('active');
       if (scrollyVisualItems[0]) scrollyVisualItems[0].classList.add('active');
-
       scrollyObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -492,7 +491,6 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: '-30% 0px -40% 0px',
         threshold: 0
       });
-
       scrollySteps.forEach(step => {
         scrollyObserver.observe(step);
       });
@@ -502,7 +500,6 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollyVisualItems.forEach(item => item.classList.add('active'));
     }
   };
-
   // Initialize scrollytelling
   initScrollytelling();
 
@@ -551,5 +548,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize philosophy scrollytelling
   initPhilosophyScrollytelling();
+=======
+
+  // Initialize scrollytelling
+  initScrollytelling();
+>>>>>>> origin/main
 
 });

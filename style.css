@@ -1037,7 +1037,6 @@ li {
 .scrolly-step:last-child {
   margin-bottom: 0;
 }
-
 .scrolly-step.active {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -1266,7 +1265,6 @@ li {
   .scrolly-progress-line span {
     width: 100% !important; /* progress line always filled on mobile */
   }
-
   .scrolly-description {
     font-size: 0.95rem;
   }
