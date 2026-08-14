@@ -2252,68 +2252,43 @@ li {
   /* --- HERO SECTION MOBILE --- */
   .hero {
     height: auto;
-    min-height: calc(100vh - 72px);
-    padding-top: 82px;
-    padding-bottom: 3.5rem;
+    min-height: 100vh;
+    padding-top: 85px; /* モバイルでのヘッダー高さを考慮しつつ、高さを微調整 */
+    padding-bottom: 60px;
     display: flex;
     align-items: center;
   }
   
   .hero-bg-front {
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    border-top-left-radius: 16px;
+    top: 40px;
+    left: 95px;
+    border-top-left-radius: 14px;
   }
-
-  .hero-content {
-    text-align: left;
+  
+  .hero-btn,
+  .hero-btn-secondary {
+    padding: 1rem 2.2rem;
+    font-size: 1rem;
   }
-
+  
   .hero-badge {
-    display: inline-block;
-    font-size: 0.8rem;
-    padding: 0.35rem 0.9rem;
-    margin-top: 0.25rem;
-    margin-bottom: 1.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
   }
   
   .hero-title {
-    font-size: clamp(1.7rem, 6.4vw, 2.25rem);
-    line-height: 1.38;
-    letter-spacing: 0.01em;
+    font-size: 2.0rem; /* モバイル画面幅での適切な折り返しと圧迫感軽減のため微調整 */
+    line-height: 1.4; /* モバイル表示での読みやすさを考慮した行間 */
+    letter-spacing: 0.02em;
     margin-bottom: 1.25rem;
-    word-break: normal;
-    overflow-wrap: break-word;
   }
   
   .hero-desc {
-    font-size: 0.92rem;
-    line-height: 1.75;
-    margin-bottom: 2rem;
-    color: var(--color-text-secondary);
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-    gap: 0.85rem;
-    align-items: stretch;
+    font-size: 0.9rem;
+    line-height: 1.7; /* モバイル表示での読みやすさを向上 */
+    margin-bottom: 1.75rem;
   }
 
-  .hero-btn,
-  .hero-btn-secondary {
-    width: 100%;
-    justify-content: center;
-    padding: 0.95rem 1.75rem;
-    font-size: 1.02rem;
-    min-height: 50px;
-  }
-
-  .hero-scroll-indicator {
-    bottom: 15px;
-  }
-  
   /* --- TICKER SECTION MOBILE --- */
   .ticker-section {
     padding: 4.5rem 0;
@@ -2333,43 +2308,37 @@ li {
     width: 12%;
   }
 
-  /* --- PHILOSOPHY STATEMENT MOBILE --- */
+  /* Philosophy Section Adjustments for Mobile */
   #statement {
-    padding: 4.5rem 0 5.5rem 0;
+    padding: 6rem 0 8rem 0;
   }
-
   .statement-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
   }
-
+  .statement-left {
+    position: static;
+  }
   .statement-title {
-    font-size: 1.85rem;
+    font-size: 2.2rem;
   }
-
   .statement-title::after {
-    margin-top: 0.75rem;
-    width: 80px;
+    margin-top: 1rem;
+    width: 110px;
   }
-
   .philosophy-step {
     min-height: auto;
-    padding: 1.25rem 1.4rem;
-    margin-bottom: 1.25rem;
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-left: 3.5px solid var(--color-accent);
-    border-radius: 0 14px 14px 0;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
-    opacity: 1;
-    transform: none !important;
-    filter: none !important;
+    padding: 2rem 0;
+    opacity: 0.85;
+    transform: none;
+    filter: none;
   }
-
+  .philosophy-step.active {
+    opacity: 1;
+  }
   .philosophy-step p {
-    font-size: 0.98rem;
-    line-height: 1.75;
+    font-size: 1.1rem;
+    line-height: 1.8;
   }
 
   /* --- WORKS SECTION MOBILE --- */
