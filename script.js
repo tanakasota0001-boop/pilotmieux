@@ -491,6 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: '-30% 0px -40% 0px',
         threshold: 0
       });
+
       scrollySteps.forEach(step => {
         scrollyObserver.observe(step);
       });
@@ -500,6 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
       scrollyVisualItems.forEach(item => item.classList.add('active'));
     }
   };
+
   // Initialize scrollytelling
   initScrollytelling();
 
@@ -548,10 +550,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize philosophy scrollytelling
   initPhilosophyScrollytelling();
-=======
-
-  // Initialize scrollytelling
-  initScrollytelling();
->>>>>>> origin/main
 
 });
