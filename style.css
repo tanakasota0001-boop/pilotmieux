@@ -43,9 +43,6 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -53,10 +50,7 @@ body {
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
   line-height: 1.7;
-  width: 100%;
-  max-width: 100%;
   overflow-x: hidden;
-  position: relative;
 }
 
 body.nav-open {
@@ -92,7 +86,6 @@ li {
   height: 100%;
   z-index: -1;
   pointer-events: none;
-  overflow: hidden;
   will-change: transform;
 }
 
@@ -381,13 +374,11 @@ li {
 /* --- HERO SECTION --- */
 .hero {
   height: 100vh;
-  height: 100dvh;
   display: flex;
   align-items: center;
   padding-top: 55px; /* 行間拡張に伴い、コンテンツ全体の垂直バランスを再調整 */
   position: relative;
   overflow: hidden;
-  box-sizing: border-box;
   /* レイヤー1: 最背面はグラデーション無しの純単色 */
   background: #dce4ee !important;
 }
@@ -1246,12 +1237,6 @@ li {
 
 /* Mobile & Tablet Fallback */
 @media (max-width: 991px) {
-  /* Hide background water dots / bubbles in What We Do section on mobile */
-  .floating-dots-container,
-  .bubble-dot {
-    display: none !important;
-  }
-
   .scrolly-container {
     flex-direction: column;
     gap: 2.5rem;
@@ -2071,8 +2056,7 @@ li {
 }
 
 .ticker-row {
-  width: 100%;
-  max-width: 100%;
+  width: 100vw;
   overflow: hidden;
   display: flex;
   user-select: none;
@@ -2208,8 +2192,7 @@ li {
     position: fixed;
     top: 72px;
     left: 0;
-    width: 100%;
-    max-width: 100%;
+    width: 100vw;
     max-height: 0;
     opacity: 0;
     visibility: hidden;
@@ -2266,70 +2249,44 @@ li {
     box-shadow: 0 8px 20px rgba(0, 180, 216, 0.3);
   }
 
-  .reveal.reveal-left,
-  .reveal.reveal-right {
-    transform: translateY(30px) !important;
-  }
-  .reveal.reveal-left.visible,
-  .reveal.reveal-right.visible {
-    transform: translateY(0) !important;
-  }
-
   /* --- HERO SECTION MOBILE --- */
   .hero {
-    height: 100vh;
-    height: 100dvh;
-    min-height: -webkit-fill-available;
-    padding-top: 76px;
-    padding-bottom: 2rem;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 85px; /* モバイルでのヘッダー高さを考慮しつつ、高さを微調整 */
+    padding-bottom: 60px;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    box-sizing: border-box;
   }
   
   .hero-bg-front {
-    top: 30px;
-    left: 20px;
-    right: 0;
-    bottom: 0;
+    top: 40px;
+    left: 95px;
     border-top-left-radius: 14px;
   }
-
+  
+  .hero-btn,
+  .hero-btn-secondary {
+    padding: 1rem 2.2rem;
+    font-size: 1rem;
+  }
+  
   .hero-badge {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    font-size: 0.75rem;
-    padding: 0.3rem 0.9rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
   }
   
   .hero-title {
-    font-size: clamp(1.6rem, 5.5vw, 1.95rem);
-    line-height: 1.35;
-    letter-spacing: 0.01em;
-    margin-bottom: 0.85rem;
+    font-size: 2.0rem; /* モバイル画面幅での適切な折り返しと圧迫感軽減のため微調整 */
+    line-height: 1.4; /* モバイル表示での読みやすさを考慮した行間 */
+    letter-spacing: 0.02em;
+    margin-bottom: 1.25rem;
   }
   
   .hero-desc {
-    font-size: 0.85rem;
-    line-height: 1.65;
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-  }
-
-  .hero-btn,
-  .hero-btn-secondary {
-    padding: 0.8rem 1.6rem;
-    font-size: 0.92rem;
-  }
-
-  .hero-scroll-indicator {
-    bottom: 10px;
+    font-size: 0.9rem;
+    line-height: 1.7; /* モバイル表示での読みやすさを向上 */
+    margin-bottom: 1.75rem;
   }
 
   /* --- TICKER SECTION MOBILE --- */
@@ -2509,9 +2466,8 @@ body.loading {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: #0a0c10;
   z-index: 99999;
   display: flex;
