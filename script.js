@@ -532,36 +532,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (philosophySteps.length > 0) {
-      if (window.innerWidth >= 768) {
-        // Desktop / Tablet Scrollytelling mode
-        philosophySteps.forEach((step, idx) => {
-          if (idx === 0) {
-            step.classList.add('active');
-          } else {
-            step.classList.remove('active');
+      // Scrollytelling mode for all screens
+      philosophySteps.forEach((step, idx) => {
+        if (idx === 0) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+
+      const rootMargin = window.innerWidth >= 768 
+        ? '-35% 0px -40% 0px' 
+        : '-25% 0px -30% 0px';
+
+      philosophyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            philosophySteps.forEach(step => step.classList.remove('active'));
+            entry.target.classList.add('active');
           }
         });
+      }, {
+        root: null,
+        rootMargin: rootMargin,
+        threshold: 0
+      });
 
-        philosophyObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              philosophySteps.forEach(step => step.classList.remove('active'));
-              entry.target.classList.add('active');
-            }
-          });
-        }, {
-          root: null,
-          rootMargin: '-35% 0px -40% 0px',
-          threshold: 0
-        });
-
-        philosophySteps.forEach(step => {
-          philosophyObserver.observe(step);
-        });
-      } else {
-        // Mobile fallback: mark all active
-        philosophySteps.forEach(step => step.classList.add('active'));
-      }
+      philosophySteps.forEach(step => {
+        philosophyObserver.observe(step);
+      });
     }
   };
 
