@@ -381,11 +381,13 @@ li {
 /* --- HERO SECTION --- */
 .hero {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   padding-top: 55px; /* 行間拡張に伴い、コンテンツ全体の垂直バランスを再調整 */
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
   /* レイヤー1: 最背面はグラデーション無しの純単色 */
   background: #dce4ee !important;
 }
@@ -2275,42 +2277,59 @@ li {
 
   /* --- HERO SECTION MOBILE --- */
   .hero {
-    height: auto;
-    min-height: 100vh;
-    padding-top: 85px; /* モバイルでのヘッダー高さを考慮しつつ、高さを微調整 */
-    padding-bottom: 60px;
+    height: 100vh;
+    height: 100dvh;
+    min-height: -webkit-fill-available;
+    padding-top: 76px;
+    padding-bottom: 2rem;
     display: flex;
     align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
   }
   
   .hero-bg-front {
-    top: 40px;
-    left: 95px;
+    top: 30px;
+    left: 20px;
+    right: 0;
+    bottom: 0;
     border-top-left-radius: 14px;
   }
-  
-  .hero-btn,
-  .hero-btn-secondary {
-    padding: 1rem 2.2rem;
-    font-size: 1rem;
-  }
-  
+
   .hero-badge {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.9rem;
   }
   
   .hero-title {
-    font-size: 2.0rem; /* モバイル画面幅での適切な折り返しと圧迫感軽減のため微調整 */
-    line-height: 1.4; /* モバイル表示での読みやすさを考慮した行間 */
-    letter-spacing: 0.02em;
-    margin-bottom: 1.25rem;
+    font-size: clamp(1.6rem, 5.5vw, 1.95rem);
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.85rem;
   }
   
   .hero-desc {
-    font-size: 0.9rem;
-    line-height: 1.7; /* モバイル表示での読みやすさを向上 */
-    margin-bottom: 1.75rem;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .hero-btn,
+  .hero-btn-secondary {
+    padding: 0.8rem 1.6rem;
+    font-size: 0.92rem;
+  }
+
+  .hero-scroll-indicator {
+    bottom: 10px;
   }
 
   /* --- TICKER SECTION MOBILE --- */
