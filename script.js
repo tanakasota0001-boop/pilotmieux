@@ -128,8 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Hero Section Elements
     const heroContent = document.querySelector('.hero-content');
+    const heroBottomBar = document.querySelector('.hero-bottom-bar');
+    const heroFadeOpacity = Math.max(0, 1 - scrollY / 650);
     if (heroContent) {
-      heroContent.style.opacity = Math.max(0, 1 - scrollY / 700);
+      heroContent.style.opacity = heroFadeOpacity;
+    }
+    if (heroBottomBar) {
+      heroBottomBar.style.opacity = heroFadeOpacity;
     }
 
 
