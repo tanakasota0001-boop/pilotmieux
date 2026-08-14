@@ -441,44 +441,53 @@
 
   <!-- --- CONTACT SECTION --- -->
   <section class="section" id="contact">
-    <!-- WORKSカードアイコンエリア同等の立体流体SVG背景 -->
-    <svg class="contact-fluid-bg" viewBox="0 0 1200 400" preserveAspectRatio="none" fill="none">
-      <defs>
-        <linearGradient id="contact-fluid-1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.38" />
-          <stop offset="50%" stop-color="#7209b7" stop-opacity="0.25" />
-          <stop offset="100%" stop-color="#4895ef" stop-opacity="0.32" />
-        </linearGradient>
-        <linearGradient id="contact-fluid-2" x1="100%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#4895ef" stop-opacity="0.3" />
-          <stop offset="100%" stop-color="#00b4d8" stop-opacity="0.2" />
-        </linearGradient>
-      </defs>
-      <path d="M0 100 Q 300 220, 650 90 T 1200 180 L 1200 400 L 0 400 Z" fill="url(#contact-fluid-1)" />
-      <path d="M0 240 Q 350 70, 750 280 T 1200 150 L 1200 400 L 0 400 Z" fill="url(#contact-fluid-2)" />
-    </svg>
+    <!-- 背景流体オーブ -->
+    <div class="contact-ambient-glow"></div>
 
     <div class="container">
-      <div class="contact-cta-wrapper reveal">
-        <div class="contact-cta-header">
-          <span class="section-label">Contact</span>
-        </div>
-        <div class="contact-cta-grid">
-          <div class="contact-cta-col contact-cta-col-left">
-            <h2 class="contact-cta-heading">まずはお気軽にご相談ください</h2>
+      <div class="contact-cta-card reveal">
+        <!-- カード内装飾グロー & トップグラデーションライン -->
+        <div class="contact-card-glow-bg"></div>
+        <div class="contact-card-top-border"></div>
+
+        <div class="contact-card-inner">
+          <div class="contact-card-left">
+            <div class="contact-badge-wrapper">
+              <span class="contact-status-dot"></span>
+              <span class="contact-badge-text">無料相談受付中</span>
+            </div>
+            <h2 class="contact-card-title">
+              課題の整理から、次の成長をつくる打ち手まで。<br>
+              <span class="contact-card-title-highlight">まずはお気軽にご相談ください。</span>
+            </h2>
+            <p class="contact-card-desc">
+              現在の業務課題の整理・可視化から、AI・DXの導入設計、新規事業開発まで。<br class="pc-only">
+              貴社の目指す未来に向けて、最適な伴走支援プランをご提案いたします。
+            </p>
+            <ul class="contact-features-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                オンライン・対面どちらも対応可能
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                初回ご相談・ヒアリングは完全無料
+              </li>
+            </ul>
           </div>
-          <div class="contact-cta-col contact-cta-col-mid">
-            <p class="contact-cta-desc">課題整理から、新たな事業づくりや改善の打ち手まで</p>
-          </div>
-          <div class="contact-cta-col contact-cta-col-right">
-            <div class="contact-cta-btn-wrapper">
-              <a href="#" class="contact-cta-btn">
-                お問合せフォームへ
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
+
+          <div class="contact-card-right">
+            <div class="contact-action-box">
+              <a href="#" class="contact-primary-btn">
+                <span>お問合せフォームへ</span>
+                <div class="btn-icon-circle">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
               </a>
+              <span class="contact-note">※ 通常1営業日以内にご返信いたします</span>
             </div>
           </div>
         </div>
