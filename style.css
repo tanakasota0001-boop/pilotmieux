@@ -331,14 +331,30 @@ li {
 
 /* Highlighted Contact Button */
 .nav-link.nav-link-btn {
+  position: relative;
   padding: 0.55rem 1.4rem;
   background: var(--color-accent);
   color: #ffffff !important;
   border-radius: 50px;
   font-weight: 600;
   box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
-  transition: all 0.3s ease;
+  transition: var(--transition-normal);
   display: inline-block;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.nav-link.nav-link-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--color-accent-hover);
+  border-radius: inherit;
+  transition: var(--transition-normal);
+  z-index: -1;
 }
 
 .nav-link.nav-link-btn::after {
@@ -346,10 +362,11 @@ li {
 }
 
 .nav-link.nav-link-btn:hover {
-  background: var(--color-accent-hover);
   color: #ffffff !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 180, 216, 0.45);
+}
+
+.nav-link.nav-link-btn:hover::before {
+  width: 100%;
 }
 
 /* Mobile Toggle */
@@ -530,26 +547,44 @@ li {
   font-size: 1.1rem;
   border-radius: 50px;
   box-shadow: 0 10px 25px -5px rgba(0, 180, 216, 0.12);
-  border: 1px solid var(--color-accent); /* ブランドカラー #00b4d8 の細い縁取り */
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--color-accent);
+  transition: var(--transition-normal);
   text-decoration: none;
   pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: inherit;
+  transition: var(--transition-normal);
+  z-index: -1;
 }
 
 .hero-btn:hover {
-  transform: translateY(-3px);
-  background: #ffffff;
-  color: var(--color-accent);
-  border-color: var(--color-accent-hover);
-  box-shadow: 0 15px 30px -5px rgba(0, 180, 216, 0.28);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+.hero-btn:hover::before {
+  width: 100%;
 }
 
 .hero-btn svg {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, stroke 0.3s ease;
 }
 
 .hero-btn:hover svg {
   transform: translateX(4px);
+  stroke: #ffffff;
 }
 
 .hero-buttons {
@@ -564,24 +599,41 @@ li {
   align-items: center;
   gap: 0.75rem;
   padding: 1.2rem 2.8rem;
-  background: var(--color-text-primary); /* フッターの背景色と同じ */
+  background: var(--color-text-primary);
   color: #ffffff;
   font-weight: 700;
   font-size: 1.1rem;
   border-radius: 50px;
   border: 1px solid var(--color-text-primary);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: var(--transition-normal);
   cursor: pointer;
   pointer-events: auto;
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #2b303b;
+  border-radius: inherit;
+  transition: var(--transition-normal);
+  z-index: -1;
 }
 
 .hero-btn-secondary:hover {
-  transform: translateY(-3px);
-  background: #2b303b;
   color: #ffffff;
-  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.25);
+}
+
+.hero-btn-secondary:hover::before {
+  width: 100%;
 }
 
 .hero-btn-secondary svg {
@@ -1519,14 +1571,31 @@ li {
   -webkit-backdrop-filter: blur(8px);
   transition: var(--transition-normal);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-more::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: inherit;
+  transition: var(--transition-normal);
+  z-index: -1;
 }
 
 .btn-more:hover {
-  background: var(--color-accent);
   color: #ffffff;
   border-color: var(--color-accent);
-  box-shadow: 0 6px 20px rgba(0, 180, 216, 0.25);
-  transform: translateY(-2px);
+}
+
+.btn-more:hover::before {
+  width: 100%;
 }
 
 .btn-more svg {
@@ -1802,41 +1871,25 @@ li {
 #contact > .container {
   position: relative;
   z-index: 1;
-  max-width: 1320px;
+  max-width: 1000px;
 }
 
 .contact-cta-wrapper {
-  max-width: 1280px;
+  max-width: 900px;
   width: 100%;
   margin: 0 auto;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(240, 243, 248, 0.55) 100%);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  border-radius: 28px;
-  padding: 3.5rem 4.5rem;
-  box-shadow: 0 24px 60px -10px rgba(0, 180, 216, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.contact-cta-wrapper::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 180, 216, 0.15) 0%, transparent 70%);
-  filter: blur(40px);
-  pointer-events: none;
+  background-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 24px;
+  padding: 3.2rem 3rem;
+  box-shadow: var(--shadow-subtle);
 }
 
 .contact-cta-header {
   text-align: left;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
 .contact-cta-header .section-label {
@@ -1847,68 +1900,74 @@ li {
 .contact-cta-grid {
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-template-areas:
-    "left  right"
-    "mid   right";
   align-items: center;
-  gap: 0.6rem 3.5rem;
+  gap: 2.5rem;
 }
 
 .contact-cta-col-left {
-  grid-area: left;
   text-align: left;
 }
 
 .contact-cta-heading {
-  font-size: 2.1rem;
+  font-size: 1.9rem;
   font-weight: 800;
-  margin-bottom: 0;
-  line-height: 1.3;
-  white-space: normal;
-  background: linear-gradient(135deg, var(--color-text-primary) 0%, #0077b6 100%);
+  margin-bottom: 0.6rem;
+  line-height: 1.35;
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, rgba(10, 25, 47, 0.8) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.contact-cta-col-mid {
-  grid-area: mid;
-  text-align: left;
-}
-
 .contact-cta-desc {
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   color: var(--color-text-secondary);
   margin-bottom: 0;
   line-height: 1.6;
 }
 
 .contact-cta-col-right {
-  grid-area: right;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
 }
 
 .contact-cta-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.85rem;
-  background: var(--color-accent-gradient);
+  gap: 0.75rem;
+  background: var(--color-accent);
   color: #ffffff;
-  padding: 1.15rem 2.6rem;
-  border-radius: 100px;
+  padding: 1.1rem 2.4rem;
+  border-radius: 50px;
   font-weight: 700;
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   text-decoration: none;
-  box-shadow: 0 12px 30px -4px rgba(0, 180, 216, 0.4);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px -5px rgba(0, 180, 216, 0.35);
+  transition: var(--transition-normal);
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.contact-cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--color-accent-hover);
+  border-radius: inherit;
+  transition: var(--transition-normal);
+  z-index: -1;
 }
 
 .contact-cta-btn:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 18px 36px -4px rgba(0, 180, 216, 0.55);
   color: #ffffff;
+}
+
+.contact-cta-btn:hover::before {
+  width: 100%;
 }
 
 .contact-cta-btn svg {
@@ -1916,42 +1975,36 @@ li {
 }
 
 .contact-cta-btn:hover svg {
-  transform: translateX(5px);
+  transform: translateX(4px);
 }
 
 @media (max-width: 992px) {
   .contact-cta-wrapper {
-    padding: 3rem 2.5rem;
+    padding: 3.5rem 2.5rem;
   }
   .contact-cta-header {
     text-align: center;
   }
   .contact-cta-grid {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "left"
-      "mid"
-      "right";
-    gap: 1.25rem;
+    gap: 2rem;
     text-align: center;
   }
-  .contact-cta-col-left,
-  .contact-cta-col-mid {
+  .contact-cta-col-left {
     text-align: center;
   }
   .contact-cta-col-right {
     justify-content: center;
-    margin-top: 0.5rem;
   }
   .contact-cta-heading {
     font-size: 1.75rem;
+    white-space: normal;
   }
 }
 
 @media (max-width: 768px) {
   .contact-cta-wrapper {
-    padding: 2.5rem 1.5rem;
-    border-radius: 20px;
+    padding: 3rem 1.5rem;
   }
   .contact-cta-heading {
     font-size: 1.5rem;
@@ -1960,11 +2013,8 @@ li {
     font-size: 0.95rem;
   }
   .contact-cta-btn {
-    padding: 1rem 2.2rem;
-    font-size: 1rem;
-    width: 100%;
-    max-width: 320px;
-    justify-content: center;
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -2059,11 +2109,30 @@ li {
   color: #ffffff;
   cursor: pointer;
   transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.scroll-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--color-accent);
+  border-radius: inherit;
+  transition: var(--transition-normal);
+  z-index: -1;
 }
 
 .scroll-top:hover {
-  background-color: var(--color-accent);
-  transform: translateY(-3px);
+  color: #ffffff;
+}
+
+.scroll-top:hover::before {
+  width: 100%;
 }
 
 /* --- ARTISTIC TYPOGRAPHY TICKER --- */
@@ -2283,43 +2352,68 @@ li {
   /* --- HERO SECTION MOBILE --- */
   .hero {
     height: auto;
-    min-height: 100vh;
-    padding-top: 85px; /* モバイルでのヘッダー高さを考慮しつつ、高さを微調整 */
-    padding-bottom: 60px;
+    min-height: calc(100vh - 72px);
+    padding-top: 82px;
+    padding-bottom: 3.5rem;
     display: flex;
     align-items: center;
   }
   
   .hero-bg-front {
-    top: 40px;
-    left: 95px;
-    border-top-left-radius: 14px;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    border-top-left-radius: 16px;
   }
-  
-  .hero-btn,
-  .hero-btn-secondary {
-    padding: 1rem 2.2rem;
-    font-size: 1rem;
+
+  .hero-content {
+    text-align: left;
   }
-  
+
   .hero-badge {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .hero-title {
-    font-size: 2.0rem; /* モバイル画面幅での適切な折り返しと圧迫感軽減のため微調整 */
-    line-height: 1.4; /* モバイル表示での読みやすさを考慮した行間 */
-    letter-spacing: 0.02em;
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.9rem;
+    margin-top: 0.25rem;
     margin-bottom: 1.25rem;
   }
   
+  .hero-title {
+    font-size: clamp(1.7rem, 6.4vw, 2.25rem);
+    line-height: 1.38;
+    letter-spacing: 0.01em;
+    margin-bottom: 1.25rem;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  
   .hero-desc {
-    font-size: 0.9rem;
-    line-height: 1.7; /* モバイル表示での読みやすさを向上 */
-    margin-bottom: 1.75rem;
+    font-size: 0.92rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    color: var(--color-text-secondary);
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.85rem;
+    align-items: stretch;
   }
 
+  .hero-btn,
+  .hero-btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.95rem 1.75rem;
+    font-size: 1.02rem;
+    min-height: 50px;
+  }
+
+  .hero-scroll-indicator {
+    bottom: 15px;
+  }
+  
   /* --- TICKER SECTION MOBILE --- */
   .ticker-section {
     padding: 4.5rem 0;
@@ -2339,37 +2433,43 @@ li {
     width: 12%;
   }
 
-  /* Philosophy Section Adjustments for Mobile */
+  /* --- PHILOSOPHY STATEMENT MOBILE --- */
   #statement {
-    padding: 6rem 0 8rem 0;
+    padding: 4.5rem 0 5.5rem 0;
   }
+
   .statement-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
-  .statement-left {
-    position: static;
-  }
+
   .statement-title {
-    font-size: 2.2rem;
+    font-size: 1.85rem;
   }
+
   .statement-title::after {
-    margin-top: 1rem;
-    width: 110px;
+    margin-top: 0.75rem;
+    width: 80px;
   }
+
   .philosophy-step {
     min-height: auto;
-    padding: 2rem 0;
-    opacity: 0.85;
-    transform: none;
-    filter: none;
-  }
-  .philosophy-step.active {
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 1.25rem;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-left: 3.5px solid var(--color-accent);
+    border-radius: 0 14px 14px 0;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
     opacity: 1;
+    transform: none !important;
+    filter: none !important;
   }
+
   .philosophy-step p {
-    font-size: 1.1rem;
-    line-height: 1.8;
+    font-size: 0.98rem;
+    line-height: 1.75;
   }
 
   /* --- WORKS SECTION MOBILE --- */
