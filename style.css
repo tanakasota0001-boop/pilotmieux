@@ -449,60 +449,53 @@ li {
   pointer-events: none;
 }
 
-.hero .container.hero-container {
+.hero .container {
   position: relative;
   z-index: 3;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-top: 110px;
-  padding-bottom: 3rem;
-  box-sizing: border-box;
   pointer-events: none;
 }
 
 .hero-content {
-  max-width: 850px;
-  margin-top: auto;
-  margin-bottom: auto;
+  max-width: 800px;
   pointer-events: auto;
 }
 
 .hero-badge {
   display: inline-block;
-  padding: 0.45rem 1.3rem;
+  padding: 0.4rem 1.2rem;
   background-color: rgba(0, 180, 216, 0.08);
   color: #0077b6;
   border: 1px solid rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   border-radius: 100px;
-  margin-top: 0;
-  margin-bottom: 1.75rem;
+  margin-top: 1rem; /* ヘッダーとの適切な余白を維持 */
+  margin-bottom: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .hero-title {
-  font-size: 3.6rem;
+  font-size: 3.5rem;
   font-weight: 800;
-  line-height: 1.48; /* 行間をゆったり広げて開放感を演出 */
-  letter-spacing: 0.03em;
-  margin-bottom: 2rem; /* 説明文との間に贅沢な空間を確保 */
+  line-height: 1.38; /* 行間を広げてゆとりと高級感を演出 */
+  letter-spacing: 0.03em; /* 文字の詰まりを解消し、洗練された印象に */
+  margin-bottom: 1.5rem; /* タイトル下の余白を最適化 */
 }
 
 .hero-title span {
-  font-weight: 900;
-  font-size: 1.08em;
-  letter-spacing: 0.05em;
+  font-weight: 900; /* 親要素の800よりさらに太く強調 */
+  font-size: 1.08em; /* 文字サイズを一回り大きくして目立たせる */
+  letter-spacing: 0.05em; /* 文字間をわずかに広げて視認性と存在感を向上 */
+  /* ブランドカラーのシアンから深みのあるバイオレットへと変化する、コントラストの高いグラデーション */
   background: linear-gradient(120deg, #0077b6 0%, #00b4d8 25%, #7209b7 50%, #00b4d8 75%, #0077b6 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textShine 6s linear infinite;
+  /* 文字を背景から浮かび上がらせる微細なドロップシャドウ（グロー効果） */
   filter: drop-shadow(0 2px 8px rgba(0, 180, 216, 0.25)) drop-shadow(0 4px 12px rgba(114, 9, 183, 0.15));
 }
 
@@ -515,13 +508,15 @@ li {
   }
 }
 
+
+
 .hero-desc {
-  font-size: 1.05rem;
+  font-size: 1.0rem; /* タイトルとの強弱をつけるため、わずかにフォントサイズを微調整 */
   color: var(--color-text-primary);
   font-weight: 500;
-  margin-bottom: 0;
-  max-width: 760px;
-  line-height: 1.9; /* 行間をしっかり空けて伸びやかな可読性 */
+  margin-bottom: 2.25rem; /* ボタン群とのバランスを考慮した余白 */
+  max-width: 680px;
+  line-height: 1.75; /* 行間をやや引き締め、読みやすさを向上 */
   text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
@@ -530,41 +525,21 @@ li {
 }
 
 .hero-desc-line:not(:last-child) {
-  margin-bottom: 0.8em;
-}
-
-/* --- HERO BOTTOM BAR (BUTTONS & SCROLL INDICATOR SIDE BY SIDE) --- */
-.hero-bottom-bar {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  pointer-events: auto;
-  position: relative;
-  z-index: 10;
-  margin-top: 2rem;
-}
-
-.hero-buttons {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  pointer-events: auto;
+  margin-bottom: 0.6em; /* 段落間の余白を最適化し、説明文の一体感を強化 */
 }
 
 .hero-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1.15rem 2.6rem;
+  padding: 1.2rem 2.8rem;
   background: #ffffff;
   color: var(--color-text-primary);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   border-radius: 50px;
   box-shadow: 0 10px 25px -5px rgba(0, 180, 216, 0.12);
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-accent); /* ブランドカラー #00b4d8 の細い縁取り */
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   pointer-events: auto;
@@ -586,15 +561,22 @@ li {
   transform: translateX(4px);
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  pointer-events: auto;
+}
+
 .hero-btn-secondary {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1.15rem 2.6rem;
-  background: var(--color-text-primary);
+  padding: 1.2rem 2.8rem;
+  background: var(--color-text-primary); /* フッターの背景色と同じ */
   color: #ffffff;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   border-radius: 50px;
   border: 1px solid var(--color-text-primary);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
@@ -623,13 +605,13 @@ li {
 
 /* --- HERO SCROLL INDICATOR --- */
 .hero-scroll-indicator {
-  position: relative;
-  right: auto;
-  bottom: auto;
+  position: absolute;
+  right: 3.5rem;
+  bottom: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.5rem;
   z-index: 10;
   pointer-events: none;
 }
@@ -648,7 +630,7 @@ li {
 .scroll-line-wrapper {
   position: relative;
   width: 1px;
-  height: 80px;
+  height: 90px;
   background-color: rgba(23, 24, 28, 0.15);
   overflow: hidden;
 }
@@ -2298,16 +2280,14 @@ li {
     height: 100vh;
     height: 100dvh;
     min-height: -webkit-fill-available;
+    padding-top: 76px;
+    padding-bottom: 2rem;
+    display: flex;
+    align-items: center;
     overflow: hidden;
     box-sizing: border-box;
   }
   
-  .hero .container.hero-container {
-    padding-top: 85px;
-    padding-bottom: 1.5rem;
-    height: 100%;
-  }
-
   .hero-bg-front {
     top: 30px;
     left: 20px;
@@ -2318,59 +2298,38 @@ li {
 
   .hero-badge {
     margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 0.76rem;
-    padding: 0.35rem 0.95rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.9rem;
   }
   
   .hero-title {
-    font-size: clamp(1.65rem, 5.8vw, 2.05rem);
-    line-height: 1.4;
+    font-size: clamp(1.6rem, 5.5vw, 1.95rem);
+    line-height: 1.35;
     letter-spacing: 0.01em;
-    margin-bottom: 1.15rem;
+    margin-bottom: 0.85rem;
   }
   
   .hero-desc {
-    font-size: 0.88rem;
-    line-height: 1.75;
-    margin-bottom: 0;
-  }
-
-  .hero-bottom-bar {
-    margin-top: 1.25rem;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 0.85rem;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
   }
 
   .hero-buttons {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 0.65rem;
-    flex: 1;
   }
 
   .hero-btn,
   .hero-btn-secondary {
-    padding: 0.75rem 1.2rem;
-    font-size: 0.88rem;
-    justify-content: center;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 0.8rem 1.6rem;
+    font-size: 0.92rem;
   }
 
   .hero-scroll-indicator {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    flex-shrink: 0;
-    margin-left: 0.5rem;
-  }
-
-  .scroll-line-wrapper {
-    height: 48px;
+    bottom: 10px;
   }
 
   /* --- TICKER SECTION MOBILE --- */
