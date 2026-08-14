@@ -1244,6 +1244,12 @@ li {
 
 /* Mobile & Tablet Fallback */
 @media (max-width: 991px) {
+  /* Hide background water dots / bubbles in What We Do section on mobile */
+  .floating-dots-container,
+  .bubble-dot {
+    display: none !important;
+  }
+
   .scrolly-container {
     flex-direction: column;
     gap: 2.5rem;
