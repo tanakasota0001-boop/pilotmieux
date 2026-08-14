@@ -35,6 +35,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -50,6 +51,14 @@ body {
   color: var(--color-text-primary);
   line-height: 1.7;
   overflow-x: hidden;
+}
+
+body.nav-open {
+  overflow: hidden !important;
+}
+
+.sp-only {
+  display: none !important;
 }
 
 a {
@@ -1230,60 +1239,75 @@ li {
 @media (max-width: 991px) {
   .scrolly-container {
     flex-direction: column;
-    gap: 4rem;
+    gap: 2.5rem;
   }
 
   .scrolly-content-track {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 
   .scrolly-step {
     min-height: auto;
     opacity: 1; /* Keep fully visible on scroll for mobile */
     transform: none !important;
-    margin-bottom: 6rem;
+    margin-bottom: 3.25rem;
   }
 
   .scrolly-step-inner {
     display: flex;
     flex-direction: column;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    box-shadow: var(--shadow-subtle);
   }
 
   .scrolly-num {
-    font-size: 4rem;
-    margin-bottom: 0.8rem;
-    color: rgba(0, 180, 216, 0.08);
+    font-size: 3.2rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    color: rgba(0, 180, 216, 0.12);
     -webkit-text-stroke: 1.5px var(--color-accent);
   }
 
   .scrolly-title {
-    font-size: 1.8rem;
+    font-size: 1.65rem;
     color: var(--color-accent);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .scrolly-lead {
-    font-size: 1.1rem;
-    margin-bottom: 1.25rem;
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
   }
 
   /* Show inline visual on mobile */
   .scrolly-mobile-visual {
     display: block;
     width: 100%;
-    max-width: 500px;
-    margin: 1.5rem 0;
+    max-width: 100%;
+    margin: 1.25rem 0;
     align-self: center;
+    padding: 1rem;
+    background: radial-gradient(circle, rgba(0, 180, 216, 0.08) 0%, rgba(255, 255, 255, 0.4) 100%);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
   }
 
   .scrolly-mobile-visual .scrolly-img {
     width: 100%;
-    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 20px rgba(0, 180, 216, 0.15));
   }
 
   .scrolly-progress-line {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
     width: 100%;
   }
 
@@ -1292,7 +1316,9 @@ li {
   }
 
   .scrolly-description {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
   }
 
   /* Hide sticky side on mobile */
@@ -2137,178 +2163,314 @@ li {
   .pc-only {
     display: none !important;
   }
-  
-  .ticker-section {
-    padding: 6rem 0 6rem 0;
-  }
-  .service-sticky-section {
-    margin-top: 0;
-  }
-  .ticker-word {
-    font-size: 7.8vw;
-    letter-spacing: -1px;
+  .sp-only {
+    display: inline !important;
   }
   
-  .ticker-track {
-    gap: 2.25rem;
+  .container {
+    padding: 0 1.25rem;
   }
 
   .section {
-    padding: 5rem 0;
+    padding: 4.5rem 0;
   }
-  
+
+  /* --- MOBILE HEADER & NAVIGATION DRAWER --- */
+  .header {
+    height: 72px;
+  }
+
   .mobile-toggle {
     display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
   }
   
   .nav-menu {
     position: fixed;
-    top: 80px;
+    top: 72px;
     left: 0;
-    width: 100%;
-    height: 0;
-    background-color: var(--color-bg-primary);
-    border-bottom: 0 solid var(--color-border);
-    overflow: hidden;
-    transition: var(--transition-normal);
+    width: 100vw;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(240, 243, 248, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 40px rgba(10, 25, 47, 0.12);
+    overflow-y: auto;
+    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.35s ease, 
+                visibility 0.35s ease;
     z-index: 999;
   }
   
   .nav-menu.open {
-    height: 390px;
-    border-bottom-width: 1px;
-    box-shadow: var(--shadow-subtle);
+    max-height: calc(100vh - 72px);
+    opacity: 1;
+    visibility: visible;
   }
   
   .nav-list {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 2rem;
-    gap: 1.25rem;
+    align-items: stretch;
+    padding: 1.75rem 1.5rem 2.5rem;
+    gap: 0.75rem;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .nav-link:hover, .nav-link:active {
+    background-color: rgba(0, 180, 216, 0.08);
+    color: var(--color-accent);
   }
 
   .nav-link.nav-link-btn {
-    text-align: center;
-    margin-top: 0.25rem;
+    justify-content: center;
+    margin-top: 1rem;
+    background: var(--color-accent-gradient);
+    color: #ffffff !important;
+    padding: 0.85rem 1.75rem;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    box-shadow: 0 8px 20px rgba(0, 180, 216, 0.3);
   }
-  
+
+  /* --- HERO SECTION MOBILE --- */
   .hero {
     height: auto;
-    min-height: 100vh;
-    padding-top: 85px; /* モバイルでのヘッダー高さを考慮しつつ、高さを微調整 */
-    padding-bottom: 60px;
+    min-height: calc(100vh - 72px);
+    padding-top: 82px;
+    padding-bottom: 3.5rem;
     display: flex;
     align-items: center;
   }
   
   .hero-bg-front {
-    top: 40px;
-    left: 95px;
-    border-top-left-radius: 14px;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    border-top-left-radius: 16px;
   }
-  
-  .hero-btn,
-  .hero-btn-secondary {
-    padding: 1rem 2.2rem;
-    font-size: 1rem;
+
+  .hero-content {
+    text-align: left;
   }
-  
+
   .hero-badge {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .hero-title {
-    font-size: 2.0rem; /* モバイル画面幅での適切な折り返しと圧迫感軽減のため微調整 */
-    line-height: 1.4; /* モバイル表示での読みやすさを考慮した行間 */
-    letter-spacing: 0.02em;
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 0.35rem 0.9rem;
+    margin-top: 0.25rem;
     margin-bottom: 1.25rem;
   }
   
+  .hero-title {
+    font-size: clamp(1.7rem, 6.4vw, 2.25rem);
+    line-height: 1.38;
+    letter-spacing: 0.01em;
+    margin-bottom: 1.25rem;
+    word-break: normal;
+    overflow-wrap: break-word;
+  }
+  
   .hero-desc {
-    font-size: 0.9rem;
-    line-height: 1.7; /* モバイル表示での読みやすさを向上 */
-    margin-bottom: 1.75rem;
+    font-size: 0.92rem;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    color: var(--color-text-secondary);
   }
   
-  .company-grid, .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  .service-grid, .works-grid, .members-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .company-banner {
-    height: auto;
-    padding: 4rem 0;
-  }
-  
-  .company-banner-content {
+  .hero-buttons {
     flex-direction: column;
-    align-items: flex-start;
+    width: 100%;
+    gap: 0.85rem;
+    align-items: stretch;
+  }
+
+  .hero-btn,
+  .hero-btn-secondary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.95rem 1.75rem;
+    font-size: 1.02rem;
+    min-height: 50px;
+  }
+
+  .hero-scroll-indicator {
+    bottom: 15px;
+  }
+  
+  /* --- TICKER SECTION MOBILE --- */
+  .ticker-section {
+    padding: 4.5rem 0;
+  }
+  
+  .ticker-word {
+    font-size: 8.5vw;
+    letter-spacing: -0.5px;
+  }
+  
+  .ticker-track {
+    gap: 1.75rem;
+  }
+
+  .ticker-fade-left,
+  .ticker-fade-right {
+    width: 12%;
+  }
+
+  /* --- PHILOSOPHY STATEMENT MOBILE --- */
+  #statement {
+    padding: 4.5rem 0 5.5rem 0;
+  }
+
+  .statement-grid {
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
-  
-  .company-banner-title {
-    font-size: 3.5rem;
+
+  .statement-title {
+    font-size: 1.85rem;
   }
-  
-  .contact-form {
-    padding: 2rem;
+
+  .statement-title::after {
+    margin-top: 0.75rem;
+    width: 80px;
   }
-  
+
+  .philosophy-step {
+    min-height: auto;
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 1.25rem;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-left: 3.5px solid var(--color-accent);
+    border-radius: 0 14px 14px 0;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+    opacity: 1;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .philosophy-step p {
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  /* --- WORKS SECTION MOBILE --- */
+  .works-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .work-item {
+    border-radius: 16px;
+  }
+
+  .work-content {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .work-badge {
+    font-size: 0.72rem;
+    padding: 0.2rem 0.65rem;
+  }
+
+  .work-title {
+    font-size: 1.15rem;
+  }
+
+  .btn-more {
+    width: 100%;
+    justify-content: center;
+    padding: 0.95rem 1.5rem;
+  }
+
+  /* --- CONTACT CTA MOBILE --- */
+  .contact-cta-wrapper {
+    padding: 2.5rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  .contact-cta-heading {
+    font-size: 1.45rem;
+    text-align: center;
+  }
+
+  .contact-cta-desc {
+    font-size: 0.92rem;
+    text-align: center;
+  }
+
+  .contact-cta-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.95rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* --- FOOTER MOBILE --- */
   .footer {
     padding: 2.5rem 0 1.5rem 0;
   }
-  
+
   .footer-main {
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.5rem;
+    gap: 1.75rem;
     margin-bottom: 2rem;
   }
 
   .footer-nav {
-    gap: 1.2rem 1.8rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 1.25rem;
+    width: 100%;
   }
 
-  /* Philosophy Section Adjustments for Mobile */
-  #statement {
-    padding: 6rem 0 8rem 0;
+  .footer-nav a {
+    display: inline-block;
+    padding: 0.35rem 0;
+    font-size: 0.9rem;
+    min-height: 38px;
   }
-  .statement-grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+
+  .footer-bottom {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 1.25rem;
   }
-  .statement-left {
-    position: static;
+
+  .footer-bottom-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
-  .statement-title {
-    font-size: 2.2rem;
+
+  .scroll-top {
+    align-self: flex-end;
+    width: 48px;
+    height: 48px;
   }
-  .statement-title::after {
-    margin-top: 1rem;
-    width: 110px;
-  }
-  .philosophy-step {
-    min-height: auto;
-    padding: 2rem 0;
-    opacity: 0.85;
-    transform: none;
-    filter: none;
-  }
-  .philosophy-step.active {
-    opacity: 1;
-  }
-  .philosophy-step p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-  }
+
   .section-label {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
+    font-size: 0.78rem;
+    margin-bottom: 0.75rem;
   }
 }
 

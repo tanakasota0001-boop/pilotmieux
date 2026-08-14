@@ -252,36 +252,53 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.getElementById('nav-menu');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  mobileToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('open');
-    mobileToggle.classList.toggle('active');
-    
-    // Animate burger lines
-    const spans = mobileToggle.querySelectorAll('span');
-    if (navMenu.classList.contains('open')) {
-      spans[0].style.transform = 'translateY(8px) rotate(45deg)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
-    } else {
-      spans[0].style.transform = 'none';
-      spans[1].style.opacity = '1';
-      spans[2].style.transform = 'none';
-    }
-  });
-
-  // Close menu when links are clicked
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (navMenu.classList.contains('open')) {
-        navMenu.classList.remove('open');
-        mobileToggle.classList.remove('active');
-        const spans = mobileToggle.querySelectorAll('span');
+  const closeMobileMenu = () => {
+    if (navMenu && navMenu.classList.contains('open')) {
+      navMenu.classList.remove('open');
+      if (mobileToggle) mobileToggle.classList.remove('active');
+      document.body.classList.remove('nav-open');
+      const spans = mobileToggle ? mobileToggle.querySelectorAll('span') : [];
+      if (spans.length >= 3) {
         spans[0].style.transform = 'none';
         spans[1].style.opacity = '1';
         spans[2].style.transform = 'none';
       }
+    }
+  };
+
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      mobileToggle.classList.toggle('active', isOpen);
+      document.body.classList.toggle('nav-open', isOpen);
+      
+      // Animate burger lines
+      const spans = mobileToggle.querySelectorAll('span');
+      if (spans.length >= 3) {
+        if (isOpen) {
+          spans[0].style.transform = 'translateY(8px) rotate(45deg)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+        } else {
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        }
+      }
     });
-  });
+
+    // Close menu when links are clicked
+    navLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Close menu on screen resize to desktop width
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) {
+        closeMobileMenu();
+      }
+    });
+  }
 
 
   // --- INTERSECTION OBSERVER FOR REVEALS ---
