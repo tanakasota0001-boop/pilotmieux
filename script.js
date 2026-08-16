@@ -577,7 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }, {
           root: null,
-          rootMargin: '-20% 0px -55% 0px',
+          rootMargin: '-20% 0px -40% 0px',
           threshold: 0
         });
 
