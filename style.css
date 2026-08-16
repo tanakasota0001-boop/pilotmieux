@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap');
 
 /* --- DESIGN SYSTEM TOKENS --- */
 :root {
@@ -19,8 +19,8 @@
   --color-glass-bg: rgba(255, 255, 255, 0.55);
   --color-glass-border: rgba(255, 255, 255, 0.35);
   
-  --font-primary: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-futura: 'Futura', 'Inter', -apple-system, sans-serif;
+  --font-primary: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-futura: var(--font-primary);
   
   --transition-normal: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -291,7 +291,7 @@ li {
 
 /* --- SECTION LABELS --- */
 .section-label {
-  font-family: var(--font-futura), sans-serif;
+  font-family: var(--font-primary);
   font-size: 0.9rem;
   font-style: normal;
   text-transform: uppercase;
@@ -666,7 +666,7 @@ li {
 }
 
 .scroll-text {
-  font-family: var(--font-futura);
+  font-family: var(--font-primary);
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--color-text-secondary);
@@ -1141,7 +1141,7 @@ li {
 }
 
 .scrolly-num {
-  font-family: var(--font-futura);
+  font-family: var(--font-primary);
   font-size: 6.5rem;
   font-weight: 900;
   line-height: 1;
@@ -1675,7 +1675,7 @@ li {
 }
 
 .company-banner-title {
-  font-family: var(--font-futura);
+  font-family: var(--font-primary);
   font-size: 5rem;
   font-weight: 900;
   line-height: 1;
@@ -2201,7 +2201,7 @@ li {
 }
 
 .ticker-word {
-  font-family: var(--font-futura);
+  font-family: var(--font-primary);
   font-size: 4.2vw;
   font-weight: 900;
   letter-spacing: -2px;
