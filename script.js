@@ -532,35 +532,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (philosophySteps.length > 0) {
-      // Scrollytelling mode for all screens
-      philosophySteps.forEach((step, idx) => {
-        if (idx === 0) {
-          step.classList.add('active');
-        } else {
-          step.classList.remove('active');
-        }
-      });
+      if (window.innerWidth >= 768) {
+        // Desktop scrollytelling mode (PC版: 一切変更なし)
+        philosophySteps.forEach((step, idx) => {
+          if (idx === 0) {
+            step.classList.add('active');
+          } else {
+            step.classList.remove('active');
+          }
+        });
 
-      const rootMargin = window.innerWidth >= 768 
-        ? '-35% 0px -40% 0px' 
-        : '-12% 0px -15% 0px';
+        philosophyObserver = new IntersectionObserver((entries) => {
+          const intersectingEntries = entries.filter(entry => entry.isIntersecting);
+          if (intersectingEntries.length > 0) {
+            const targetEntry = intersectingEntries[intersectingEntries.length - 1];
+            philosophySteps.forEach(step => step.classList.remove('active'));
+            targetEntry.target.classList.add('active');
+          }
+        }, {
+          root: null,
+          rootMargin: '-35% 0px -40% 0px',
+          threshold: 0
+        });
 
-      philosophyObserver = new IntersectionObserver((entries) => {
-        const intersectingEntries = entries.filter(entry => entry.isIntersecting);
-        if (intersectingEntries.length > 0) {
-          const targetEntry = intersectingEntries[intersectingEntries.length - 1];
-          philosophySteps.forEach(step => step.classList.remove('active'));
-          targetEntry.target.classList.add('active');
-        }
-      }, {
-        root: null,
-        rootMargin: rootMargin,
-        threshold: 0
-      });
+        philosophySteps.forEach(step => {
+          philosophyObserver.observe(step);
+        });
+      } else {
+        // Mobile mode: PC版と同様のフェードイン＆フェードアウト（相互排他）だが、上部に流れてから切り替わるよう調整
+        philosophySteps.forEach((step, idx) => {
+          if (idx === 0) {
+            step.classList.add('active');
+          } else {
+            step.classList.remove('active');
+          }
+        });
 
-      philosophySteps.forEach(step => {
-        philosophyObserver.observe(step);
-      });
+        philosophyObserver = new IntersectionObserver((entries) => {
+          const intersectingEntries = entries.filter(entry => entry.isIntersecting);
+          if (intersectingEntries.length > 0) {
+            const targetEntry = intersectingEntries[intersectingEntries.length - 1];
+            philosophySteps.forEach(step => step.classList.remove('active'));
+            targetEntry.target.classList.add('active');
+          }
+        }, {
+          root: null,
+          rootMargin: '-20% 0px -55% 0px',
+          threshold: 0
+        });
+
+        philosophySteps.forEach(step => {
+          philosophyObserver.observe(step);
+        });
+      }
     }
   };
 
