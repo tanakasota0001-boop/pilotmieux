@@ -543,15 +543,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const rootMargin = window.innerWidth >= 768 
         ? '-35% 0px -40% 0px' 
-        : '-25% 0px -30% 0px';
+        : '-12% 0px -15% 0px';
 
       philosophyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            philosophySteps.forEach(step => step.classList.remove('active'));
-            entry.target.classList.add('active');
-          }
-        });
+        const intersectingEntries = entries.filter(entry => entry.isIntersecting);
+        if (intersectingEntries.length > 0) {
+          const targetEntry = intersectingEntries[intersectingEntries.length - 1];
+          philosophySteps.forEach(step => step.classList.remove('active'));
+          targetEntry.target.classList.add('active');
+        }
       }, {
         root: null,
         rootMargin: rootMargin,

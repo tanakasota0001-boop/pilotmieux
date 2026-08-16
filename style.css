@@ -470,20 +470,23 @@ li {
 }
 
 .hero-badge {
-  display: inline-block;
-  padding: 0.4rem 1.2rem;
-  background-color: rgba(0, 180, 216, 0.08);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  background-color: rgba(255, 255, 255, 0.88);
   color: #0077b6;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 119, 182, 0.16);
+  border-left: 3.5px solid #0077b6;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 70, 140, 0.05);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  font-size: 0.8rem;
+  font-size: 0.84rem;
   font-weight: 700;
-  border-radius: 100px;
   margin-top: 1rem; /* ヘッダーとの適切な余白を維持 */
   margin-bottom: 1.25rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.06em;
 }
 
 .hero-title {
@@ -2434,11 +2437,12 @@ li {
   }
 
   .hero-badge {
-    display: inline-block;
+    display: inline-flex;
     font-size: 0.78rem;
-    padding: 0.35rem 1rem;
+    padding: 0.32rem 0.8rem;
     margin-top: 0;
     margin-bottom: 1.1rem;
+    border-left-width: 3px;
   }
   
   .hero-title {
@@ -2577,19 +2581,19 @@ li {
   }
 
   .philosophy-step {
-    min-height: 40vh;
+    min-height: 72vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1.2rem;
-    opacity: 0.3;
-    transform: translateY(20px) scale(0.98);
-    filter: blur(1.5px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.4;
+    transform: translateY(14px) scale(0.98);
+    filter: blur(0.5px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform, filter;
-    padding: 2rem 0;
+    padding: 4.5rem 0;
     background: transparent;
     border: none;
     border-radius: 0;
@@ -2610,7 +2614,7 @@ li {
     line-height: 1.95;
     text-align: left;
     margin: 0;
-    transition: color 0.6s ease, text-shadow 0.6s ease;
+    transition: color 0.5s ease, text-shadow 0.5s ease;
   }
 
   .philosophy-step.active p {
