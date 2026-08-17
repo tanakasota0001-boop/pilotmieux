@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- ARTISTIC LOADER CONTROL ---
+  // --- ARTISTIC LOADER CONTROL (FIRST ACCESS ONLY) ---
   const loaderOverlay = document.getElementById('loader-overlay');
+  const hasVisited = sessionStorage.getItem('pilotmieux_visited');
   const minLoadingTime = 1600; // minimum display time in ms (1.6s)
   const startTime = Date.now();
   let initRevealObserver = null;
@@ -14,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (loaderOverlay && !loaderOverlay.classList.contains('exit')) {
         loaderOverlay.classList.add('exit');
         document.body.classList.remove('loading');
+        try {
+          sessionStorage.setItem('pilotmieux_visited', 'true');
+        } catch (e) {}
         
         // Trigger scroll position updates and animations after loader fades
         setTimeout(() => {
@@ -30,19 +34,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }, remainingTime);
   };
 
-  // Run when the whole page and all resources are loaded
-  if (document.readyState === 'complete') {
-    hideLoader();
-  } else {
-    window.addEventListener('load', hideLoader);
-  }
-
-  // Fallback to prevent infinite loading in case of slow resources
-  setTimeout(() => {
-    if (loaderOverlay && !loaderOverlay.classList.contains('exit')) {
-      hideLoader();
+  if (hasVisited) {
+    // Already visited during this session: Skip loader on page navigation
+    if (loaderOverlay) {
+      loaderOverlay.style.display = 'none';
     }
-  }, 5000);
+    document.body.classList.remove('loading');
+  } else {
+    // First time access in this session: Show loader animation
+    try {
+      sessionStorage.setItem('pilotmieux_visited', 'true');
+    } catch (e) {}
+
+    if (loaderOverlay) {
+      if (document.readyState === 'complete') {
+        hideLoader();
+      } else {
+        window.addEventListener('load', hideLoader);
+      }
+
+      // Fallback to prevent infinite loading in case of slow resources
+      setTimeout(() => {
+        if (loaderOverlay && !loaderOverlay.classList.contains('exit')) {
+          hideLoader();
+        }
+      }, 5000);
+    } else {
+      document.body.classList.remove('loading');
+    }
+  }
 
   // --- STICKY HEADER & SCROLL EFFECTS ---
   const header = document.getElementById('header');
@@ -81,19 +101,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const renderAnimations = (scrollY) => {
     // Header shadow/blur toggle
-    if (scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+    if (header) {
+      if (scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     }
     
     // Scroll to Top button visibility
-    if (scrollY > 500) {
-      scrollTopBtn.style.opacity = '1';
-      scrollTopBtn.style.pointerEvents = 'auto';
-    } else {
-      scrollTopBtn.style.opacity = '0';
-      scrollTopBtn.style.pointerEvents = 'none';
+    if (scrollTopBtn) {
+      if (scrollY > 500) {
+        scrollTopBtn.style.opacity = '1';
+        scrollTopBtn.style.pointerEvents = 'auto';
+      } else {
+        scrollTopBtn.style.opacity = '0';
+        scrollTopBtn.style.pointerEvents = 'none';
+      }
     }
 
     // --- PRE-CALCULATE STATEMENT SCROLL PROGRESS ---
@@ -195,9 +219,11 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Set initial state
-  scrollTopBtn.style.opacity = '0';
-  scrollTopBtn.style.pointerEvents = 'none';
-  scrollTopBtn.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  if (scrollTopBtn) {
+    scrollTopBtn.style.opacity = '0';
+    scrollTopBtn.style.pointerEvents = 'none';
+    scrollTopBtn.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  }
   
   // Smooth scroll animation loop
   const animateLoop = () => {
@@ -240,12 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAnimations(window.scrollY);
 
   // Scroll to top action
-  scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
-  });
+  }
 
   // --- MOBILE NAVIGATION ---
   const mobileToggle = document.getElementById('mobile-toggle');
@@ -328,8 +356,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // If loader overlay is not present, initialize reveal animations immediately
-  if (!loaderOverlay) {
+  // If loader overlay is not present or user already visited, initialize reveal animations immediately
+  if (!loaderOverlay || hasVisited) {
     initRevealObserver();
   }
 
