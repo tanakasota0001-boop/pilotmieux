@@ -118,6 +118,7 @@
             <input type="hidden" name="_subject" value="【pilotmieux】お問い合わせがありました">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_replyto" id="form-replyto" value="">
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
 
             <!-- 1. お名前 -->
@@ -361,10 +362,19 @@
           return;
         }
 
-        // 2. Submit to FormSubmit endpoint via AJAX
+        // 2. Submit to FormSubmit endpoint
         submitBtn.disabled = true;
         submitBtn.classList.add('loading');
         if (errorAlert) errorAlert.style.display = 'none';
+
+        const replytoEl = document.getElementById('form-replyto');
+        if (replytoEl) replytoEl.value = emailVal;
+
+        // If opened directly as a local file (file://), standard POST is needed due to CORS
+        if (window.location.protocol === 'file:') {
+          form.submit();
+          return;
+        }
 
         const formData = new FormData(form);
 
@@ -377,7 +387,9 @@
             }
           });
 
-          if (response.ok) {
+          const data = await response.json().catch(() => ({}));
+
+          if (response.ok && (data.success === 'true' || data.success === true || !data.error)) {
             form.style.display = 'none';
             successState.style.display = 'block';
             window.scrollTo({
@@ -385,15 +397,13 @@
               behavior: 'smooth'
             });
           } else {
-            throw new Error('Server returned error response');
+            // Fallback to regular POST submit if AJAX didn't succeed
+            form.submit();
           }
         } catch (err) {
-          console.error('Contact form submission error:', err);
-          // Fallback to standard form submission if fetch failed (e.g. network/CORS issue)
-          if (errorAlert) {
-            errorText.textContent = '送信中に問題が発生しました。再度送信ボタンを押すか、お手数ですが tcongda@gmail.com までご連絡ください。';
-            errorAlert.style.display = 'flex';
-          }
+          console.warn('AJAX submit failed, falling back to standard submit:', err);
+          // Fallback to standard form submission
+          form.submit();
         } finally {
           submitBtn.disabled = false;
           submitBtn.classList.remove('loading');
