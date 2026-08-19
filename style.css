@@ -431,6 +431,15 @@ li {
   letter-spacing: 0.5px;
   display: flex;
   align-items: center;
+  gap: 0.35rem;
+}
+
+.dropdown-header-arrow {
+  font-size: 0.6em;
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateY(-0.5px);
+  line-height: 1;
 }
 
 .dropdown-link {
@@ -1615,35 +1624,6 @@ li {
   transition: var(--transition-normal);
 }
 
-/* 静的流体アートオーブ (ソフトなぼかし) */
-.work-image-placeholder::before {
-  content: '';
-  position: absolute;
-  top: -25px;
-  right: -15px;
-  width: 140px;
-  height: 120px;
-  border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
-  background: radial-gradient(circle, rgba(0, 180, 216, 0.35) 0%, rgba(114, 9, 183, 0.18) 70%, transparent 100%);
-  filter: blur(14px);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.work-image-placeholder::after {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  left: -15px;
-  width: 130px;
-  height: 110px;
-  border-radius: 40% 60% 50% 50% / 40% 50% 50% 60%;
-  background: radial-gradient(circle, rgba(72, 149, 239, 0.3) 0%, rgba(0, 180, 216, 0.15) 70%, transparent 100%);
-  filter: blur(12px);
-  pointer-events: none;
-  z-index: 1;
-}
-
 .work-fluid-bg {
   position: absolute;
   top: 0;
@@ -2018,34 +1998,6 @@ li {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-}
-
-#contact::before {
-  content: '';
-  position: absolute;
-  top: -10%;
-  right: -5%;
-  width: 450px;
-  height: 380px;
-  border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
-  background: radial-gradient(circle, rgba(0, 180, 216, 0.48) 0%, rgba(114, 9, 183, 0.28) 70%, transparent 100%);
-  filter: blur(24px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-#contact::after {
-  content: '';
-  position: absolute;
-  bottom: -10%;
-  left: -5%;
-  width: 420px;
-  height: 350px;
-  border-radius: 40% 60% 50% 50% / 40% 50% 50% 60%;
-  background: radial-gradient(circle, rgba(72, 149, 239, 0.45) 0%, rgba(0, 180, 216, 0.25) 70%, transparent 100%);
-  filter: blur(22px);
-  pointer-events: none;
-  z-index: 0;
 }
 
 #contact > .container {
@@ -3496,10 +3448,24 @@ body.loading {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  /* トップページのコンタクトセクションと同じメッシュグラデーション背景 */
+  background: 
+    radial-gradient(circle at 85% 15%, rgba(0, 180, 216, 0.42) 0%, transparent 60%),
+    radial-gradient(circle at 15% 85%, rgba(114, 9, 183, 0.32) 0%, transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(72, 149, 239, 0.3) 0%, transparent 65%),
+    linear-gradient(135deg, rgba(238, 244, 250, 0.98) 0%, rgba(255, 255, 255, 0.85) 100%);
+  position: relative;
 }
 
 .contact-page-main {
   flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-page-main > *:not(.contact-fluid-bg) {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-hero {

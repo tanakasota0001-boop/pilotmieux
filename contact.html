@@ -58,7 +58,7 @@
             </a>
             <ul class="dropdown-menu" id="about-dropdown-menu" aria-labelledby="about-dropdown-toggle">
               <li class="dropdown-header-item">
-                <span class="dropdown-header-title">ABOUT US →</span>
+                <span class="dropdown-header-title">ABOUT US <span class="dropdown-header-arrow">▶</span></span>
               </li>
               <li>
                 <a href="index.html#message" class="dropdown-link">
@@ -97,6 +97,23 @@
 
   <!-- --- MAIN CONTENT --- -->
   <main class="contact-page-main">
+    <!-- トップページのコンタクトセクションと同等の立体流体SVG背景 -->
+    <svg class="contact-fluid-bg" viewBox="0 0 1200 400" preserveAspectRatio="none" fill="none">
+      <defs>
+        <linearGradient id="contact-page-fluid-1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.38" />
+          <stop offset="50%" stop-color="#7209b7" stop-opacity="0.25" />
+          <stop offset="100%" stop-color="#4895ef" stop-opacity="0.32" />
+        </linearGradient>
+        <linearGradient id="contact-page-fluid-2" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#4895ef" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#00b4d8" stop-opacity="0.2" />
+        </linearGradient>
+      </defs>
+      <path d="M0 100 Q 300 220, 650 90 T 1200 180 L 1200 400 L 0 400 Z" fill="url(#contact-page-fluid-1)" />
+      <path d="M0 240 Q 350 70, 750 280 T 1200 150 L 1200 400 L 0 400 Z" fill="url(#contact-page-fluid-2)" />
+    </svg>
+
     <div class="contact-hero">
       <div class="container">
         <span class="section-label">Contact</span>
