@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | pilotmieux</title>
+  <meta name="description" content="pilotmieux Inc.（株式会社パイロットミュー）について。私たちは企業の課題を可視化し、成果と成長を共に創り続ける伴走パートナーです。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    try {
+      sessionStorage.setItem('pilotmieux_visited', 'true');
+    } catch (e) {}
+    document.documentElement.classList.add('already-visited');
+  </script>
+</head>
+
+<body class="page-about">
+
+  <!-- Floating Ambient Orbs (Glassmorphism Background with Parallax) -->
+  <div class="bg-glow-orb-wrapper orb-w-1">
+    <div class="bg-glow-orb bg-glow-orb-1"></div>
+  </div>
+  <div class="bg-glow-orb-wrapper orb-w-2">
+    <div class="bg-glow-orb bg-glow-orb-2"></div>
+  </div>
+  <div class="bg-glow-orb-wrapper orb-w-3">
+    <div class="bg-glow-orb bg-glow-orb-3"></div>
+  </div>
+
+  <!-- --- HEADER / NAVIGATION --- -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="pilotmieux" class="logo-img">
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="index.html#service" class="nav-link">Services</a></li>
+          <li><a href="index.html#works" class="nav-link">Works</a></li>
+          <li class="nav-item-dropdown">
+            <a href="javascript:void(0)" class="nav-link dropdown-toggle active" id="about-dropdown-toggle" role="button"
+              aria-expanded="false">
+              About Us
+              <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="dropdown-menu" id="about-dropdown-menu" aria-labelledby="about-dropdown-toggle">
+              <li class="dropdown-header-item">
+                <a href="about.html" class="dropdown-header-title">About Us <span class="dropdown-header-arrow">▶</span></a>
+              </li>
+              <li>
+                <a href="#culture" class="dropdown-link">
+                  <span class="dropdown-en">Culture</span>
+                  <span class="dropdown-ja">カルチャー</span>
+                </a>
+              </li>
+              <li>
+                <a href="#message" class="dropdown-link">
+                  <span class="dropdown-en">Message</span>
+                  <span class="dropdown-ja">メッセージ</span>
+                </a>
+              </li>
+              <li>
+                <a href="#members" class="dropdown-link">
+                  <span class="dropdown-en">Members</span>
+                  <span class="dropdown-ja">メンバー紹介</span>
+                </a>
+              </li>
+              <li>
+                <a href="#company" class="dropdown-link">
+                  <span class="dropdown-en">Company Profile</span>
+                  <span class="dropdown-ja">会社概要</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="contact.html" class="nav-link nav-link-btn">お問い合わせ</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation Backdrop Overlay (Dims content when dropdown is expanded) -->
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <!-- --- MAIN CONTENT --- -->
+  <main class="about-page-main">
+
+    <!-- --- EDITORIAL HERO SECTION (大見出し) --- -->
+    <section class="about-hero-section">
+      <div class="container about-hero-container">
+        <!-- Big Bold Editorial Heading -->
+        <div class="about-editorial-heading-group">
+          <div class="about-editorial-ja-wrapper reveal reveal-fade">
+            <p class="about-editorial-ja">パイロットミューについて</p>
+          </div>
+          <h1 class="about-editorial-en reveal reveal-slide-in">About Us</h1>
+        </div>
+
+        <!-- Bottom Editorial Info & 4 Sub-sections Navigation -->
+        <div class="about-editorial-bottom">
+          <div class="about-editorial-concept-tag reveal reveal-fade reveal-delay-1">
+            <strong>挑戦と創造でワクワクする世界へ。</strong><br>
+            課題を可視化し、現場実装から持続的な成長まで伴走するパートナーです。
+          </div>
+
+          <!-- 4 Sub-sections Navigation Preview -->
+          <div class="about-subnav-grid">
+            <!-- 01 Culture -->
+            <a href="#culture" class="about-subnav-card reveal reveal-left reveal-delay-1">
+              <div class="about-subnav-card-inner">
+                <span class="about-subnav-en">Culture</span>
+                <p class="about-subnav-ja">カルチャー</p>
+              </div>
+              <div class="about-subnav-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </a>
+
+            <!-- 02 Message -->
+            <a href="#message" class="about-subnav-card reveal reveal-left reveal-delay-2">
+              <div class="about-subnav-card-inner">
+                <span class="about-subnav-en">Message</span>
+                <p class="about-subnav-ja">メッセージ</p>
+              </div>
+              <div class="about-subnav-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </a>
+
+            <!-- 03 Members -->
+            <a href="#members" class="about-subnav-card reveal reveal-left reveal-delay-3">
+              <div class="about-subnav-card-inner">
+                <span class="about-subnav-en">Members</span>
+                <p class="about-subnav-ja">メンバー紹介</p>
+              </div>
+              <div class="about-subnav-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </a>
+
+            <!-- 04 Company Profile -->
+            <a href="#company" class="about-subnav-card reveal reveal-left reveal-delay-4">
+              <div class="about-subnav-card-inner">
+                <span class="about-subnav-en">Company</span>
+                <p class="about-subnav-ja">会社概要</p>
+              </div>
+              <div class="about-subnav-arrow">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- CULTURE SECTION --- -->
+    <section class="culture-section section" id="culture">
+      <!-- Ambient Fluid Graphic Mesh in Background -->
+      <div class="culture-ambient-mesh" aria-hidden="true">
+        <svg class="culture-fluid-svg" viewBox="0 0 1200 600" preserveAspectRatio="none" fill="none">
+          <defs>
+            <linearGradient id="culture-glow-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.22" />
+              <stop offset="50%" stop-color="#7209b7" stop-opacity="0.12" />
+              <stop offset="100%" stop-color="#4895ef" stop-opacity="0.18" />
+            </linearGradient>
+            <linearGradient id="culture-glow-2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#4895ef" stop-opacity="0.18" />
+              <stop offset="100%" stop-color="#00b4d8" stop-opacity="0.08" />
+            </linearGradient>
+          </defs>
+          <path d="M0 150 Q 300 280, 650 120 T 1200 220 L 1200 600 L 0 600 Z" fill="url(#culture-glow-1)" />
+          <path d="M0 320 Q 400 110, 800 360 T 1200 200 L 1200 600 L 0 600 Z" fill="url(#culture-glow-2)" />
+        </svg>
+      </div>
+
+      <div class="container culture-container">
+        <!-- Section Header -->
+        <div class="culture-header reveal reveal-slide-in">
+          <span class="section-label">カルチャー</span>
+          <h2 class="culture-title">Culture</h2>
+        </div>
+
+        <!-- Staircase Culture Stream (Left-Top to Right-Bottom) -->
+        <div class="culture-staircase-stream">
+          
+          <!-- Step 01: Mission (Top-Left) -->
+          <div class="culture-step-item culture-step-1 reveal">
+            <div class="culture-step-header">
+              <h3 class="culture-step-title">Mission</h3>
+            </div>
+            <p class="culture-step-statement">
+              <span class="art-line">対話を通じて</span>
+              <span class="art-line">経営の本質を見つけ、</span>
+              <span class="art-line">成長の道筋をともに描く。</span>
+            </p>
+          </div>
+
+          <!-- Step 02: Vision (Middle-Center) -->
+          <div class="culture-step-item culture-step-2 reveal">
+            <div class="culture-step-header">
+              <h3 class="culture-step-title">Vision</h3>
+            </div>
+            <p class="culture-step-statement">
+              <span class="art-line">挑戦する企業が、</span>
+              <span class="art-line">迷わず前へ進める社会へ。</span>
+            </p>
+          </div>
+
+          <!-- Step 03: Value (Bottom-Right) -->
+          <div class="culture-step-item culture-step-3 reveal">
+            <div class="culture-step-header">
+              <h3 class="culture-step-title">Value</h3>
+            </div>
+            <p class="culture-step-statement">
+              <span class="art-line">対話を、起点に。</span>
+              <span class="art-line">本質を、道筋に。</span>
+              <span class="art-line">実行を、成果に。</span>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- --- MESSAGE SECTION --- -->
+    <section class="message-section section" id="message">
+      <div class="container message-container">
+
+        <!-- Open Seamless Editorial Layout (No Box / No Cards) -->
+        <div class="message-editorial-grid">
+          
+          <!-- Left: Section Header & CEO Portrait & Profile -->
+          <div class="message-ceo-profile-area reveal reveal-fade">
+            <!-- Section Header inside Left Column -->
+            <div class="message-header">
+              <span class="section-label">メッセージ</span>
+              <h2 class="message-title">Message</h2>
+            </div>
+
+            <div class="ceo-editorial-portrait-group">
+              <div class="ceo-portrait-frame">
+                <img src="ceo.png" alt="代表取締役社長 / CEO 椿 謙一" class="ceo-portrait-img">
+              </div>
+              <div class="ceo-editorial-caption">
+                <span class="ceo-editorial-role">代表取締役社長 / CEO</span>
+                <h4 class="ceo-editorial-name">
+                  椿 謙一
+                  <span class="ceo-editorial-name-en">Kenichi Tsubaki</span>
+                </h4>
+              </div>
+              <div class="ceo-editorial-bio">
+                <p class="ceo-bio-desc">
+                  松本深志高等学校卒業後、山梨大学大学院工学研究科修了。大手精密機器メーカーにてメカニカルエンジニアとして、設計から製造まで9年間にわたり主導。技術開発・品質・量産化を横断し、プロダクト開発を推進。
+                </p>
+                <p class="ceo-bio-desc">
+                  その後、事業戦略部門にて年間数百億円規模の事業におけるマーケティング・事業戦略を推進。生成AIを業務に実装し、業務変革やDX推進にも取り組む。
+                </p>
+                <p class="ceo-bio-desc">
+                  技術・現場・事業戦略・AI活用を横断し、経営者との対話から本質的な課題を見極め、成長に向けた実行可能な道筋を描くことを強みとする。
+                </p>
+                <p class="ceo-bio-desc">
+                  硬式テニスでは全中・インターハイ・全国選抜に出場。スキーではSAJ1級を取得し、大学時代には富士スピードウェイでのタイムアタックにも挑戦。分野を問わず、挑戦することを楽しみ、結果にこだわり続ける姿勢を大切にしている。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Message Narrative Text (Flowing Canvas Typography) -->
+          <div class="message-narrative-area reveal reveal-fade reveal-delay-1">
+            <div class="message-editorial-narrative">
+              <p class="message-text-paragraph">
+                パイロットミューは、「対話を通じて経営の本質を見つけ、成長の道筋をともに描く」というMissionのもと、挑戦する企業の右腕となるために生まれました。
+              </p>
+              <p class="message-text-paragraph">
+                AIによって、仕事の進め方も、経営のあり方も大きく変わり始めています。しかし、どれだけテクノロジーが進化しても、企業が抱える本質的な課題は、データやツールだけでは捉えきれません。私は、その答えは経営者との対話の中にこそあると考えています。
+              </p>
+              <p class="message-text-paragraph">
+                私はこれまで、大手製造業にてプロダクトリーダーとして設計から製造までを9年間主導し、その後、事業戦略部門にて数百億円規模の事業におけるマーケティング・事業戦略に携わってきました。また、ChatGPTの登場をきっかけに生成AIを自ら学び、実際の業務現場への実装を通じて、業務効率化やDX推進にも取り組んできました。
+              </p>
+              <p class="message-text-paragraph">
+                こうした経験を通じて強く感じたのは、事業を動かすことの難しさと、現場に入り込むことの大切さ、そして何より「対話」の力です。机上の正論を提示するだけでは、企業は変わりません。経営者と同じ目線で考え、現場と向き合い、ともに動きながら成果につなげていく。そんな存在が、これからの時代には必要だと考えています。
+              </p>
+              <p class="message-text-paragraph">
+                私自身、幼少期からスポーツに打ち込み、硬式テニスではインターハイや全国選抜を経験しました。何かに取り組むなら、結果が出るまで諦めない。この姿勢は、私自身の仕事観であり、パイロットミューの仕事に対する姿勢そのものです。
+              </p>
+              <p class="message-text-paragraph">
+                社名の「パイロットミュー」は、伴走者・副操縦士を意味する「Co-Pilot」と、フランス語で「より良い」を意味する「Mieux」を掛け合わせたものです。
+              </p>
+              <p class="message-text-paragraph">
+                経営者が経営に集中できるように。挑戦する企業がAI時代に取り残されることなく、自らの可能性を広げていけるように。そして、企業の成長が、そこで働く人や関わるすべての人、さらには地域の豊かさへとつながっていくように。
+              </p>
+              <p class="message-text-paragraph">
+                パイロットミューは、対話を起点に、本質を道筋に変え、実行を成果へとつなげる伴走者であり続けます。
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- --- MEMBERS SECTION --- -->
+    <section class="members-section section" id="members">
+      <div class="container members-container">
+        <!-- Section Header -->
+        <div class="members-header reveal reveal-slide-in">
+          <span class="section-label">メンバー紹介</span>
+          <h2 class="members-title">Members</h2>
+          <p class="members-lead">
+            多様な専門性と情熱を持つプロフェッショナルが、貴社の成長を共に創り上げます。
+          </p>
+        </div>
+
+        <!-- Members Grid -->
+        <div class="members-grid-wrapper">
+          
+          <!-- Member 1: COO 櫻井 顕也 -->
+          <div class="member-card-editorial reveal reveal-fade">
+            <div class="member-card-header">
+              <span class="member-role">COO</span>
+              <h3 class="member-name">
+                櫻井 顕也
+                <span class="member-name-en">Kenya Sakurai</span>
+              </h3>
+            </div>
+            <div class="member-card-body">
+              <p class="member-bio-text">
+                小山工業高等専門学校（高専）電子制御工学科卒業後、大手精密機器メーカーに入社。産業機器領域にて、サービスサポート戦略の策定から設計、海外販売会社におけるエンドユーザーサポート体制の構築まで幅広く推進。
+              </p>
+              <p class="member-bio-text">
+                その後、リモートモニタリングサービスの企画・推進から、グローバルなサポート現場への定着までを一貫して担い、現場におけるデータ活用を推進。さらに事業開発にも携わり、社外の共創パートナーや自治体とともに、新たな価値を生み出す0→1の事業創出に取り組む。
+              </p>
+              <p class="member-bio-text">
+                新規事業開発、現場起点の課題解決、サービスサポート設計、データ活用を強みとし、現場で本当に必要とされる価値を追求し、実現までやり抜くことを大切にしている。
+              </p>
+            </div>
+          </div>
+
+          <!-- Member 2: CTO 半田 岳志 -->
+          <div class="member-card-editorial reveal reveal-fade reveal-delay-1">
+            <div class="member-card-header">
+              <span class="member-role">CTO</span>
+              <h3 class="member-name">
+                半田 岳志
+                <span class="member-name-en">Takeshi Handa</span>
+              </h3>
+            </div>
+            <div class="member-card-body">
+              <p class="member-bio-text">
+                松本深志高校卒業後、東北大学へ進学。同大学院工学研究科修了後、新卒で日立製作所に入社。鉄道ITシステムや人流シミュレーション技術の研究開発に従事。
+              </p>
+              <p class="member-bio-text">
+                その後、大手精密機器メーカーにてデータ利活用基盤の構築・運用やデータ活用推進を主導。AI・データを活用した業務改善や意思決定支援を得意とし、技術だけでなく現場オペレーションまで踏まえた設計を強みとする。
+              </p>
+              <p class="member-bio-text">
+                誰にとって何が真の価値かを考え抜き、データに基づく意思決定を自然に行える環境づくりを目指している。
+              </p>
+            </div>
+          </div>
+
+          <!-- Member 3: Senior Advisor 毛利 宏 -->
+          <div class="member-card-editorial reveal reveal-fade reveal-delay-2">
+            <div class="member-card-header">
+              <span class="member-role">Senior Advisor</span>
+              <h3 class="member-name">
+                毛利 宏
+                <span class="member-name-en">Hiroshi Mouri</span>
+              </h3>
+              <p class="member-title-sub">工学博士 / 元 日産自動車 / 東京農工大学 名誉教授</p>
+            </div>
+            <div class="member-card-body">
+              <p class="member-bio-text">
+                東京大学工学部卒業、同大学院工学系研究科修士課程修了。工学博士。日産自動車にて、車両制御・自動運転・安全工学領域の研究開発に長年従事し、自動車産業における先端技術の社会実装を牽引してきた。
+              </p>
+              <p class="member-bio-text">
+                その後、東京農工大学教授として車両運動制御・知能化技術の研究・教育に携わり、産学連携プロジェクトを多数主導。研究者・技術者の育成にも尽力し、現在は同大学名誉教授として後進の指導にあたる。
+              </p>
+              <p class="member-bio-text">
+                産業界と学術界の双方で培った豊富な知見をもとに、パイロットミューの事業や技術に対して、専門的な視点から助言を行う。
+              </p>
+              <p class="member-bio-text">
+                CEO椿の大学時代の所属研究室における指導教官でもあり、技術者としての姿勢と、物事の本質を見極める視座を授けた恩師。現在もその知見と経験をもって、パイロットミューの挑戦を支えている。
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- --- COMPANY SECTION --- -->
+    <section class="company-section section" id="company">
+      <div class="container company-container">
+        <!-- Section Header -->
+        <div class="company-header reveal reveal-slide-in">
+          <span class="section-label">会社概要</span>
+          <h2 class="company-title">Company</h2>
+        </div>
+
+        <!-- Company Profile Table -->
+        <div class="company-table-wrapper reveal reveal-fade">
+          <table class="company-profile-table">
+            <tbody>
+              <tr>
+                <th>会社名</th>
+                <td>株式会社パイロットミュー（pilotmieux, Inc.）</td>
+              </tr>
+              <tr>
+                <th>設立</th>
+                <td>2026年3月17日</td>
+              </tr>
+              <tr>
+                <th>所在地</th>
+                <td>長野県松本市笹部1-4-8</td>
+              </tr>
+              <tr>
+                <th>代表者</th>
+                <td>椿 謙一</td>
+              </tr>
+              <tr>
+                <th>従業員数</th>
+                <td>3名</td>
+              </tr>
+              <tr>
+                <th>事業内容</th>
+                <td>経営コンサルティングおよびDX・AI導入支援</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- CONTACT SECTION --- -->
+    <section class="section" id="contact">
+      <!-- WORKSカードアイコンエリア同等の立体流体SVG背景 -->
+      <svg class="contact-fluid-bg" viewBox="0 0 1200 400" preserveAspectRatio="none" fill="none">
+        <defs>
+          <linearGradient id="contact-fluid-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.38" />
+            <stop offset="50%" stop-color="#7209b7" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#4895ef" stop-opacity="0.32" />
+          </linearGradient>
+          <linearGradient id="contact-fluid-2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#4895ef" stop-opacity="0.3" />
+            <stop offset="100%" stop-color="#00b4d8" stop-opacity="0.2" />
+          </linearGradient>
+        </defs>
+        <path d="M0 100 Q 300 220, 650 90 T 1200 180 L 1200 400 L 0 400 Z" fill="url(#contact-fluid-1)" />
+        <path d="M0 240 Q 350 70, 750 280 T 1200 150 L 1200 400 L 0 400 Z" fill="url(#contact-fluid-2)" />
+      </svg>
+
+      <div class="container">
+        <div class="contact-cta-wrapper reveal">
+          <div class="contact-cta-content">
+            <div class="contact-cta-left">
+              <span class="section-label">お問い合わせ</span>
+              <h2 class="contact-cta-title">Contact</h2>
+              <h3 class="contact-cta-heading">まずはお気軽にご相談ください</h3>
+              <p class="contact-cta-desc">課題整理から、新たな事業づくりや改善の打ち手まで</p>
+            </div>
+            <div class="contact-cta-right">
+              <div class="contact-cta-btn-wrapper">
+                <a href="contact.html" class="contact-cta-btn">
+                  お問合わせフォームへ
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- --- FOOTER --- -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <a href="index.html" class="logo">
+          <img src="logo.png" alt="pilotmieux" class="logo-img logo-img-footer">
+        </a>
+        <ul class="footer-nav">
+          <li><a href="index.html#service">Services <span class="nav-jp">（サービス）</span></a></li>
+          <li><a href="index.html#works">Works <span class="nav-jp">（実績）</span></a></li>
+          <li><a href="about.html#company">Company <span class="nav-jp">（会社概要）</span></a></li>
+          <li><a href="about.html#members">Members <span class="nav-jp">（メンバー）</span></a></li>
+          <li><a href="contact.html">Contact <span class="nav-jp">（お問い合わせ）</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">
+          <p class="copyright">&copy; 2026 株式会社パイロットミュー（pilotmieux, Inc.）</p>
+          <a href="privacy.html" class="privacy-link">Privacy Policy</a>
+        </div>
+        <div class="scroll-top" id="scroll-top" title="Topへ戻る">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Logic -->
+  <script src="script.js"></script>
+</body>
+
+</html>
