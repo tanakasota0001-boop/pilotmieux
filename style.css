@@ -4499,18 +4499,34 @@ body.loading {
   line-height: 2.2;
 }
 
-/* --- RESPONSIVE ADJUSTMENTS --- */
+/* --- RESPONSIVE ADJUSTMENTS (MESSAGE: Text on top, CEO Profile below on Mobile) --- */
 @media (max-width: 1024px) {
   .message-editorial-grid {
-    grid-template-columns: 1fr;
-    gap: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
   }
 
   .message-ceo-profile-area {
-    position: static;
-    max-width: 480px;
-    margin: 0 auto;
+    display: contents;
+  }
+
+  .message-header {
+    order: 1;
     width: 100%;
+    margin-bottom: 0;
+  }
+
+  .message-narrative-area {
+    order: 2;
+    width: 100%;
+  }
+
+  .ceo-editorial-portrait-group {
+    order: 3;
+    width: 100%;
+    max-width: 480px;
+    margin: 1.5rem auto 0;
   }
 }
 
@@ -4519,8 +4535,16 @@ body.loading {
     padding: 4.5rem 0 3.5rem;
   }
 
+  .message-container {
+    padding: 0 1.25rem;
+  }
+
+  .message-editorial-grid {
+    gap: 2.75rem;
+  }
+
   .message-header {
-    margin-bottom: 3rem;
+    margin-bottom: 0;
   }
 
   .message-text-paragraph {
@@ -4531,6 +4555,11 @@ body.loading {
   .message-text-climax {
     font-size: 1rem;
     padding-left: 1.2rem;
+  }
+
+  .ceo-editorial-portrait-group {
+    max-width: 100%;
+    margin-top: 1.25rem;
   }
 }
 
@@ -4855,5 +4884,468 @@ body.loading {
     line-height: 1.65;
   }
 }
+
+/* ==========================================================================
+   Works Page Specific Styles
+   ========================================================================== */
+.page-works {
+  background-color: var(--color-bg-primary);
+  min-height: 100vh;
+}
+
+.works-page-main {
+  position: relative;
+  overflow: hidden;
+}
+
+.works-hero-section {
+  position: relative;
+  padding-top: 180px;
+  padding-bottom: 100px;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+}
+
+.works-hero-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+/* Big Editorial Typography */
+.works-editorial-heading-group {
+  margin-bottom: 2.5rem;
+}
+
+.works-editorial-ja-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.works-editorial-ja {
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+  color: var(--color-accent);
+}
+
+.works-editorial-en {
+  font-size: clamp(3.8rem, 9.2vw, 7.5rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-transform: none;
+  display: block;
+  margin-left: -0.04em;
+  color: var(--color-accent);
+  background: var(--color-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  user-select: none;
+}
+
+/* Editorial Lead Content */
+.works-editorial-bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  padding-top: 2.25rem;
+  max-width: 780px;
+}
+
+.works-editorial-lead {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.9;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  .works-hero-section {
+    padding-top: 140px;
+    padding-bottom: 60px;
+    min-height: auto;
+  }
+
+  .works-hero-container {
+    padding: 0 1.25rem;
+  }
+
+  .works-editorial-heading-group {
+    margin-bottom: 1.75rem;
+  }
+
+  .works-editorial-bottom {
+    padding-top: 1.5rem;
+  }
+
+  .works-editorial-lead {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+}
+
+/* ==========================================================================
+   Works Detail Case Study Section Styles
+   ========================================================================== */
+.case-study-section {
+  position: relative;
+  padding: 1rem 0 7rem;
+  z-index: 2;
+}
+
+.case-study-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 28px;
+  padding: 4rem 3.5rem;
+  box-shadow: 0 20px 60px rgba(15, 30, 65, 0.04), 0 2px 12px rgba(0, 180, 216, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle glowing accent gradient inside master card top */
+.case-study-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00b4d8 0%, #4895ef 50%, #7209b7 100%);
+}
+
+/* Client Header Block (Editorial 2-Column Grid) */
+.case-client-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+.case-header-grid {
+  display: grid;
+  grid-template-columns: 1.68fr 1fr;
+  gap: 3.5rem;
+  align-items: flex-end;
+}
+
+.case-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.case-keywords-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+}
+
+.case-keyword-item {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0077b6;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.case-keyword-item:not(:last-child)::after {
+  content: '/';
+  color: rgba(0, 180, 216, 0.4);
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.case-catchcopy-main {
+  font-size: clamp(1.75rem, 3vw, 2.65rem);
+  font-weight: 900;
+  line-height: 1.34;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+.case-catchcopy-line {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.case-header-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.case-client-meta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.5rem;
+}
+
+.case-client-meta-group .case-client-name {
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.case-client-industry-location {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+}
+
+.case-site-link-wrapper {
+  margin-top: 0.35rem;
+}
+
+.case-site-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #0077b6;
+  letter-spacing: 0.04em;
+  position: relative;
+  transition: var(--transition-normal);
+}
+
+.case-site-text-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.case-site-text-link:hover {
+  color: #00b4d8;
+}
+
+.case-site-text-link:hover::after {
+  width: 100%;
+}
+
+/* Case Detail Table (Company Profile Style) */
+.case-table-wrapper {
+  width: 100%;
+}
+
+.case-profile-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.case-profile-table tr {
+  /* Row separation */
+}
+
+.case-profile-table th,
+.case-profile-table td {
+  padding: 2.25rem 1.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.case-profile-table th {
+  width: 22%;
+  min-width: 140px;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-weight: 800;
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+  font-family: var(--font-primary);
+  text-transform: none;
+  border-bottom: 2px solid var(--color-accent);
+}
+
+.case-profile-table td {
+  font-size: 1.02rem;
+  color: var(--color-text-secondary);
+  line-height: 1.85;
+  border-bottom: 2px solid rgba(0, 180, 216, 0.22);
+}
+
+.case-table-heading {
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.45;
+  margin-bottom: 1rem;
+}
+
+.case-table-body p {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.9rem;
+}
+
+.case-table-body p:last-child {
+  margin-bottom: 0;
+}
+
+.case-table-lead {
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+}
+
+.case-table-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.case-table-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.15rem;
+  background: rgba(245, 248, 252, 0.65);
+  border: 1px solid rgba(0, 180, 216, 0.15);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 12px;
+  padding: 1.05rem 1.35rem;
+  transition: var(--transition-normal);
+}
+
+.case-table-step-item:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(0, 180, 216, 0.35);
+  box-shadow: 0 6px 20px rgba(0, 180, 216, 0.09);
+  transform: translateX(4px);
+}
+
+.case-step-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(0, 180, 216, 0.1);
+  color: #0077b6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  transition: var(--transition-normal);
+}
+
+.case-table-step-item:hover .case-step-icon-wrap {
+  background: var(--color-accent-gradient);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.case-step-text-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.case-table-step-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.3rem;
+  line-height: 1.4;
+}
+
+.case-table-step-desc {
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+@media (max-width: 992px) {
+  .case-header-grid {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .case-study-card {
+    padding: 2.25rem 1.4rem;
+    border-radius: 20px;
+  }
+
+  .case-client-header {
+    padding-bottom: 2rem;
+    margin-bottom: 2.25rem;
+  }
+
+  .case-header-grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .case-catchcopy-main {
+    font-size: 1.45rem;
+    line-height: 1.4;
+  }
+
+  .case-header-right {
+    justify-content: flex-start;
+  }
+
+  .case-client-meta-group {
+    padding-left: 1.25rem;
+  }
+
+  .case-site-text-link {
+    font-size: 0.88rem;
+  }
+
+  .case-profile-table tr {
+    display: block;
+    border-bottom: 2px solid rgba(0, 180, 216, 0.22);
+  }
+
+  .case-profile-table th,
+  .case-profile-table td {
+    display: block;
+    width: 100%;
+    padding: 1.1rem 0.25rem;
+    border-bottom: none;
+  }
+
+  .case-profile-table th {
+    padding-bottom: 0.35rem;
+    font-size: 1rem;
+  }
+
+  .case-profile-table td {
+    padding-top: 0.25rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .case-table-step-item {
+    padding: 0.85rem 1rem;
+  }
+}
+
 
 
