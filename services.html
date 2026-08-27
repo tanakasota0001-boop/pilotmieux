@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja-JP">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | pilotmieux</title>
+  <meta name="description" content="pilotmieux Inc.のサービス紹介。経営課題の可視化からDX・AI導入、現場実装まで伴走支援します。">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    try {
+      sessionStorage.setItem('pilotmieux_visited', 'true');
+    } catch (e) {}
+    document.documentElement.classList.add('already-visited');
+  </script>
+</head>
+
+<body class="page-services">
+
+  <!-- Floating Ambient Orbs (Glassmorphism Background with Parallax) -->
+  <div class="bg-glow-orb-wrapper orb-w-1">
+    <div class="bg-glow-orb bg-glow-orb-1"></div>
+  </div>
+  <div class="bg-glow-orb-wrapper orb-w-2">
+    <div class="bg-glow-orb bg-glow-orb-2"></div>
+  </div>
+  <div class="bg-glow-orb-wrapper orb-w-3">
+    <div class="bg-glow-orb bg-glow-orb-3"></div>
+  </div>
+
+  <!-- --- HEADER / NAVIGATION --- -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="pilotmieux" class="logo-img">
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="services.html" class="nav-link active">Services</a></li>
+          <li><a href="works.html" class="nav-link">Works</a></li>
+          <li class="nav-item-dropdown">
+            <a href="javascript:void(0)" class="nav-link dropdown-toggle" id="about-dropdown-toggle" role="button"
+              aria-expanded="false">
+              About Us
+              <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="dropdown-menu" id="about-dropdown-menu" aria-labelledby="about-dropdown-toggle">
+              <li class="dropdown-header-item">
+                <a href="about.html" class="dropdown-header-title">About Us <span class="dropdown-header-arrow">▶</span></a>
+              </li>
+              <li>
+                <a href="about.html#culture" class="dropdown-link">
+                  <span class="dropdown-en">Culture</span>
+                  <span class="dropdown-ja">カルチャー</span>
+                </a>
+              </li>
+              <li>
+                <a href="about.html#message" class="dropdown-link">
+                  <span class="dropdown-en">Message</span>
+                  <span class="dropdown-ja">メッセージ</span>
+                </a>
+              </li>
+              <li>
+                <a href="about.html#members" class="dropdown-link">
+                  <span class="dropdown-en">Members</span>
+                  <span class="dropdown-ja">メンバー紹介</span>
+                </a>
+              </li>
+              <li>
+                <a href="about.html#company" class="dropdown-link">
+                  <span class="dropdown-en">Company Profile</span>
+                  <span class="dropdown-ja">会社概要</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="contact.html" class="nav-link nav-link-btn">お問い合わせ</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Navigation Backdrop Overlay (Dims content when dropdown is expanded) -->
+  <div class="nav-backdrop" id="nav-backdrop"></div>
+
+  <!-- --- MAIN CONTENT --- -->
+  <main class="services-page-main">
+
+    <!-- --- EDITORIAL HERO SECTION (大見出し & キャッチコピー) --- -->
+    <section class="services-hero-section">
+      <div class="container services-hero-container">
+        <!-- Big Bold Editorial Heading -->
+        <div class="services-editorial-heading-group">
+          <div class="services-editorial-ja-wrapper reveal reveal-fade">
+            <p class="services-editorial-ja">サービス</p>
+          </div>
+          <h1 class="services-editorial-en reveal reveal-slide-in">Services</h1>
+        </div>
+
+        <!-- Editorial Bottom Area: Catchcopy & Body Narrative -->
+        <div class="services-editorial-bottom">
+          <!-- Catchcopy -->
+          <div class="services-catchcopy-wrapper reveal reveal-fade reveal-delay-1">
+            <h2 class="services-catchcopy">
+              地方企業の可能性を、<br>
+              実装力で成長に変える。
+            </h2>
+          </div>
+
+          <!-- Body Narrative -->
+          <div class="services-intro-narrative reveal reveal-fade reveal-delay-2">
+            <div class="services-intro-problem">
+              <p class="services-text-lead">
+                AI時代に、何から始めればいいのか分からない。<br>
+                課題は多いのに、優先順位を決めきれない。
+              </p>
+              <p class="services-text-body">
+                多くの中小企業は、優れた技術や現場力を持ちながら、属人化やデータ未活用によって、その強みを十分に利益へつなげきれていません。
+              </p>
+            </div>
+
+            <div class="services-intro-mission">
+              <p class="services-highlight-statement">
+                パイロットミューは、経営者の右腕として伴走します。
+              </p>
+            </div>
+
+            <div class="services-intro-solution">
+              <p class="services-text-body">
+                顧問契約をベースに継続的に入り込みながら、経営支援、AI・DX導入、業務改善、データ活用、新規事業開発など、必要な支援を組み合わせ、提案だけで終わらず、現場で使われる仕組みとして実装します。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- CONTACT CTA SECTION --- -->
+    <section class="section" id="contact">
+      <svg class="contact-fluid-bg" viewBox="0 0 1200 400" preserveAspectRatio="none" fill="none">
+        <defs>
+          <linearGradient id="services-contact-fluid-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00b4d8" stop-opacity="0.38" />
+            <stop offset="50%" stop-color="#7209b7" stop-opacity="0.25" />
+            <stop offset="100%" stop-color="#4895ef" stop-opacity="0.32" />
+          </linearGradient>
+          <linearGradient id="services-contact-fluid-2" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#4895ef" stop-opacity="0.3" />
+            <stop offset="100%" stop-color="#00b4d8" stop-opacity="0.2" />
+          </linearGradient>
+        </defs>
+        <path d="M0 100 Q 300 220, 650 90 T 1200 180 L 1200 400 L 0 400 Z" fill="url(#services-contact-fluid-1)" />
+        <path d="M0 240 Q 350 70, 750 280 T 1200 150 L 1200 400 L 0 400 Z" fill="url(#services-contact-fluid-2)" />
+      </svg>
+
+      <div class="container">
+        <div class="contact-cta-wrapper reveal">
+          <div class="contact-cta-content">
+            <div class="contact-cta-left">
+              <span class="section-label">お問い合わせ</span>
+              <h2 class="contact-cta-title">Contact</h2>
+              <h3 class="contact-cta-heading">まずはお気軽にご相談ください</h3>
+              <p class="contact-cta-desc">課題整理から、新たな事業づくりや改善の打ち手まで</p>
+            </div>
+            <div class="contact-cta-right">
+              <div class="contact-cta-btn-wrapper">
+                <a href="contact.html" class="contact-cta-btn">
+                  お問合わせフォームへ
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- --- FOOTER --- -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <a href="index.html" class="logo">
+          <img src="logo.png" alt="pilotmieux" class="logo-img logo-img-footer">
+        </a>
+        <ul class="footer-nav">
+          <li><a href="services.html">Services <span class="nav-jp">（サービス）</span></a></li>
+          <li><a href="works.html">Works <span class="nav-jp">（実績）</span></a></li>
+          <li><a href="about.html">About Us <span class="nav-jp">（私たちについて）</span></a></li>
+          <li><a href="contact.html">Contact <span class="nav-jp">（お問い合わせ）</span></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-left">
+          <p class="copyright">&copy; 2026 株式会社パイロットミュー（pilotmieux, Inc.）</p>
+          <a href="privacy.html" class="privacy-link">Privacy Policy</a>
+        </div>
+        <div class="scroll-top" id="scroll-top" title="Topへ戻る">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Logic -->
+  <script src="script.js"></script>
+</body>
+
+</html>
