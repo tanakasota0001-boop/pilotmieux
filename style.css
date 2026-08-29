@@ -4976,7 +4976,7 @@ body.loading {
 }
 
 .member-portrait-img.member-portrait-cto,
-.member-portrait-img[src*="cto.png"] {
+.member-portrait-img[src*="cto"] {
   object-position: center bottom;
 }
 
