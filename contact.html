@@ -47,7 +47,35 @@
 
       <nav class="nav-menu" id="nav-menu">
         <ul class="nav-list">
-          <li><a href="index.html#service" class="nav-link">Services</a></li>
+          <li class="nav-item-dropdown">
+            <a href="javascript:void(0)" class="nav-link dropdown-toggle" id="services-dropdown-toggle" role="button"
+              aria-expanded="false">
+              Services
+              <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="dropdown-menu" id="services-dropdown-menu" aria-labelledby="services-dropdown-toggle">
+              <li class="dropdown-header-item">
+                <a href="services.html" class="dropdown-header-title">Services <span
+                    class="dropdown-header-arrow">▶</span></a>
+              </li>
+              <li>
+                <a href="services.html#solutions" class="dropdown-section-heading">
+                  <span class="dropdown-en">Our Solutions</span>
+                  <span class="dropdown-ja">5つのソリューション</span>
+                </a>
+                <ul class="dropdown-subitems-list">
+                  <li><a href="services.html#solution-01" class="dropdown-subitem-link">伴走型経営支援</a></li>
+                  <li><a href="services.html#solution-02" class="dropdown-subitem-link">業務改善支援</a></li>
+                  <li><a href="services.html#solution-03" class="dropdown-subitem-link">データ活用支援（AI・DX導入）</a></li>
+                  <li><a href="services.html#solution-04" class="dropdown-subitem-link">新規事業・新規サービス開発支援</a></li>
+                  <li><a href="services.html#solution-05" class="dropdown-subitem-link">AI講演会・生成AI活用研修</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
           <li><a href="works.html" class="nav-link">Works</a></li>
           <li class="nav-item-dropdown">
             <a href="javascript:void(0)" class="nav-link dropdown-toggle" id="about-dropdown-toggle" role="button" aria-expanded="false">
@@ -260,23 +288,34 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-main">
-        <a href="index.html" class="logo">
-          <img src="logo.png" alt="pilotmieux" class="logo-img logo-img-footer">
-        </a>
-        <ul class="footer-nav">
-          <li><a href="index.html#service">Services <span class="nav-jp">（サービス）</span></a></li>
-          <li><a href="works.html">Works <span class="nav-jp">（実績）</span></a></li>
-          <li><a href="about.html">About Us <span class="nav-jp">（私たちについて）</span></a></li>
-          <li><a href="contact.html">Contact <span class="nav-jp">（お問い合わせ）</span></a></li>
-        </ul>
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="logo.png" alt="pilotmieux" class="logo-img logo-img-footer">
+          </a>
+        </div>
+
+        <div class="footer-nav-group">
+          <ul class="footer-nav">
+            <li><a href="services.html">Services <span class="nav-jp">（サービス）</span></a></li>
+            <li><a href="works.html">Works <span class="nav-jp">（実績）</span></a></li>
+            <li><a href="about.html">About Us <span class="nav-jp">（私たちについて）</span></a></li>
+          </ul>
+          <a href="contact.html" class="footer-contact-btn">
+            <span>お問い合わせ</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <div class="footer-bottom">
         <div class="footer-bottom-left">
           <p class="copyright">&copy; 2026 株式会社パイロットミュー（pilotmieux, Inc.）</p>
-          <a href="privacy.html" class="privacy-link">Privacy Policy</a>
+          <a href="privacy.html" class="privacy-link">Privacy Policy（プライバシーポリシー）</a>
         </div>
-        <div class="scroll-top" id="scroll-top" title="Topへ戻る">
+        <div class="scroll-top" id="scroll-top" title="Topへ戻る" aria-label="ページトップへ戻る">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>

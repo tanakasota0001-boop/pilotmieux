@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services | pilotmieux</title>
-  <meta name="description" content="pilotmieux Inc.のサービス紹介。経営課題の可視化からDX・AI導入、現場実装まで伴走支援します。">
+  <meta name="description" content="地方企業の可能性を、実装力で成長に変える。pilotmieux（パイロットミュー）のサービス紹介。経営支援・AI/DX導入・業務改善・データ活用・新規事業開発まで、現場で使われる仕組みとして実装します。">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +47,35 @@
 
       <nav class="nav-menu" id="nav-menu">
         <ul class="nav-list">
-          <li><a href="services.html" class="nav-link active">Services</a></li>
+          <li class="nav-item-dropdown">
+            <a href="javascript:void(0)" class="nav-link dropdown-toggle active" id="services-dropdown-toggle" role="button"
+              aria-expanded="false">
+              Services
+              <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </a>
+            <ul class="dropdown-menu" id="services-dropdown-menu" aria-labelledby="services-dropdown-toggle">
+              <li class="dropdown-header-item">
+                <a href="services.html" class="dropdown-header-title">Services <span
+                    class="dropdown-header-arrow">▶</span></a>
+              </li>
+              <li>
+                <a href="#solutions" class="dropdown-section-heading">
+                  <span class="dropdown-en">Our Solutions</span>
+                  <span class="dropdown-ja">5つのソリューション</span>
+                </a>
+                <ul class="dropdown-subitems-list">
+                  <li><a href="#solution-01" class="dropdown-subitem-link">伴走型経営支援</a></li>
+                  <li><a href="#solution-02" class="dropdown-subitem-link">業務改善支援</a></li>
+                  <li><a href="#solution-03" class="dropdown-subitem-link">データ活用支援（AI・DX導入）</a></li>
+                  <li><a href="#solution-04" class="dropdown-subitem-link">新規事業・新規サービス開発支援</a></li>
+                  <li><a href="#solution-05" class="dropdown-subitem-link">AI講演会・生成AI活用研修</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
           <li><a href="works.html" class="nav-link">Works</a></li>
           <li class="nav-item-dropdown">
             <a href="javascript:void(0)" class="nav-link dropdown-toggle" id="about-dropdown-toggle" role="button"
@@ -106,51 +134,764 @@
   <!-- --- MAIN CONTENT --- -->
   <main class="services-page-main">
 
-    <!-- --- EDITORIAL HERO SECTION (大見出し & キャッチコピー) --- -->
+    <!-- --- EDITORIAL HERO SECTION (大見出し) --- -->
     <section class="services-hero-section">
       <div class="container services-hero-container">
-        <!-- Big Bold Editorial Heading -->
-        <div class="services-editorial-heading-group">
-          <div class="services-editorial-ja-wrapper reveal reveal-fade">
-            <p class="services-editorial-ja">サービス</p>
+        <!-- Split Grid: Left (Title, Catchcopy & Narrative) + Right (Big Illustration) -->
+        <div class="services-hero-split-grid">
+          <!-- Left Column: Title, Catchcopy & Narrative Lead -->
+          <div class="services-hero-left">
+            <!-- Big Bold Editorial Heading -->
+            <div class="services-editorial-heading-group">
+              <div class="services-editorial-ja-wrapper reveal reveal-fade">
+                <p class="services-editorial-ja">サービス</p>
+              </div>
+              <h1 class="services-editorial-en reveal reveal-slide-in">Services</h1>
+            </div>
+
+            <div class="services-editorial-concept-tag reveal reveal-fade reveal-delay-1">
+              <strong>地方企業の可能性を、実装力で成長に変える。</strong>
+              <div class="services-concept-narrative">
+                <p>
+                  多くの中小企業は、優れた技術や現場力を持ちながら、属人化やデータ未活用によってその強みを利益へつなげきれていません。
+                </p>
+                <p class="services-statement-black">
+                  パイロットミューは、経営者の右腕として伴走します。
+                </p>
+                <p>
+                  顧問契約をベースに、経営支援・AI/DX導入・業務改善・データ活用・新規事業開発を組み合わせ、提案で終わらせず現場で使われる仕組みとして実装します。
+                </p>
+              </div>
+            </div>
           </div>
-          <h1 class="services-editorial-en reveal reveal-slide-in">Services</h1>
+
+          <!-- Right Column: Big Services Illustration -->
+          <div class="services-hero-right reveal reveal-fade reveal-delay-1">
+            <img src="services.png" alt="Services" class="services-hero-big-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- 3-STEP PROCESS TIMELINE SECTION (支援プロセス) --- -->
+    <section class="services-process-section" id="process">
+      <div class="container">
+        <!-- Process Header -->
+        <div class="services-process-header reveal reveal-slide-in">
+          <h2 class="services-process-title">
+            <span class="process-title-catch"><span class="process-title-highlight">構造化</span>から<span class="process-title-highlight">設計</span>、そして<span class="process-title-highlight">伴走</span>へ。</span><br>
+            パイロットミューの支援は、3つのステップで進みます。
+          </h2>
         </div>
 
-        <!-- Editorial Bottom Area: Catchcopy & Body Narrative -->
-        <div class="services-editorial-bottom">
-          <!-- Catchcopy -->
-          <div class="services-catchcopy-wrapper reveal reveal-fade reveal-delay-1">
-            <h2 class="services-catchcopy">
-              地方企業の可能性を、<br>
-              実装力で成長に変える。
-            </h2>
+        <!-- Editorial Minimal Timeline (No Cards / Clean Layout) -->
+        <div class="services-timeline-container reveal reveal-fade reveal-delay-1">
+          <!-- Continuous connecting line -->
+          <div class="services-timeline-line" aria-hidden="true"></div>
+
+          <div class="services-timeline-grid">
+            <!-- Step 01 -->
+            <div class="services-timeline-step">
+              <div class="timeline-node-wrapper">
+                <span class="timeline-step-dot" aria-hidden="true"></span>
+              </div>
+              <div class="timeline-step-body">
+                <div class="timeline-icon-box">
+                  <img src="structure.png" alt="構造化のアイコン" class="timeline-step-img">
+                </div>
+                <span class="timeline-step-num">01</span>
+                <h3 class="timeline-step-title">構造化</h3>
+                <p class="timeline-step-desc">
+                  丁寧なヒアリングと整理・可視化を通じて、課題の本質を明らかにします。
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 02 -->
+            <div class="services-timeline-step">
+              <div class="timeline-node-wrapper">
+                <span class="timeline-step-dot" aria-hidden="true"></span>
+              </div>
+              <div class="timeline-step-body">
+                <div class="timeline-icon-box">
+                  <img src="desgin.png" alt="設計のアイコン" class="timeline-step-img">
+                </div>
+                <span class="timeline-step-num">02</span>
+                <h3 class="timeline-step-title">設計</h3>
+                <p class="timeline-step-desc">
+                  改善策にとどまらず、高収益モデルにつながる打ち手を設計します。
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 03 -->
+            <div class="services-timeline-step">
+              <div class="timeline-node-wrapper">
+                <span class="timeline-step-dot" aria-hidden="true"></span>
+              </div>
+              <div class="timeline-step-body">
+                <div class="timeline-icon-box">
+                  <img src="pacing.png" alt="伴走のアイコン" class="timeline-step-img">
+                </div>
+                <span class="timeline-step-num">03</span>
+                <h3 class="timeline-step-title">伴走</h3>
+                <p class="timeline-step-desc">
+                  成果が出るまで、成果が続く仕組みができるまで伴走します。
+                </p>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Body Narrative -->
-          <div class="services-intro-narrative reveal reveal-fade reveal-delay-2">
-            <div class="services-intro-problem">
-              <p class="services-text-lead">
-                AI時代に、何から始めればいいのか分からない。<br>
-                課題は多いのに、優先順位を決めきれない。
-              </p>
-              <p class="services-text-body">
-                多くの中小企業は、優れた技術や現場力を持ちながら、属人化やデータ未活用によって、その強みを十分に利益へつなげきれていません。
-              </p>
-            </div>
+    <!-- --- SOLUTIONS SECTION (5つのソリューション) --- -->
+    <section class="services-solutions-section" id="solutions">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="solutions-header reveal reveal-slide-in">
+          <span class="section-label">5つのソリューション</span>
+          <h2 class="solutions-title">Our Solutions</h2>
+        </div>
 
-            <div class="services-intro-mission">
-              <p class="services-highlight-statement">
-                パイロットミューは、経営者の右腕として伴走します。
-              </p>
+        <!-- Solutions Quick Navigation Menu (5 Cards) -->
+        <nav class="solutions-menu-nav reveal reveal-fade reveal-delay-1" aria-label="ソリューション一覧メニュー">
+          <a href="#solution-01" class="solutions-menu-card">
+            <div class="menu-card-top">
+              <span class="menu-card-num">01</span>
+              <span class="menu-card-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
             </div>
+            <span class="menu-card-title">伴走型経営支援</span>
+          </a>
 
-            <div class="services-intro-solution">
-              <p class="services-text-body">
-                顧問契約をベースに継続的に入り込みながら、経営支援、AI・DX導入、業務改善、データ活用、新規事業開発など、必要な支援を組み合わせ、提案だけで終わらず、現場で使われる仕組みとして実装します。
-              </p>
+          <a href="#solution-02" class="solutions-menu-card">
+            <div class="menu-card-top">
+              <span class="menu-card-num">02</span>
+              <span class="menu-card-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
             </div>
-          </div>
+            <span class="menu-card-title">業務改善支援</span>
+          </a>
+
+          <a href="#solution-03" class="solutions-menu-card">
+            <div class="menu-card-top">
+              <span class="menu-card-num">03</span>
+              <span class="menu-card-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+            </div>
+            <span class="menu-card-title">データ活用支援<span class="menu-card-sub">（AI・DX導入）</span></span>
+          </a>
+
+          <a href="#solution-04" class="solutions-menu-card">
+            <div class="menu-card-top">
+              <span class="menu-card-num">04</span>
+              <span class="menu-card-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+            </div>
+            <span class="menu-card-title">新規事業・新規サービス開発支援</span>
+          </a>
+
+          <a href="#solution-05" class="solutions-menu-card">
+            <div class="menu-card-top">
+              <span class="menu-card-num">05</span>
+              <span class="menu-card-arrow" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </span>
+            </div>
+            <span class="menu-card-title">AI講演会・生成AI活用研修</span>
+          </a>
+        </nav>
+
+        <!-- Solutions List / Content Area -->
+        <div class="services-solutions-content">
+          <!-- Solution 01: 伴走型経営支援 -->
+          <article class="solution-item reveal reveal-slide-in" id="solution-01">
+            <!-- Header Block: Number + Title -->
+            <header class="solution-item-header">
+              <div class="solution-title-group">
+                <span class="solution-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                  </svg>
+                </span>
+                <span class="solution-item-num">01</span>
+                <h3 class="solution-item-title">伴走型経営支援</h3>
+              </div>
+              <p class="solution-item-lead">
+                経営者の外部の右腕として、継続的に課題整理・壁打ち・実行支援を行います。対話を通じて課題を整理し、優先順位をつけ、戦略ロードマップに落とし込みます。顧問契約を通じて会社の状況を深く理解し、そのうえで必要なスポット支援を組み合わせます。
+              </p>
+            </header>
+
+            <!-- Transformation Flow: Before (Challenges) -> After (Solutions) -->
+            <div class="solution-transform-wrapper">
+              <!-- Left: こんな課題に (Challenges) -->
+              <div class="solution-transform-col solution-col-before">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Challenges</span>
+                  <h4 class="solution-col-title">こんな課題に</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>売上を伸ばしたい、利益を改善したい</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>AIやDXを進めたいが、何から始めるべきか分からない</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>経営課題が多く、優先順位をつけきれない</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Center: Transformation Connector Arrow -->
+              <div class="solution-transform-connector" aria-hidden="true">
+                <div class="connector-badge">
+                  <svg class="connector-arrow-desktop" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                  <svg class="connector-arrow-mobile" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Right: 支援内容 (Solutions) -->
+              <div class="solution-transform-col solution-col-after">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Solutions</span>
+                  <h4 class="solution-col-title">支援内容</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>経営者の壁打ち</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>経営課題の整理・優先順位付け</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>売上・利益改善テーマの検討</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>戦略ロードマップ作成</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Solution 02: 業務改善支援 -->
+          <article class="solution-item reveal reveal-slide-in" id="solution-02">
+            <!-- Header Block: Number + Title -->
+            <header class="solution-item-header">
+              <div class="solution-title-group">
+                <span class="solution-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" y1="21" x2="4" y2="14"></line>
+                    <line x1="4" y1="10" x2="4" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12" y2="3"></line>
+                    <line x1="20" y1="21" x2="20" y2="16"></line>
+                    <line x1="20" y1="12" x2="20" y2="3"></line>
+                    <line x1="1" y1="14" x2="7" y2="14"></line>
+                    <line x1="9" y1="8" x2="15" y2="8"></line>
+                    <line x1="17" y1="16" x2="23" y2="16"></line>
+                  </svg>
+                </span>
+                <span class="solution-item-num">02</span>
+                <h3 class="solution-item-title">業務改善支援</h3>
+              </div>
+              <p class="solution-item-lead">
+                属人化を解消し、誰でも回る現場づくりを支援します。業務フロー、工数、リードタイム、判断基準、ノウハウを見える化し、現場で使える仕組みとして実装。生産性と利益の向上につなげます。
+              </p>
+            </header>
+
+            <!-- Transformation Flow: Before (Challenges) -> After (Solutions) -->
+            <div class="solution-transform-wrapper">
+              <!-- Left: こんな課題に (Challenges) -->
+              <div class="solution-transform-col solution-col-before">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Challenges</span>
+                  <h4 class="solution-col-title">こんな課題に</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>この人しか分からない業務がある</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>ベテランのノウハウが若手に伝わらない</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>作業時間や手戻りが多い</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>現場の状況が数字で見えない</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Center: Transformation Connector Arrow -->
+              <div class="solution-transform-connector" aria-hidden="true">
+                <div class="connector-badge">
+                  <svg class="connector-arrow-desktop" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                  <svg class="connector-arrow-mobile" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Right: 支援内容 (Solutions) -->
+              <div class="solution-transform-col solution-col-after">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Solutions</span>
+                  <h4 class="solution-col-title">支援内容</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>課題整理・分析</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>属人化解消</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>ノウハウの可視化・伝承</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>改善ツール提案・定着支援</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Solution 03: データ活用支援（AI・DX導入） -->
+          <article class="solution-item reveal reveal-slide-in" id="solution-03">
+            <!-- Header Block: Number + Title -->
+            <header class="solution-item-header">
+              <div class="solution-title-group">
+                <span class="solution-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v18h18"></path>
+                    <path d="M18 17V9"></path>
+                    <path d="M13 17V5"></path>
+                    <path d="M8 17v-3"></path>
+                  </svg>
+                </span>
+                <span class="solution-item-num">03</span>
+                <h3 class="solution-item-title">データ活用支援（AI・DX導入）</h3>
+              </div>
+              <p class="solution-item-lead">
+                AIやデジタル技術を、現場で使われる形にします。業務整理、データの見える化、ダッシュボード構築、生成AI活用、ツール定着まで支援し、データに基づいて判断できる状態をつくります。経営判断の権限委譲、生産性向上、利益改善につなげます。
+              </p>
+            </header>
+
+            <!-- Transformation Flow: Before (Challenges) -> After (Solutions) -->
+            <div class="solution-transform-wrapper">
+              <!-- Left: こんな課題に (Challenges) -->
+              <div class="solution-transform-col solution-col-before">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Challenges</span>
+                  <h4 class="solution-col-title">こんな課題に</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>AIを使いたいが、何に使えばいいか分からない</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>データはあるが、経営判断に使えていない</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>社長や一部の経営層だけが判断している</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Center: Transformation Connector Arrow -->
+              <div class="solution-transform-connector" aria-hidden="true">
+                <div class="connector-badge">
+                  <svg class="connector-arrow-desktop" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                  <svg class="connector-arrow-mobile" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Right: 支援内容 (Solutions) -->
+              <div class="solution-transform-col solution-col-after">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Solutions</span>
+                  <h4 class="solution-col-title">支援内容</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>データ分析</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>ダッシュボード構築支援</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>業務プロセス改善</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>AI・デジタルツール提案・定着支援</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Solution 04: 新規事業・新規サービス開発支援 -->
+          <article class="solution-item reveal reveal-slide-in" id="solution-04">
+            <!-- Header Block: Number + Title -->
+            <header class="solution-item-header">
+              <div class="solution-title-group">
+                <span class="solution-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                  </svg>
+                </span>
+                <span class="solution-item-num">04</span>
+                <h3 class="solution-item-title">新規事業・新規サービス開発支援</h3>
+              </div>
+              <p class="solution-item-lead">
+                経営者のアイデアや会社の強みを、売上につながる事業に変えます。市場性、顧客価値、収益モデル、拡販施策を整理し、実行可能な事業計画に落とし込みます。
+              </p>
+            </header>
+
+            <!-- Transformation Flow: Before (Challenges) -> After (Solutions) -->
+            <div class="solution-transform-wrapper">
+              <!-- Left: こんな課題に (Challenges) -->
+              <div class="solution-transform-col solution-col-before">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Challenges</span>
+                  <h4 class="solution-col-title">こんな課題に</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>新しい収益源をつくりたい</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>自社の強みを活かしたサービスを作りたい</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>アイデアはあるが、事業化の進め方が分からない</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Center: Transformation Connector Arrow -->
+              <div class="solution-transform-connector" aria-hidden="true">
+                <div class="connector-badge">
+                  <svg class="connector-arrow-desktop" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                  <svg class="connector-arrow-mobile" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Right: 支援内容 (Solutions) -->
+              <div class="solution-transform-col solution-col-after">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Solutions</span>
+                  <h4 class="solution-col-title">支援内容</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>新規事業アイデア提案</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>市場・顧客ニーズ分析</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>新規サービス設計</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>価格・収益モデル設計</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>事業計画策定</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>販売戦略策定</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Solution 05: AI講演会・生成AI活用研修 -->
+          <article class="solution-item reveal reveal-slide-in" id="solution-05">
+            <!-- Header Block: Number + Title -->
+            <header class="solution-item-header">
+              <div class="solution-title-group">
+                <span class="solution-item-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                  </svg>
+                </span>
+                <span class="solution-item-num">05</span>
+                <h3 class="solution-item-title">AI講演会・生成AI活用研修</h3>
+              </div>
+              <p class="solution-item-lead">
+                企業向けに、生成AIの講演会・研修を行います。生成AIの基本理解から具体的な業務活用例まで分かりやすく伝えます。
+              </p>
+            </header>
+
+            <!-- Transformation Flow: Before (Challenges) -> After (Solutions) -->
+            <div class="solution-transform-wrapper">
+              <!-- Left: こんな課題に (Challenges) -->
+              <div class="solution-transform-col solution-col-before">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Challenges</span>
+                  <h4 class="solution-col-title">こんな課題に</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>生成AIで何が変わるのか知りたい</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>自社の業務でどう使えるのか分からない</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-issue" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                      </svg>
+                    </span>
+                    <span>社員にAI活用のきっかけを作りたい</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Center: Transformation Connector Arrow -->
+              <div class="solution-transform-connector" aria-hidden="true">
+                <div class="connector-badge">
+                  <svg class="connector-arrow-desktop" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                  <svg class="connector-arrow-mobile" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Right: 支援内容 (Solutions) -->
+              <div class="solution-transform-col solution-col-after">
+                <div class="solution-col-header">
+                  <span class="solution-col-label-en">Solutions</span>
+                  <h4 class="solution-col-title">支援内容</h4>
+                </div>
+                <ul class="solution-flat-list">
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>AI研修・ワークショップ</span>
+                  </li>
+                  <li class="solution-flat-item">
+                    <span class="flat-item-icon flat-icon-service" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span>社内AI研修のサポート</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -204,23 +945,34 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-main">
-        <a href="index.html" class="logo">
-          <img src="logo.png" alt="pilotmieux" class="logo-img logo-img-footer">
-        </a>
-        <ul class="footer-nav">
-          <li><a href="services.html">Services <span class="nav-jp">（サービス）</span></a></li>
-          <li><a href="works.html">Works <span class="nav-jp">（実績）</span></a></li>
-          <li><a href="about.html">About Us <span class="nav-jp">（私たちについて）</span></a></li>
-          <li><a href="contact.html">Contact <span class="nav-jp">（お問い合わせ）</span></a></li>
-        </ul>
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="logo.png" alt="pilotmieux" class="logo-img logo-img-footer">
+          </a>
+        </div>
+
+        <div class="footer-nav-group">
+          <ul class="footer-nav">
+            <li><a href="services.html">Services <span class="nav-jp">（サービス）</span></a></li>
+            <li><a href="works.html">Works <span class="nav-jp">（実績）</span></a></li>
+            <li><a href="about.html">About Us <span class="nav-jp">（私たちについて）</span></a></li>
+          </ul>
+          <a href="contact.html" class="footer-contact-btn">
+            <span>お問い合わせ</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <div class="footer-bottom">
         <div class="footer-bottom-left">
           <p class="copyright">&copy; 2026 株式会社パイロットミュー（pilotmieux, Inc.）</p>
-          <a href="privacy.html" class="privacy-link">Privacy Policy</a>
+          <a href="privacy.html" class="privacy-link">Privacy Policy（プライバシーポリシー）</a>
         </div>
-        <div class="scroll-top" id="scroll-top" title="Topへ戻る">
+        <div class="scroll-top" id="scroll-top" title="Topへ戻る" aria-label="ページトップへ戻る">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
