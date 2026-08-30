@@ -6439,26 +6439,56 @@ body.loading {
 
   .services-timeline-grid {
     grid-template-columns: 1fr;
-    gap: 2.25rem;
+    gap: 1.5rem;
   }
 
-  .timeline-node-wrapper {
-    margin-bottom: 0.85rem;
+  /* Step item styled as a clean delimited card */
+  .services-timeline-step {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    border-radius: 16px;
+    padding: 1.75rem 1.35rem 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   }
 
-  .timeline-icon-box {
-    max-width: 160px;
-    height: 160px;
-    margin: 0 auto 1.25rem;
+  /* 1. Remove dots on mobile */
+  .timeline-node-wrapper,
+  .timeline-step-dot {
+    display: none;
+  }
+
+  /* 2. Reorder content so explanation/text comes before illustration */
+  .timeline-step-body {
+    display: flex;
+    flex-direction: column;
   }
 
   .timeline-step-num {
+    order: 1;
     font-size: 1.6rem;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.35rem;
   }
 
   .timeline-step-title {
+    order: 2;
     font-size: 1.25rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .timeline-step-desc {
+    order: 3;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .timeline-icon-box {
+    order: 4;
+    max-width: 170px;
+    height: 170px;
+    margin: 0 auto;
   }
 }
 
