@@ -6439,18 +6439,23 @@ body.loading {
 
   .services-timeline-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2.5rem;
   }
 
-  /* Step item styled as a clean delimited card */
+  /* Clean delimited separator style (No cards) */
   .services-timeline-step {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 180, 216, 0.2);
-    border-radius: 16px;
-    padding: 1.75rem 1.35rem 1.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0 0 2.5rem 0;
+    border-bottom: 1px solid rgba(0, 180, 216, 0.22);
+  }
+
+  /* Remove border on the last step */
+  .services-timeline-step:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
   }
 
   /* 1. Remove dots on mobile */
@@ -6481,7 +6486,7 @@ body.loading {
     order: 3;
     font-size: 0.95rem;
     line-height: 1.8;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 
   .timeline-icon-box {
