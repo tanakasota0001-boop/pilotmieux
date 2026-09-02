@@ -96,9 +96,13 @@
   <link rel="stylesheet" href="style.css">
 
   <script>
-    if (sessionStorage.getItem('pilotmieux_visited')) {
-      document.documentElement.classList.add('already-visited');
-    }
+    try {
+      // sessionStorageが消えていてもサイト内遷移ならreferrerで判定しローダー再生を防ぐ
+      var cameFromSameSite = document.referrer && document.referrer.indexOf(location.origin) === 0;
+      if (cameFromSameSite || sessionStorage.getItem('pilotmieux_visited')) {
+        document.documentElement.classList.add('already-visited');
+      }
+    } catch (e) {}
   </script>
 </head>
 

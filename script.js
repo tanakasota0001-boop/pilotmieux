@@ -2,7 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- ARTISTIC LOADER CONTROL (FIRST ACCESS ONLY) ---
   const loaderOverlay = document.getElementById('loader-overlay');
-  const hasVisited = sessionStorage.getItem('pilotmieux_visited');
+  // sessionStorageが端末側で保持されない場合に備え、同一サイト内からの遷移かもあわせて判定する
+  const cameFromSameSite = !!(document.referrer && document.referrer.indexOf(location.origin) === 0);
+  let hasVisited = cameFromSameSite;
+  try {
+    hasVisited = hasVisited || !!sessionStorage.getItem('pilotmieux_visited');
+  } catch (e) {}
   const minLoadingTime = 1600; // minimum display time in ms (1.6s)
   const startTime = Date.now();
   let initRevealObserver = null;
