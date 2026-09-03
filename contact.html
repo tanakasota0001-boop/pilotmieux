@@ -106,7 +106,10 @@
   <header class="header" id="header">
     <div class="container">
       <a href="index.html" class="logo" aria-label="pilotmieux トップページへ">
-        <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img" fetchpriority="high">
+        <picture>
+          <source srcset="images/logo.webp" type="image/webp">
+          <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img" fetchpriority="high">
+        </picture>
       </a>
 
       <nav class="nav-menu" id="nav-menu">
@@ -128,7 +131,7 @@
               <li>
                 <a href="services.html#solutions" class="dropdown-section-heading">
                   <span class="dropdown-en">Our Solutions</span>
-                  <span class="dropdown-ja">6つのソリューション</span>
+                  <span class="dropdown-ja">5つのソリューション</span>
                 </a>
                 <ul class="dropdown-subitems-list">
                   <li><a href="services.html#solution-01" class="dropdown-subitem-link">伴走型経営支援</a></li>
@@ -136,7 +139,6 @@
                   <li><a href="services.html#solution-03" class="dropdown-subitem-link">データ活用支援（AI・DX導入）</a></li>
                   <li><a href="services.html#solution-04" class="dropdown-subitem-link">新規事業・新規サービス開発支援</a></li>
                   <li><a href="services.html#solution-05" class="dropdown-subitem-link">AI講演会・生成AI活用研修</a></li>
-                  <li><a href="services.html#solution-06" class="dropdown-subitem-link">リスキリング研修・サポート</a></li>
                 </ul>
               </li>
             </ul>
@@ -225,7 +227,7 @@
         <div class="contact-card" id="contact-card">
           
           <!-- Contact Form -->
-          <form id="contact-form" action="https://formsubmit.co/info@pilotmieux.com" method="POST" class="contact-form" novalidate>
+          <form id="contact-form" action="https://formsubmit.co/tcongda@gmail.com" method="POST" class="contact-form" novalidate>
             <!-- FormSubmit Configuration -->
             <input type="hidden" name="_subject" value="【pilotmieux】お問い合わせがありました">
             <input type="hidden" name="_template" value="table">
@@ -355,7 +357,10 @@
       <div class="footer-main">
         <div class="footer-brand">
           <a href="index.html" class="footer-logo" aria-label="pilotmieux トップページへ">
-            <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img logo-img-footer" loading="lazy" decoding="async">
+            <picture>
+              <source srcset="images/logo.webp" type="image/webp">
+              <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img logo-img-footer" loading="lazy" decoding="async">
+            </picture>
           </a>
         </div>
 
@@ -501,7 +506,7 @@
         const formData = new FormData(form);
 
         try {
-          const response = await fetch('https://formsubmit.co/ajax/info@pilotmieux.com', {
+          const response = await fetch('https://formsubmit.co/ajax/tcongda@gmail.com', {
             method: 'POST',
             body: formData,
             headers: {
