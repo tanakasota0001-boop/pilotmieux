@@ -1,0 +1,21 @@
+{
+  "name": "株式会社パイロットミュー",
+  "short_name": "pilotmieux",
+  "description": "中小企業の経営課題を可視化し、AI・DX導入、業務改善、新規事業開発までを一貫して伴走支援するパートナー",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050814",
+  "theme_color": "#050814",
+  "icons": [
+    {
+      "src": "images/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

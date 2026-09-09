@@ -136,22 +136,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const orb3 = document.querySelector('.orb-w-3');
     
     const orbScale = 1 - bgOpacity * 0.85;
-    const orbBlur = 120 + bgOpacity * 100;
     const orbOpacity = 0.35 * (1 - bgOpacity * 0.9);
     
     if (orb1) {
       orb1.style.transform = `translateY(${scrollY * 0.22}px) scale(${orbScale})`;
-      orb1.style.filter = `blur(${orbBlur}px)`;
       orb1.style.opacity = orbOpacity;
     }
     if (orb2) {
       orb2.style.transform = `translateY(${-scrollY * 0.12}px) scale(${orbScale})`;
-      orb2.style.filter = `blur(${orbBlur}px)`;
       orb2.style.opacity = orbOpacity;
     }
     if (orb3) {
       orb3.style.transform = `translateY(${scrollY * 0.08}px) scale(${orbScale})`;
-      orb3.style.filter = `blur(${orbBlur}px)`;
       orb3.style.opacity = orbOpacity * 0.7;
     }
 
@@ -279,6 +275,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Smooth scroll for in-page anchor links (e.g. href="#...") without global html scroll-behavior
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    const targetId = anchor.getAttribute('href');
+    if (!targetId || targetId === '#' || targetId.startsWith('#!')) return;
+    try {
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: 'smooth' });
+      }
+    } catch (err) {}
+  });
 
   // --- MOBILE & DROPDOWN NAVIGATION ---
   const mobileToggle = document.getElementById('mobile-toggle');

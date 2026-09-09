@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap'); */
 
 /* --- DESIGN SYSTEM TOKENS --- */
 :root {
@@ -39,7 +39,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,7 +64,7 @@ body.nav-open {
 a {
   text-decoration: none;
   color: inherit;
-  transition: var(--transition-normal);
+  transition: color 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 button, input, textarea {
@@ -93,17 +93,17 @@ li {
 .bg-glow-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
-  -webkit-filter: blur(120px);
+  filter: blur(35px);
+  -webkit-filter: blur(35px);
   pointer-events: none;
-  opacity: 0.35;
+  opacity: 0.4;
   will-change: transform;
 }
 
 .bg-glow-orb-1 {
   width: 45vw;
   height: 45vw;
-  background: radial-gradient(circle, #4cc9f0 0%, rgba(76, 201, 240, 0) 70%);
+  background: radial-gradient(circle, rgba(76, 201, 240, 0.4) 0%, rgba(76, 201, 240, 0.15) 45%, rgba(76, 201, 240, 0) 70%);
   top: 5%;
   left: -15%;
   animation: float-orb-1 30s infinite alternate ease-in-out;
@@ -112,7 +112,7 @@ li {
 .bg-glow-orb-2 {
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(circle, #4895ef 0%, rgba(72, 149, 239, 0) 70%);
+  background: radial-gradient(circle, rgba(72, 149, 239, 0.35) 0%, rgba(72, 149, 239, 0.12) 45%, rgba(72, 149, 239, 0) 70%);
   bottom: -10%;
   right: -15%;
   animation: float-orb-2 35s infinite alternate ease-in-out;
@@ -121,7 +121,7 @@ li {
 .bg-glow-orb-3 {
   width: 35vw;
   height: 35vw;
-  background: radial-gradient(circle, #7209b7 0%, rgba(114, 9, 183, 0) 70%);
+  background: radial-gradient(circle, rgba(114, 9, 183, 0.25) 0%, rgba(114, 9, 183, 0.08) 45%, rgba(114, 9, 183, 0) 70%);
   top: 40%;
   left: 35%;
   opacity: 0.25;
@@ -164,8 +164,8 @@ li {
 /* --- ANIMATION REVEALS --- */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
@@ -183,7 +183,7 @@ li {
 }
 
 .reveal.reveal-slide-in {
-  transform: translateX(-40px);
+  transform: translateX(-24px);
 }
 
 .reveal.reveal-slide-in.visible {
@@ -191,8 +191,8 @@ li {
 }
 
 .reveal.reveal-left {
-  transform: translateX(120px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(36px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.reveal-left.visible {
@@ -200,18 +200,27 @@ li {
 }
 
 .reveal.reveal-right {
-  transform: translateX(-120px);
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-36px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal.reveal-right.visible {
   transform: translateX(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.15s; }
-.reveal-delay-2 { transition-delay: 0.3s; }
-.reveal-delay-3 { transition-delay: 0.45s; }
-.reveal-delay-4 { transition-delay: 0.6s; }
+.reveal-delay-1 { transition-delay: 0.06s; }
+.reveal-delay-2 { transition-delay: 0.12s; }
+.reveal-delay-3 { transition-delay: 0.18s; }
+.reveal-delay-4 { transition-delay: 0.24s; }
+
+/* Immediate display of hero elements on subsequent navigation */
+.already-visited .about-hero-section .reveal,
+.already-visited .works-hero-section .reveal,
+.already-visited .services-hero-section .reveal,
+.already-visited .hero .reveal {
+  opacity: 1;
+  transform: none;
+}
 
 /* --- HEADER / NAVIGATION --- */
 .header {
@@ -744,7 +753,6 @@ li {
     background-position: 200% center;
   }
 }
-
 
 
 .hero-desc {
@@ -4159,6 +4167,8 @@ body.loading {
 /* Big Editorial Typography */
 .about-editorial-heading-group {
   margin-bottom: 3.5rem;
+  font-size: inherit;
+  font-weight: normal;
 }
 
 .about-editorial-en {
@@ -5249,6 +5259,8 @@ body.loading {
 /* Big Editorial Typography */
 .works-editorial-heading-group {
   margin-bottom: 5rem;
+  font-size: inherit;
+  font-weight: normal;
 }
 
 .works-editorial-ja-wrapper {
@@ -6148,6 +6160,8 @@ body.loading {
 /* Big Editorial Typography for Services */
 .services-editorial-heading-group {
   margin-bottom: 2.5rem;
+  font-size: inherit;
+  font-weight: normal;
 }
 
 .services-editorial-ja-wrapper {
@@ -7050,5 +7064,3 @@ body.loading {
     display: block;
   }
 }
-
-

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>導入実績・支援事例（Works）</title>
+  <title>導入実績・支援事例（Works）｜データ活用・DX定着事例｜株式会社パイロットミュー（pilotmieux）</title>
   <meta name="description" content="株式会社パイロットミューのご支援実績・パートナーシップをご紹介。地域に根差す中小企業の課題可視化から現場での業務改善・DX定着、新規事業創出までの具体的な取り組み事例をご覧いただけます。">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#050814">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://www.pilotmieux.com/works.html">
@@ -14,10 +15,11 @@
   <!-- Favicon & Apple Touch Icon -->
   <link rel="icon" type="image/png" href="images/icon.png">
   <link rel="apple-touch-icon" href="images/icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <!-- Open Graph Protocol (OGP) -->
   <meta property="og:site_name" content="pilotmieux（株式会社パイロットミュー）">
-  <meta property="og:title" content="導入実績・支援事例（Works）">
+  <meta property="og:title" content="導入実績・支援事例（Works）｜データ活用・DX定着事例｜株式会社パイロットミュー（pilotmieux）">
   <meta property="og:description" content="株式会社パイロットミューのご支援実績・パートナーシップ。地域に根差す企業のデータ活用、業務改善、新規事業創出の具体的な事例をご紹介。">
   <meta property="og:url" content="https://www.pilotmieux.com/works.html">
   <meta property="og:type" content="article">
@@ -29,7 +31,7 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="導入実績・支援事例（Works）">
+  <meta name="twitter:title" content="導入実績・支援事例（Works）｜データ活用・DX定着事例｜株式会社パイロットミュー（pilotmieux）">
   <meta name="twitter:description" content="株式会社パイロットミューのご支援実績・パートナーシップ。地域に根差す企業のデータ活用、業務改善、新規事業創出の具体的な事例をご紹介。">
   <meta name="twitter:image" content="https://www.pilotmieux.com/images/works.png">
 
@@ -71,15 +73,12 @@
   }
   </script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (Optimized weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
     rel="stylesheet">
-
-  <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="style.css">
 
   <script>
     try {
@@ -87,6 +86,9 @@
     } catch (e) { }
     document.documentElement.classList.add('already-visited');
   </script>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="page-works">
@@ -108,7 +110,7 @@
       <a href="index.html" class="logo" aria-label="pilotmieux トップページへ">
         <picture>
           <source srcset="images/logo.webp" type="image/webp">
-          <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img" fetchpriority="high">
+          <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img">
         </picture>
       </a>
 
@@ -210,12 +212,12 @@
           <!-- Left Column: Title & Description -->
           <div class="works-hero-left">
             <!-- Big Bold Editorial Heading -->
-            <div class="works-editorial-heading-group">
-              <div class="works-editorial-ja-wrapper reveal reveal-fade">
-                <p class="works-editorial-ja">ご支援実績・パートナーシップ</p>
-              </div>
-              <h1 class="works-editorial-en reveal reveal-slide-in">Works</h1>
-            </div>
+            <h1 class="works-editorial-heading-group">
+              <span class="works-editorial-ja-wrapper reveal reveal-fade" style="display: flex;">
+                <span class="works-editorial-ja">ご支援実績・パートナーシップ</span>
+              </span>
+              <span class="works-editorial-en reveal reveal-slide-in">Works</span>
+            </h1>
 
             <div class="works-editorial-concept-tag reveal reveal-fade reveal-delay-1">
               <strong>ともに、企業の成長をつくる。</strong>
@@ -227,7 +229,7 @@
           <div class="works-hero-right reveal reveal-fade reveal-delay-1">
             <picture>
               <source srcset="images/works.webp" type="image/webp">
-              <img src="images/works.png" alt="Works ご支援実績・パートナーシップ" width="1407" height="1600" fetchpriority="high" decoding="async" class="works-hero-big-img">
+              <img src="images/works.png" alt="Works ご支援実績・パートナーシップ" width="1407" height="1600" decoding="async" class="works-hero-big-img">
             </picture>
           </div>
         </div>
@@ -527,7 +529,7 @@
   </footer>
 
   <!-- JS Logic -->
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

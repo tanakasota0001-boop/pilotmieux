@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>プライバシーポリシー（Privacy Policy）</title>
+  <title>プライバシーポリシー（Privacy Policy）｜株式会社パイロットミュー（pilotmieux）</title>
   <meta name="description" content="株式会社パイロットミュー（pilotmieux, Inc.）のプライバシーポリシー（個人情報保護方針）です。お客様の個人情報の適切な取得、利用、管理について定めています。">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#050814">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://www.pilotmieux.com/privacy.html">
@@ -14,24 +15,25 @@
   <!-- Favicon & Apple Touch Icon -->
   <link rel="icon" type="image/png" href="images/icon.png">
   <link rel="apple-touch-icon" href="images/icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <!-- Open Graph Protocol (OGP) -->
   <meta property="og:site_name" content="pilotmieux（株式会社パイロットミュー）">
-  <meta property="og:title" content="プライバシーポリシー（Privacy Policy）">
+  <meta property="og:title" content="プライバシーポリシー（Privacy Policy）｜株式会社パイロットミュー（pilotmieux）">
   <meta property="og:description" content="株式会社パイロットミュー（pilotmieux）のプライバシーポリシー（個人情報保護方針）を掲載しています。">
   <meta property="og:url" content="https://www.pilotmieux.com/privacy.html">
   <meta property="og:type" content="article">
-  <meta property="og:image" content="https://www.pilotmieux.com/images/logo.png">
-  <meta property="og:image:width" content="674">
-  <meta property="og:image:height" content="151">
-  <meta property="og:image:alt" content="pilotmieux ロゴ">
+  <meta property="og:image" content="https://www.pilotmieux.com/images/ogp.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="pilotmieux プライバシーポリシー">
   <meta property="og:locale" content="ja_JP">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="プライバシーポリシー（Privacy Policy）">
+  <meta name="twitter:title" content="プライバシーポリシー（Privacy Policy）｜株式会社パイロットミュー（pilotmieux）">
   <meta name="twitter:description" content="株式会社パイロットミュー（pilotmieux）のプライバシーポリシー（個人情報保護方針）を掲載しています。">
-  <meta name="twitter:image" content="https://www.pilotmieux.com/images/logo.png">
+  <meta name="twitter:image" content="https://www.pilotmieux.com/images/ogp.png">
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -59,15 +61,12 @@
   }
   </script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (Optimized weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
     rel="stylesheet">
-
-  <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="style.css">
 
   <script>
     try {
@@ -75,6 +74,9 @@
     } catch (e) {}
     document.documentElement.classList.add('already-visited');
   </script>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="page-privacy">
@@ -96,7 +98,7 @@
       <a href="index.html" class="logo" aria-label="pilotmieux トップページへ">
         <picture>
           <source srcset="images/logo.webp" type="image/webp">
-          <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img" fetchpriority="high">
+          <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img">
         </picture>
       </a>
 
@@ -188,8 +190,10 @@
   <main class="privacy-main">
     <div class="privacy-hero">
       <div class="container">
-        <span class="section-label">プライバシー</span>
-        <h1 class="privacy-hero-title">Privacy Policy</h1>
+        <h1 class="privacy-hero-heading-group" style="font-size: inherit; font-weight: normal; margin: 0;">
+          <span class="section-label" style="display: inline-block;">プライバシーポリシー</span>
+          <span class="privacy-hero-title" style="display: block;">Privacy Policy</span>
+        </h1>
       </div>
     </div>
 
@@ -323,7 +327,7 @@
   </footer>
 
   <!-- JS Logic -->
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

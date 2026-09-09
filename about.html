@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>会社情報・私たちについて（About Us）</title>
+  <title>会社情報・私たちについて（About Us）｜理念・代表紹介｜株式会社パイロットミュー（pilotmieux）</title>
   <meta name="description" content="株式会社パイロットミュー（pilotmieux）の会社情報、Mission・Vision・Value、代表メッセージ、メンバー紹介。中小企業の課題を可視化し成果と成長を共に創り続ける伴走パートナーとしての姿勢とチームをご紹介します。">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#050814">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://www.pilotmieux.com/about.html">
@@ -14,10 +15,11 @@
   <!-- Favicon & Apple Touch Icon -->
   <link rel="icon" type="image/png" href="images/icon.png">
   <link rel="apple-touch-icon" href="images/icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <!-- Open Graph Protocol (OGP) -->
   <meta property="og:site_name" content="pilotmieux（株式会社パイロットミュー）">
-  <meta property="og:title" content="会社情報・私たちについて（About Us）">
+  <meta property="og:title" content="会社情報・私たちについて（About Us）｜理念・代表紹介｜株式会社パイロットミュー（pilotmieux）">
   <meta property="og:description" content="株式会社パイロットミューの理念、代表メッセージ、役員・メンバー紹介、会社概要。中小企業の課題を可視化し、成果と持続的成長を共に創る伴走パートナー。">
   <meta property="og:url" content="https://www.pilotmieux.com/about.html">
   <meta property="og:type" content="article">
@@ -29,7 +31,7 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="会社情報・私たちについて（About Us）">
+  <meta name="twitter:title" content="会社情報・私たちについて（About Us）｜理念・代表紹介｜株式会社パイロットミュー（pilotmieux）">
   <meta name="twitter:description" content="株式会社パイロットミューの理念、代表メッセージ、役員・メンバー紹介、会社概要。中小企業の課題を可視化し、成果と持続的成長を共に創る伴走パートナー。">
   <meta name="twitter:image" content="https://www.pilotmieux.com/images/aboutus.png">
 
@@ -100,15 +102,12 @@
   }
   </script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (Optimized weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
     rel="stylesheet">
-
-  <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="style.css">
 
   <script>
     try {
@@ -116,6 +115,9 @@
     } catch (e) {}
     document.documentElement.classList.add('already-visited');
   </script>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="page-about">
@@ -137,7 +139,7 @@
       <a href="index.html" class="logo" aria-label="pilotmieux トップページへ">
         <picture>
           <source srcset="images/logo.webp" type="image/webp">
-          <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img" fetchpriority="high">
+          <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img">
         </picture>
       </a>
 
@@ -237,12 +239,12 @@
         <div class="about-hero-split-grid">
           <div class="about-hero-left">
             <!-- Big Bold Editorial Heading -->
-            <div class="about-editorial-heading-group">
-              <div class="about-editorial-ja-wrapper reveal reveal-fade">
-                <p class="about-editorial-ja">パイロットミューについて</p>
-              </div>
-              <h1 class="about-editorial-en reveal reveal-slide-in">About Us</h1>
-            </div>
+            <h1 class="about-editorial-heading-group">
+              <span class="about-editorial-ja-wrapper reveal reveal-fade" style="display: flex;">
+                <span class="about-editorial-ja">パイロットミューについて</span>
+              </span>
+              <span class="about-editorial-en reveal reveal-slide-in">About Us</span>
+            </h1>
 
             <div class="about-editorial-concept-tag reveal reveal-fade reveal-delay-1">
               <strong>挑戦と創造でワクワクする世界へ。</strong>
@@ -253,7 +255,7 @@
           <div class="about-hero-right reveal reveal-fade reveal-delay-1">
             <picture>
               <source srcset="images/aboutus.webp" type="image/webp">
-              <img src="images/aboutus.png" alt="株式会社パイロットミュー について" width="2073" height="1516" fetchpriority="high" decoding="async" class="about-hero-big-img">
+              <img src="images/aboutus.png" alt="株式会社パイロットミュー について" width="2073" height="1516" decoding="async" class="about-hero-big-img">
             </picture>
           </div>
         </div>
@@ -728,7 +730,7 @@
   </footer>
 
   <!-- JS Logic -->
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="ja-JP">
+<html lang="ja">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>サービス一覧（Services）</title>
+  <title>サービス一覧（Services）｜伴走型経営支援・AI/DX導入｜株式会社パイロットミュー（pilotmieux）</title>
   <meta name="description" content="株式会社パイロットミューのサービス紹介。伴走型経営支援、業務改善支援、データ活用支援（AI・DX導入）、新規事業・新規サービス開発支援、AI講演会・生成AI活用研修の5つのソリューションで中小企業の持続的成長を現場実装まで一貫して支援します。">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#050814">
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://www.pilotmieux.com/services.html">
@@ -14,10 +15,11 @@
   <!-- Favicon & Apple Touch Icon -->
   <link rel="icon" type="image/png" href="images/icon.png">
   <link rel="apple-touch-icon" href="images/icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <!-- Open Graph Protocol (OGP) -->
   <meta property="og:site_name" content="pilotmieux（株式会社パイロットミュー）">
-  <meta property="og:title" content="サービス一覧（Services）">
+  <meta property="og:title" content="サービス一覧（Services）｜伴走型経営支援・AI/DX導入｜株式会社パイロットミュー（pilotmieux）">
   <meta property="og:description" content="株式会社パイロットミューのサービス紹介。伴走型経営支援、業務改善支援、データ活用支援（AI・DX導入）、新規事業開発、AI講演会・研修の5つのソリューションを提供。">
   <meta property="og:url" content="https://www.pilotmieux.com/services.html">
   <meta property="og:type" content="article">
@@ -29,7 +31,7 @@
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="サービス一覧（Services）">
+  <meta name="twitter:title" content="サービス一覧（Services）｜伴走型経営支援・AI/DX導入｜株式会社パイロットミュー（pilotmieux）">
   <meta name="twitter:description" content="株式会社パイロットミューのサービス紹介。伴走型経営支援、業務改善支援、データ活用支援（AI・DX導入）、新規事業開発、AI講演会・研修の5つのソリューションを提供。">
   <meta name="twitter:image" content="https://www.pilotmieux.com/images/services.png">
 
@@ -116,15 +118,12 @@
   }
   </script>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (Optimized weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
     rel="stylesheet">
-
-  <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="style.css">
 
   <script>
     try {
@@ -132,6 +131,9 @@
     } catch (e) {}
     document.documentElement.classList.add('already-visited');
   </script>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="page-services">
@@ -153,7 +155,7 @@
       <a href="index.html" class="logo" aria-label="pilotmieux トップページへ">
         <picture>
           <source srcset="images/logo.webp" type="image/webp">
-          <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img" fetchpriority="high">
+          <img src="images/logo.png" alt="株式会社パイロットミュー ロゴ" width="674" height="151" class="logo-img">
         </picture>
       </a>
 
@@ -254,12 +256,12 @@
           <!-- Left Column: Title, Catchcopy & Narrative Lead -->
           <div class="services-hero-left">
             <!-- Big Bold Editorial Heading -->
-            <div class="services-editorial-heading-group">
-              <div class="services-editorial-ja-wrapper reveal reveal-fade">
-                <p class="services-editorial-ja">サービス</p>
-              </div>
-              <h1 class="services-editorial-en reveal reveal-slide-in">Services</h1>
-            </div>
+            <h1 class="services-editorial-heading-group">
+              <span class="services-editorial-ja-wrapper reveal reveal-fade" style="display: flex;">
+                <span class="services-editorial-ja">伴走型経営支援・AI/DX導入サービス</span>
+              </span>
+              <span class="services-editorial-en reveal reveal-slide-in">Services</span>
+            </h1>
 
             <div class="services-editorial-concept-tag reveal reveal-fade reveal-delay-1">
               <strong>地方企業の可能性を、実装力で成長に変える。</strong>
@@ -281,7 +283,7 @@
           <div class="services-hero-right reveal reveal-fade reveal-delay-1">
             <picture>
               <source srcset="images/services.webp" type="image/webp">
-              <img src="images/services.png" alt="pilotmieux サービス体系イメージ" width="1481" height="1216" fetchpriority="high" decoding="async" class="services-hero-big-img">
+              <img src="images/services.png" alt="pilotmieux サービス体系イメージ" width="1481" height="1216" decoding="async" class="services-hero-big-img">
             </picture>
           </div>
         </div>
@@ -1110,7 +1112,7 @@
   </footer>
 
   <!-- JS Logic -->
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 
 </html>
