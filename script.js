@@ -708,4 +708,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize philosophy scrollytelling
   initPhilosophyScrollytelling();
 
+  // --- INSTANT LINK PREFETCH ON HOVER / TOUCH (0ms navigation on Safari & Chrome) ---
+  const prefetchedUrls = new Set();
+  const prefetchLink = (url) => {
+    if (!url || prefetchedUrls.has(url)) return;
+    prefetchedUrls.add(url);
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = url;
+    document.head.appendChild(link);
+  };
+
+  document.addEventListener('mouseover', (e) => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('javascript:') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+      prefetchLink(href);
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchstart', (e) => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('javascript:') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+      prefetchLink(href);
+    }
+  }, { passive: true });
+
 });
