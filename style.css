@@ -2509,13 +2509,16 @@ li {
   margin: 0;
 }
 
-.privacy-link {
+.privacy-link,
+.footer-credit {
   color: #64748b;
   font-size: 0.85rem;
   transition: color 0.2s ease;
+  text-decoration: none;
 }
 
-.privacy-link:hover {
+.privacy-link:hover,
+.footer-credit:hover {
   color: #ffffff;
 }
 
