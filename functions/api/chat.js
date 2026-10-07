@@ -18,26 +18,39 @@ export async function onRequestOptions() {
   });
 }
 
-function getApiKey(env) {
-  if (!env) return null;
-  if (env.GEMINI_API_KEY) return String(env.GEMINI_API_KEY).trim();
+function getRawApiKey(env) {
+  if (!env) return "";
+  if (env.GEMINI_API_KEY) return env.GEMINI_API_KEY;
   for (const [k, v] of Object.entries(env)) {
     if (k.trim().toLowerCase() === "gemini_api_key" && v) {
-      return String(v).trim();
+      return v;
     }
   }
-  return null;
+  return "";
+}
+
+function cleanApiKey(key) {
+  if (!key) return "";
+  return String(key).trim().replace(/^["']|["']$/g, "").trim();
 }
 
 // 疎通確認・ヘルスチェック (GET)
 export async function onRequestGet(context) {
   const { env } = context;
-  const apiKey = getApiKey(env);
+  const rawKey = getRawApiKey(env);
+  const cleanedKey = cleanApiKey(rawKey);
+  const maskedKey = cleanedKey.length > 8
+    ? `${cleanedKey.slice(0, 4)}...${cleanedKey.slice(-4)} (length: ${cleanedKey.length})`
+    : (cleanedKey ? `length: ${cleanedKey.length}` : "not configured");
+
   const envKeys = Object.keys(env || {}).filter((k) => k !== "ASSETS");
+
   return jsonResponse({
     status: "ok",
     service: "pilotmieux-chat-api",
-    apiKeyConfigured: Boolean(apiKey),
+    apiKeyConfigured: Boolean(cleanedKey),
+    keyMask: maskedKey,
+    hasExtraQuotesOrWhitespace: rawKey !== cleanedKey,
     availableEnvKeys: envKeys,
   });
 }
@@ -47,13 +60,15 @@ export async function onRequestPost(context) {
   const { request, env } = context;
 
   try {
-    const apiKey = getApiKey(env);
+    const rawKey = getRawApiKey(env);
+    const apiKey = cleanApiKey(rawKey);
+
     if (!apiKey) {
       const detectedKeys = Object.keys(env || {}).filter((k) => k !== "ASSETS");
       return jsonResponse(
         {
-          error: "APIキーが設定されていません。",
-          details: `Cloudflareのダッシュボード「設定」＞「変数とシークレット」に GEMINI_API_KEY を設定してください。（現在認識されている変数: ${detectedKeys.length > 0 ? detectedKeys.join(", ") : "なし"}）`,
+          error: "APIキーが設定されていないか、値が空です。",
+          details: `Cloudflareダッシュボードの「設定」＞「変数とシークレット」に GEMINI_API_KEY を設定してください。（認識中のキー: ${detectedKeys.length > 0 ? detectedKeys.join(", ") : "なし"}）`,
         },
         500
       );
@@ -174,9 +189,18 @@ export async function onRequestPost(context) {
         if (response.status === 400 || response.status === 401 || response.status === 403) {
           let msg = "リクエスト内容またはAPIキーに問題があります。";
           if (response.status === 401 || response.status === 403) {
-            msg = "APIキーが無効、またはアクセス権限がありません。";
+            msg = "APIキーが無効、またはアクセス権限がありません。Cloudflareダッシュボードの環境変数（GEMINI_API_KEY）をご確認ください。";
           }
-          return jsonResponse({ error: msg, status: response.status }, response.status);
+          return jsonResponse(
+            {
+              error: msg,
+              status: response.status,
+              details: errorText,
+              keyLength: apiKey.length,
+              model: model,
+            },
+            response.status
+          );
         }
 
         // 503（混雑）、429（レート制限）、404（廃止）などの場合は次のモデルを試行
