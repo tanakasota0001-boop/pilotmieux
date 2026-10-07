@@ -18,13 +18,27 @@ export async function onRequestOptions() {
   });
 }
 
+function getApiKey(env) {
+  if (!env) return null;
+  if (env.GEMINI_API_KEY) return String(env.GEMINI_API_KEY).trim();
+  for (const [k, v] of Object.entries(env)) {
+    if (k.trim().toLowerCase() === "gemini_api_key" && v) {
+      return String(v).trim();
+    }
+  }
+  return null;
+}
+
 // 疎通確認・ヘルスチェック (GET)
 export async function onRequestGet(context) {
   const { env } = context;
+  const apiKey = getApiKey(env);
+  const envKeys = Object.keys(env || {}).filter((k) => k !== "ASSETS");
   return jsonResponse({
     status: "ok",
     service: "pilotmieux-chat-api",
-    apiKeyConfigured: Boolean(env.GEMINI_API_KEY),
+    apiKeyConfigured: Boolean(apiKey),
+    availableEnvKeys: envKeys,
   });
 }
 
@@ -33,13 +47,13 @@ export async function onRequestPost(context) {
   const { request, env } = context;
 
   try {
-    const apiKey = env.GEMINI_API_KEY;
+    const apiKey = getApiKey(env);
     if (!apiKey) {
+      const detectedKeys = Object.keys(env || {}).filter((k) => k !== "ASSETS");
       return jsonResponse(
         {
           error: "APIキーが設定されていません。",
-          details:
-            "ローカル実行の場合は .dev.vars に GEMINI_API_KEY を設定してください。Cloudflare Pages の場合はダッシュボードの環境変数で設定してください。",
+          details: `Cloudflareのダッシュボード「設定」＞「変数とシークレット」に GEMINI_API_KEY を設定してください。（現在認識されている変数: ${detectedKeys.length > 0 ? detectedKeys.join(", ") : "なし"}）`,
         },
         500
       );
