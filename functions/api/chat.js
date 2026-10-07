@@ -31,7 +31,21 @@ function getRawApiKey(env) {
 
 function cleanApiKey(key) {
   if (!key) return "";
-  return String(key).trim().replace(/^["']|["']$/g, "").trim();
+  let cleaned = String(key).trim().replace(/^["']|["']$/g, "").trim();
+
+  // 改行や空白・カンマ等で複数行/複数トークンある場合は最初の有効なものを採用
+  const tokens = cleaned.split(/[\r\n\s,]+/).filter(Boolean);
+  if (tokens.length > 0) {
+    cleaned = tokens[0];
+  }
+
+  // もし "AQ." が2回連結されて貼り付けられている場合（例: AQ.xxxAQ.xxx）、最初のAQキー（30〜60文字）を抽出
+  const aqMatch = cleaned.match(/(AQ\.[A-Za-z0-9_-]{30,70})/);
+  if (aqMatch && aqMatch[1]) {
+    cleaned = aqMatch[1];
+  }
+
+  return cleaned;
 }
 
 // 疎通確認・ヘルスチェック (GET)
@@ -168,6 +182,7 @@ export async function onRequestPost(context) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "x-goog-api-key": apiKey,
           },
           body: JSON.stringify(geminiPayload),
         });
