@@ -275,9 +275,22 @@
         try {
           errData = await response.json();
         } catch {}
-        const errorMsg =
-          errData.error ||
-          "現在アクセスが集中しております。少し時間をおいて再度お試しください。";
+
+        let errorMsg = errData.error;
+        if (!errorMsg) {
+          if (response.status === 404) {
+            errorMsg = "APIエンドポイントが見つかりません (404 Not Found)。Cloudflareのビルド設定・デプロイ設定をご確認ください。";
+          } else if (response.status === 500) {
+            errorMsg = "サーバー側でエラーが発生しました (500)。環境変数 GEMINI_API_KEY の設定等をご確認ください。";
+          } else {
+            errorMsg = `現在アクセスが集中しているか、一時的な通信エラーが発生しています (Status: ${response.status})。`;
+          }
+        }
+
+        if (errData.details) {
+          errorMsg += `\n\n【詳細】${errData.details}`;
+        }
+
         appendBotMessage(
           `申し訳ございません。${errorMsg}\n\nお急ぎの場合は [お問い合わせフォーム](contact.html) よりご連絡ください。`
         );

@@ -22,6 +22,14 @@ export default {
         });
       }
 
+      if (request.method === "GET") {
+        return jsonResponse({
+          status: "ok",
+          service: "pilotmieux-chat-api",
+          apiKeyConfigured: Boolean(env.GEMINI_API_KEY),
+        });
+      }
+
       if (request.method === "POST") {
         return handleChat(request, env);
       }

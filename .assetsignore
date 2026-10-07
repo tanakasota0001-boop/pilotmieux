@@ -1,0 +1,10 @@
+.git
+.wrangler
+.dev.vars*
+wrangler.toml
+_worker.js
+functions
+package.json
+package-lock.json
+README.md
+vercel.json

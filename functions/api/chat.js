@@ -18,6 +18,16 @@ export async function onRequestOptions() {
   });
 }
 
+// 疎通確認・ヘルスチェック (GET)
+export async function onRequestGet(context) {
+  const { env } = context;
+  return jsonResponse({
+    status: "ok",
+    service: "pilotmieux-chat-api",
+    apiKeyConfigured: Boolean(env.GEMINI_API_KEY),
+  });
+}
+
 // チャットAPI (POST)
 export async function onRequestPost(context) {
   const { request, env } = context;
