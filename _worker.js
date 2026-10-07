@@ -37,12 +37,12 @@ export default {
       return new Response("Method Not Allowed", { status: 405 });
     }
 
-    // 2. それ以外のリクエストは静的ファイル（HTML, CSS, JS, 画像）をそのまま配信
+    // 2. それ以外のリクエストは静的ファイル（HTML, CSS, JS, 画像）を配信
     if (env.ASSETS) {
       return env.ASSETS.fetch(request);
     }
 
-    return new Response("Not Found", { status: 404 });
+    return fetch(request);
   },
 };
 
