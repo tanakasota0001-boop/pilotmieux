@@ -162,11 +162,12 @@ export async function onRequestPost(context) {
     // 試行するモデル候補（503混雑時や一時障害時に自動で次に切り替え）
     const candidateModels = [
       env.GEMINI_MODEL,
-      "gemini-flash-latest",
-      "gemini-flash-lite-latest",
-      "gemini-3.8-flash",
+      "gemini-flash-lite-latest", // 最優先：最軽量・超高速推論モデル
+      "gemini-flash-latest",      // 次点：通常Flash
+      "gemini-2.0-flash-lite",
+      "gemini-2.0-flash",
       "gemini-3.5-flash-lite",
-      "gemini-3.7-flash",
+      "gemini-3.8-flash",
     ].filter(Boolean);
 
     // 重複を削除した一意のモデル順序リスト
@@ -175,7 +176,8 @@ export async function onRequestPost(context) {
     let lastError = null;
 
     for (const model of modelsToTry) {
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+      // Gemini 公式 SSE ストリーミングエンドポイント
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse`;
 
       try {
         const response = await fetch(geminiUrl, {
@@ -188,12 +190,16 @@ export async function onRequestPost(context) {
         });
 
         if (response.ok) {
-          const data = await response.json();
-          const replyText =
-            data.candidates?.[0]?.content?.parts?.[0]?.text ||
-            "申し訳ございません。回答を生成できませんでした。";
-
-          return jsonResponse({ reply: replyText });
+          // クライアントへリアルタイムにストリーミング中継 (SSE)
+          return new Response(response.body, {
+            status: 200,
+            headers: {
+              ...CORS_HEADERS,
+              "Content-Type": "text/event-stream; charset=utf-8",
+              "Cache-Control": "no-cache, no-transform",
+              "Connection": "keep-alive",
+            },
+          });
         }
 
         const errorText = await response.text();

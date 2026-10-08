@@ -268,9 +268,8 @@
         }),
       });
 
-      typingBox.remove();
-
       if (!response.ok) {
+        typingBox.remove();
         let errData = {};
         try {
           errData = await response.json();
@@ -290,21 +289,78 @@
         return;
       }
 
-      const data = await response.json();
-      const reply = data.reply || "お答えが見つかりませんでした。";
+      // ストリーミングレスポンス (Server-Sent Events) の読み取り
+      const contentType = response.headers.get("content-type") || "";
+      if (response.body && contentType.includes("text/event-stream")) {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let buffer = "";
+        let fullReply = "";
+        let botBubbleEl = null;
+        const msgTime = getCurrentTime();
 
-      // AI回答描画 & 保存
-      appendBotMessage(reply);
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
 
-      // 履歴管理（API用文脈）
-      conversationHistory.push({ role: "user", text: message });
-      conversationHistory.push({ role: "model", text: reply });
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
+          buffer = lines.pop(); // 未完成の最終行をバッファに残す
 
-      if (conversationHistory.length > 6) {
-        conversationHistory.splice(0, conversationHistory.length - 6);
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed.startsWith("data:")) continue;
+            const jsonStr = trimmed.replace(/^data:\s*/, "");
+            if (!jsonStr || jsonStr === "[DONE]") continue;
+
+            try {
+              const parsed = JSON.parse(jsonStr);
+              const chunk = parsed.candidates?.[0]?.content?.parts?.[0]?.text;
+              if (chunk) {
+                if (!botBubbleEl) {
+                  // 最初の文字を受信した瞬間にタイピングインジケータを消去し、発言枠を表示
+                  typingBox.remove();
+                  botBubbleEl = createStreamingBotRow(msgTime);
+                }
+                fullReply += chunk;
+                botBubbleEl.innerHTML = formatMarkdown(fullReply);
+                scrollToBottom();
+              }
+            } catch (e) {
+              // チャンクパース中のエラーは無視して継続
+            }
+          }
+        }
+
+        // ストリーム完了後の後処理
+        if (fullReply) {
+          renderedMessages.push({ role: "bot", text: fullReply, time: msgTime });
+          conversationHistory.push({ role: "user", text: message });
+          conversationHistory.push({ role: "model", text: fullReply });
+
+          if (conversationHistory.length > 6) {
+            conversationHistory.splice(0, conversationHistory.length - 6);
+          }
+          saveState();
+        } else {
+          // テキストが空だった場合のフォールバック
+          typingBox.remove();
+          appendBotMessage("お答えが見つかりませんでした。");
+        }
+      } else {
+        // 通常の非ストリーミングJSONレスポンス（フォールバック）
+        typingBox.remove();
+        const data = await response.json();
+        const reply = data.reply || "お答えが見つかりませんでした。";
+        appendBotMessage(reply);
+
+        conversationHistory.push({ role: "user", text: message });
+        conversationHistory.push({ role: "model", text: reply });
+        if (conversationHistory.length > 6) {
+          conversationHistory.splice(0, conversationHistory.length - 6);
+        }
+        saveState();
       }
-
-      saveState();
     } catch (err) {
       console.error("Chat Fetch Error:", err);
       typingBox.remove();
@@ -315,6 +371,25 @@
       isSending = false;
       sendBtn.disabled = !inputEl.value.trim();
     }
+  }
+
+  // ストリーミング表示用の空のボット吹き出しを作成
+  function createStreamingBotRow(time) {
+    const messagesEl = document.getElementById("pmMessages");
+    const row = document.createElement("div");
+    row.className = "pm-row pm-row-bot";
+    row.innerHTML = `
+      <div class="pm-bot-avatar" aria-hidden="true">
+        <img src="images/icon.png" alt="pilotmieux" width="16" height="16">
+      </div>
+      <div class="pm-bubble-wrap">
+        <div class="pm-bubble"></div>
+        <span class="pm-time">${time || getCurrentTime()}</span>
+      </div>
+    `;
+    messagesEl.appendChild(row);
+    scrollToBottom();
+    return row.querySelector(".pm-bubble");
   }
 
   // ユーザーメッセージ描画＆記録
